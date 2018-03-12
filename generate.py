@@ -43,6 +43,9 @@ def is_descendant_type(spec, name, base):
 		return False
 	return is_descendant_type(spec, parent, base)
 
+def defined(key):
+	return 'defined(' + key + ')'
+
 if __name__ == "__main__":
 	specpath = "https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/master/src/spec/vk.xml"
 
@@ -66,17 +69,18 @@ if __name__ == "__main__":
 	command_groups = OrderedDict()
 
 	for feature in spec.findall('feature'):
-		command_groups[feature.get('name')] = feature.findall('require/command')
+		key = defined(feature.get('name'))
+		command_groups[key] = feature.findall('require/command')
 
 	for ext in sorted(spec.findall('extensions/extension'), key=lambda ext: ext.get('name')):
 		name = ext.get('name')
 		for req in ext.findall('require'):
-			key = name if not req.get('feature') else name + ' && ' + req.get('feature')
-			commands = req.findall('command')
-			if command_groups.get(key):
-				command_groups[key] += commands
-			else:
-				command_groups[key] = commands
+			key = defined(name)
+			if req.get('feature'):
+				key += ' && ' + defined(req.get('feature'))
+			if req.get('extension'):
+				key += ' && ' + defined(req.get('extension'))
+			command_groups.setdefault(key, []).extend(req.findall('command'))
 
 	commands = {}
 
