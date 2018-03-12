@@ -1,0 +1,8 @@
+language: cpp
+os: linux
+
+script:
+  - git clone https://github.com/KhronosGroup/Vulkan-Docs
+  - cc -c volk.c -Wall -Wextra -IVulkan-Docs/src
+  - ./generate.py Vulkan-Docs/src/spec/vk.xml
+  - cc -c volk.c -Wall -Wextra -IVulkan-Docs/src
