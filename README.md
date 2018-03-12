@@ -18,14 +18,18 @@ To use volk, you have to include `volk.h` instead of `vulkan/vulkan.h`; this is 
 
 To initialize volk, call this function first:
 
-	VkResult volkInitialize();
+```c++
+VkResult volkInitialize();
+```
 
 This will attempt to load Vulkan loader from the system; if this function returns `VK_SUCCESS` you can proceed to create Vulkan instance.
 If this function fails, this means Vulkan loader isn't installed on your system.
 
 After creating the Vulkan instance using Vulkan API, call this function:
 
-	void volkLoadInstance(VkInstance instance);
+```c++
+void volkLoadInstance(VkInstance instance);
+```
 
 This function will load all required Vulkan entrypoints, including all extensions; you can use Vulkan from here on as usual.
 
@@ -38,11 +42,15 @@ To avoid this, you have one of two options:
 
 1. For applications that use just one VkDevice, load device-related Vulkan entrypoints directly from the driver with this function:
 
-	void volkLoadDevice(VkDevice device);
+```c++
+void volkLoadDevice(VkDevice device);
+```
 
 2. For applications that use multiple VkDevice objects, load device-related Vulkan entrypoints into a table:
 
-	void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device);
+```c++
+void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device);
+```
 
 The second option requires you to change the application code to store one `VolkDeviceTable` per `VkDevice` and call functions from this table instead.
 
