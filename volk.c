@@ -832,6 +832,10 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	/* VOLK_GENERATE_LOAD_DEVICE_TABLE */
 }
 
+#ifdef __GNUC__
+#	pragma GCC visibility push(hidden)
+#endif
+
 /* VOLK_GENERATE_PROTOTYPES_C */
 #if defined(VK_VERSION_1_0)
 PFN_vkAllocateCommandBuffers vkAllocateCommandBuffers;
@@ -1255,6 +1259,10 @@ PFN_vkGetPhysicalDevicePresentRectanglesKHR vkGetPhysicalDevicePresentRectangles
 PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
 #endif /* (defined(VK_KHR_device_group) && defined(VK_KHR_swapchain)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1)) */
 /* VOLK_GENERATE_PROTOTYPES_C */
+
+#ifdef __GNUC__
+#	pragma GCC visibility pop
+#endif
 
 #ifdef __cplusplus
 }
