@@ -31,13 +31,34 @@ extern "C" {
 
 struct VolkDeviceTable;
 
+/**
+ * Initialize library by loading Vulkan loader; call this function before creating the Vulkan instance.
+ *
+ * Returns VK_SUCCESS on success and VK_ERROR_INITIALIZATION_FAILED otherwise.
+ */
 VkResult volkInitialize();
 
+/**
+ * Load global function pointers using application-created VkInstance; call this function after creating the Vulkan instance.
+ */
 void volkLoadInstance(VkInstance instance);
+
+/**
+ * Load global function pointers using application-created VkDevice; call this function after creating the Vulkan device.
+ *
+ * Note: this is not suitable for applications that want to use multiple VkDevice objects concurrently.
+ */
 void volkLoadDevice(VkDevice device);
 
+/**
+ * Load function pointers using application-created VkDevice into a table.
+ * Application should use function pointers from that table instead of using global function pointers.
+ */
 void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device);
 
+/**
+ * Device-specific function pointer table
+ */
 struct VolkDeviceTable
 {
 	/* VOLK_GENERATE_DEVICE_TABLE */
