@@ -1,5 +1,8 @@
 language: cpp
 os: linux
+compiler:
+  - clang
+  - gcc
 
 env:
   - SPEC_REV=ce60b9c88745ecded74296dfbe69dae7c1fb2e62
