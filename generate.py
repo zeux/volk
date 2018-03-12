@@ -54,14 +54,9 @@ if __name__ == "__main__":
 
 	spec = parse_xml(specpath)
 
+	block_keys = ('DEVICE_TABLE', 'PROTOTYPES_H', 'PROTOTYPES_C', 'LOAD_LOADER', 'LOAD_INSTANCE', 'LOAD_DEVICE', 'LOAD_DEVICE_TABLE')
+
 	blocks = {}
-	blocks['DEVICE_TABLE'] = ''
-	blocks['PROTOTYPES_H'] = ''
-	blocks['PROTOTYPES_C'] = ''
-	blocks['LOAD_LOADER'] = ''
-	blocks['LOAD_INSTANCE'] = ''
-	blocks['LOAD_DEVICE'] = ''
-	blocks['LOAD_DEVICE_TABLE'] = ''
 
 	version = spec.find('types/type[name="VK_HEADER_VERSION"]')
 	blocks['VERSION'] = '#define VOLK_HEADER_VERSION ' + version.find('name').tail.strip() + '\n'
@@ -118,10 +113,13 @@ if __name__ == "__main__":
 		if name:
 			types[name] = type
 
+	for key in block_keys:
+		blocks[key] = ''
+
 	for (group, cmdnames) in command_groups.items():
 		ifdef = '#if ' + group + '\n'
 
-		for key in ('LOAD_DEVICE', 'LOAD_DEVICE_TABLE', 'DEVICE_TABLE', 'LOAD_INSTANCE', 'LOAD_LOADER', 'PROTOTYPES_H', 'PROTOTYPES_C'):
+		for key in block_keys:
 			blocks[key] += ifdef
 
 		for name in sorted(cmdnames):
@@ -135,8 +133,8 @@ if __name__ == "__main__":
 
 			if is_descendant_type(types, type, 'VkDevice'):
 				blocks['LOAD_DEVICE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
-				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
 				blocks['DEVICE_TABLE'] += '\tPFN_' + name + ' ' + name + ";\n"
+				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
 			elif is_descendant_type(types, type, 'VkInstance'):
 				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
 			elif type != '':
@@ -145,7 +143,7 @@ if __name__ == "__main__":
 			blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ";\n"
 			blocks['PROTOTYPES_C'] += 'PFN_' + name + ' ' + name + ";\n"
 
-		for key in ('LOAD_DEVICE', 'LOAD_DEVICE_TABLE', 'DEVICE_TABLE', 'LOAD_INSTANCE', 'LOAD_LOADER', 'PROTOTYPES_H', 'PROTOTYPES_C'):
+		for key in block_keys:
 			if blocks[key].endswith(ifdef):
 				blocks[key] = blocks[key][:-len(ifdef)]
 			else:
