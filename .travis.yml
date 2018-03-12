@@ -1,8 +1,12 @@
 language: cpp
 os: linux
 
+env:
+  - SPEC_REV=ce60b9c88745ecded74296dfbe69dae7c1fb2e62
+
 script:
   - git clone https://github.com/KhronosGroup/Vulkan-Docs
-  - cc -c volk.c -Wall -Wextra -IVulkan-Docs/src
+  - git -C Vulkan-Docs checkout $SPEC_REV
   - ./generate.py Vulkan-Docs/src/spec/vk.xml
-  - cc -c volk.c -Wall -Wextra -IVulkan-Docs/src
+  - git diff --exit-code # make sure output matches repo contents
+  - cc -c volk.c -Wall -Wextra -Werror -IVulkan-Docs/src
