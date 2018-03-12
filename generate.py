@@ -32,16 +32,16 @@ def patch_file(path, blocks):
 		for line in result:
 			file.write(line)
 
-def is_descendant_type(spec, name, base):
+def is_descendant_type(types, name, base):
 	if name == base:
 		return True
-	type = spec.find('types/type[name="' + name + '"]')
+	type = types.get(name)
 	if not type:
 		return False
 	parent = type.get('parent')
 	if not parent:
 		return False
-	return is_descendant_type(spec, parent, base)
+	return is_descendant_type(types, parent, base)
 
 def defined(key):
 	return 'defined(' + key + ')'
@@ -111,6 +111,13 @@ if __name__ == "__main__":
 			name = cmd.get('name')
 			commands[name] = commands[cmd.get('alias')]
 
+	types = {}
+
+	for type in spec.findall('types/type'):
+		name = type.findtext('name')
+		if name:
+			types[name] = type
+
 	for (group, cmdnames) in command_groups.items():
 		ifdef = '#if ' + group + '\n'
 
@@ -126,11 +133,11 @@ if __name__ == "__main__":
 			if name == 'vkGetDeviceProcAddr':
 				type = 'VkInstance'
 
-			if is_descendant_type(spec, type, 'VkDevice'):
+			if is_descendant_type(types, type, 'VkDevice'):
 				blocks['LOAD_DEVICE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
 				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
 				blocks['DEVICE_TABLE'] += '\tPFN_' + name + ' ' + name + ";\n"
-			elif is_descendant_type(spec, type, 'VkInstance'):
+			elif is_descendant_type(types, type, 'VkInstance'):
 				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
 			elif type != '':
 				blocks['LOAD_LOADER'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
