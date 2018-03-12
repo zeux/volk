@@ -13,6 +13,10 @@
 #	error To use volk, you need to define VK_NO_PROTOTYPES before including vulkan.h
 #endif
 
+/* VOLK_GENERATE_VERSION */
+#define VOLK_HEADER_VERSION 70
+/* VOLK_GENERATE_VERSION */
+
 #ifndef VK_NO_PROTOTYPES
 #	define VK_NO_PROTOTYPES
 #endif
@@ -134,7 +138,6 @@ struct VolkDeviceTable
 	PFN_vkFreeMemory vkFreeMemory;
 	PFN_vkGetBufferMemoryRequirements vkGetBufferMemoryRequirements;
 	PFN_vkGetDeviceMemoryCommitment vkGetDeviceMemoryCommitment;
-	PFN_vkGetDeviceProcAddr vkGetDeviceProcAddr;
 	PFN_vkGetDeviceQueue vkGetDeviceQueue;
 	PFN_vkGetEventStatus vkGetEventStatus;
 	PFN_vkGetFenceStatus vkGetFenceStatus;

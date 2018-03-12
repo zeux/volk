@@ -60,6 +60,9 @@ if __name__ == "__main__":
 	blocks['LOAD_DEVICE'] = ''
 	blocks['LOAD_DEVICE_TABLE'] = ''
 
+	version = spec.find('types/type[name="VK_HEADER_VERSION"]')
+	blocks['VERSION'] = '#define VOLK_HEADER_VERSION ' + version.find('name').tail.strip() + '\n'
+
 	command_groups = OrderedDict()
 
 	for feature in spec.findall('feature'):
@@ -98,13 +101,18 @@ if __name__ == "__main__":
 			cmd = commands[name]
 			type = cmd.findtext('param[1]/type')
 
+			if name == 'vkGetInstanceProcAddr':
+				type = ''
+			if name == 'vkGetDeviceProcAddr':
+				type = 'VkInstance'
+
 			if is_descendant_type(spec, type, 'VkDevice'):
 				blocks['LOAD_DEVICE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
 				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
 				blocks['DEVICE_TABLE'] += '\tPFN_' + name + ' ' + name + ";\n"
 			elif is_descendant_type(spec, type, 'VkInstance'):
 				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
-			else:
+			elif type != '':
 				blocks['LOAD_LOADER'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
 
 			blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ";\n"
