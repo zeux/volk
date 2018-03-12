@@ -70,7 +70,8 @@ if __name__ == "__main__":
 
 	for feature in spec.findall('feature'):
 		key = defined(feature.get('name'))
-		command_groups[key] = feature.findall('require/command')
+		cmdrefs = feature.findall('require/command')
+		command_groups[key] = [cmdref.get('name') for cmdref in cmdrefs]
 
 	for ext in sorted(spec.findall('extensions/extension'), key=lambda ext: ext.get('name')):
 		name = ext.get('name')
@@ -80,7 +81,23 @@ if __name__ == "__main__":
 				key += ' && ' + defined(req.get('feature'))
 			if req.get('extension'):
 				key += ' && ' + defined(req.get('extension'))
-			command_groups.setdefault(key, []).extend(req.findall('command'))
+			cmdrefs = req.findall('command')
+			command_groups.setdefault(key, []).extend([cmdref.get('name') for cmdref in cmdrefs])
+
+	commands_to_groups = {}
+
+	for (group, cmdnames) in command_groups.items():
+		for name in cmdnames:
+			commands_to_groups.setdefault(name, []).append(group)
+
+	for (group, cmdnames) in command_groups.items():
+		command_groups[group] = [name for name in cmdnames if len(commands_to_groups[name]) == 1]
+
+	for (name, groups) in commands_to_groups.items():
+		if len(groups) == 1:
+			continue
+		key = ' || '.join(['(' + g + ')' for g in groups])
+		command_groups.setdefault(key, []).append(name)
 
 	commands = {}
 
@@ -94,14 +111,13 @@ if __name__ == "__main__":
 			name = cmd.get('name')
 			commands[name] = commands[cmd.get('alias')]
 
-	for (group, cmdrefs) in command_groups.items():
+	for (group, cmdnames) in command_groups.items():
 		ifdef = '#if ' + group + '\n'
 
 		for key in ('LOAD_DEVICE', 'LOAD_DEVICE_TABLE', 'DEVICE_TABLE', 'LOAD_INSTANCE', 'LOAD_LOADER', 'PROTOTYPES_H', 'PROTOTYPES_C'):
 			blocks[key] += ifdef
 
-		for cmdref in sorted(cmdrefs, key=lambda cmdref: cmdref.get('name')):
-			name = cmdref.get('name')
+		for name in sorted(cmdnames):
 			cmd = commands[name]
 			type = cmd.findtext('param[1]/type')
 
