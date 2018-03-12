@@ -26,8 +26,6 @@ static PFN_vkVoidFunction vkGetDeviceProcAddrStub(void* context, const char* nam
 	return vkGetDeviceProcAddr((VkDevice)context, name);
 }
 
-struct VolkDeviceTable;
-
 VkResult volkInitialize()
 {
 #ifdef _WIN32
@@ -47,6 +45,20 @@ VkResult volkInitialize()
 	volkGenLoadLoader(NULL, vkGetInstanceProcAddrStub);
 
 	return VK_SUCCESS;
+}
+
+uint32_t volkGetInstanceVersion()
+{
+	if (!vkCreateInstance)
+		return 0;
+
+#if defined(VK_VERSION_1_1)
+	uint32_t apiVersion = 0;
+	if (vkEnumerateInstanceVersion && vkEnumerateInstanceVersion(&apiVersion) == VK_SUCCESS)
+		return apiVersion;
+#endif
+
+	return VK_API_VERSION_1_0;
 }
 
 void volkLoadInstance(VkInstance instance)

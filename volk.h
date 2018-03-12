@@ -39,6 +39,13 @@ struct VolkDeviceTable;
 VkResult volkInitialize();
 
 /**
+ * Get Vulkan instance version supported by the Vulkan loader, or 0 if Vulkan isn't supported
+ *
+ * Returns 0 if volkInitialize wasn't called or failed.
+ */
+uint32_t volkGetInstanceVersion();
+
+/**
  * Load global function pointers using application-created VkInstance; call this function after creating the Vulkan instance.
  */
 void volkLoadInstance(VkInstance instance);
