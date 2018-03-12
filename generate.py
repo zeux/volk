@@ -122,7 +122,7 @@ if __name__ == "__main__":
 			if blocks[key].endswith(ifdef):
 				blocks[key] = blocks[key][:-len(ifdef)]
 			else:
-				blocks[key] += '#endif // ' + group + '\n'
+				blocks[key] += '#endif /* ' + group + ' */\n'
 
 	patch_file('volk.h', blocks)
 	patch_file('volk.c', blocks)
