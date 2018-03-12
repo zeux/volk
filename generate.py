@@ -84,7 +84,7 @@ if __name__ == "__main__":
 			cmdrefs = req.findall('command')
 			command_groups.setdefault(key, []).extend([cmdref.get('name') for cmdref in cmdrefs])
 
-	commands_to_groups = {}
+	commands_to_groups = OrderedDict()
 
 	for (group, cmdnames) in command_groups.items():
 		for name in cmdnames:
