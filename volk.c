@@ -29,7 +29,7 @@ static PFN_vkVoidFunction vkGetDeviceProcAddrStub(void* context, const char* nam
 VkResult volkInitialize()
 {
 #ifdef _WIN32
-	HANDLE module = LoadLibraryA("vulkan-1.dll");
+	HMODULE module = LoadLibraryA("vulkan-1.dll");
 	if (!module)
 		return VK_ERROR_INITIALIZATION_FAILED;
 
