@@ -51,16 +51,16 @@ VkResult volkInitialize()
 
 uint32_t volkGetInstanceVersion()
 {
-	if (!vkCreateInstance)
-		return 0;
-
 #if defined(VK_VERSION_1_1)
 	uint32_t apiVersion = 0;
 	if (vkEnumerateInstanceVersion && vkEnumerateInstanceVersion(&apiVersion) == VK_SUCCESS)
 		return apiVersion;
 #endif
 
-	return VK_API_VERSION_1_0;
+	if (vkCreateInstance)
+		return VK_API_VERSION_1_0;
+
+	return 0;
 }
 
 void volkLoadInstance(VkInstance instance)
