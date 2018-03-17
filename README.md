@@ -13,6 +13,7 @@ volk is written in C89 and supports Windows, Linux and Android.
 volk comes with one header and source file; to build it, just add the source file, `volk.c`, to your build system.
 
 To use volk, you have to include `volk.h` instead of `vulkan/vulkan.h`; this is necessary to use function definitions from volk.
+If some files in your application include `vulkan/vulkan.h` and don't include `volk.h`, this can result in symbol conflicts; consider defining `VK_NO_PROTOTYPES` when compiling code that uses Vulkan to make sure this doesn't happen.
 
 ## Basic usage
 
