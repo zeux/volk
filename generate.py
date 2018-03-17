@@ -132,16 +132,16 @@ if __name__ == "__main__":
 				type = 'VkInstance'
 
 			if is_descendant_type(types, type, 'VkDevice'):
-				blocks['LOAD_DEVICE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
-				blocks['DEVICE_TABLE'] += '\tPFN_' + name + ' ' + name + ";\n"
-				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
+				blocks['LOAD_DEVICE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['DEVICE_TABLE'] += '\tPFN_' + name + ' ' + name + ';\n'
+				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 			elif is_descendant_type(types, type, 'VkInstance'):
-				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
+				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 			elif type != '':
-				blocks['LOAD_LOADER'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");' + "\n"
+				blocks['LOAD_LOADER'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 
-			blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ";\n"
-			blocks['PROTOTYPES_C'] += 'PFN_' + name + ' ' + name + ";\n"
+			blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
+			blocks['PROTOTYPES_C'] += 'PFN_' + name + ' ' + name + ';\n'
 
 		for key in block_keys:
 			if blocks[key].endswith(ifdef):
