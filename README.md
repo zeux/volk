@@ -1,4 +1,4 @@
-# 🐺 volk [![Build Status](https://travis-ci.org/zeux/volk.svg?branch=master)](https://travis-ci.org/zeux/volk)
+# 🐺 volk [![Build Status](https://travis-ci.org/zeux/volk.svg?branch=master)](https://travis-ci.org/zeux/volk) [![Build status](https://ci.appveyor.com/api/projects/status/m2aulhj6fj44kxk0/branch/master?svg=true)](https://ci.appveyor.com/project/zeux/volk)
 
 ## Purpose
 
