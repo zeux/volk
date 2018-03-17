@@ -12,4 +12,6 @@ script:
   - git -C Vulkan-Docs checkout $SPEC_REV
   - ./generate.py Vulkan-Docs/src/spec/vk.xml
   - git diff --exit-code # make sure output matches repo contents
-  - cc -c volk.c -Wall -Wextra -Werror -IVulkan-Docs/src
+  - cc -c volk.c -Wall -Wextra -Werror -IVulkan-Docs/src # check Vulkan 1.1 build
+  - git -C Vulkan-Docs checkout ab08f0951ef1ad9b84db93f971e113c1d9d55609
+  - cc -c volk.c -Wall -Wextra -Werror -IVulkan-Docs/src # check Vulkan 1.0 build
