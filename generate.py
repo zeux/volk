@@ -38,10 +38,10 @@ def is_descendant_type(types, name, base):
 	type = types.get(name)
 	if not type:
 		return False
-	parent = type.get('parent')
-	if not parent:
+	parents = type.get('parent')
+	if not parents:
 		return False
-	return is_descendant_type(types, parent, base)
+	return any([is_descendant_type(types, parent, base) for parent in parents.split(',')])
 
 def defined(key):
 	return 'defined(' + key + ')'
