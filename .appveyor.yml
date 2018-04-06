@@ -2,6 +2,6 @@ build_script:
 - cmd: >-
     git clone https://github.com/KhronosGroup/Vulkan-Docs &&
     "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\vcvarsall.bat" &&
-    cl /c /W4 /WX /IVulkan-Docs/src volk.c
+    cl /c /W4 /WX /IVulkan-Docs/include volk.c
 
 test: off
