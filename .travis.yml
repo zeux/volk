@@ -5,7 +5,7 @@ compiler:
   - gcc
 
 env:
-  - SPEC_REV=e958791a01a51b816b4eb2c9e3777877b8d93bd2
+  - SPEC_REV=e1c0e426f37e45705273f2c5b6cbb0a0f74e3d75
 
 script:
   - git clone https://github.com/KhronosGroup/Vulkan-Docs
@@ -14,4 +14,4 @@ script:
   - git diff --exit-code # make sure output matches repo contents
   - cc -c volk.c -Wall -Wextra -Werror -IVulkan-Docs/include # check Vulkan 1.1 build
   - git -C Vulkan-Docs checkout ab08f0951ef1ad9b84db93f971e113c1d9d55609 # last 1.0 rev
-  - cc -c volk.c -Wall -Wextra -Werror -IVulkan-Docs/include # check Vulkan 1.0 build
+  - cc -c volk.c -Wall -Wextra -Werror -IVulkan-Docs/src # check Vulkan 1.0 build
