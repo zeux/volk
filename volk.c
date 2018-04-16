@@ -11,7 +11,6 @@
 extern "C" {
 #endif
 
-static void volkGenLoadLoader(void* context, PFN_vkVoidFunction (*load)(void*, const char*));
 static void volkGenLoadInstance(void* context, PFN_vkVoidFunction (*load)(void*, const char*));
 static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, const char*));
 static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context, PFN_vkVoidFunction (*load)(void*, const char*));
@@ -79,7 +78,7 @@ void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device)
 	volkGenLoadDeviceTable(table, device, vkGetDeviceProcAddrStub);
 }
 
-static void volkGenLoadLoader(void* context, PFN_vkVoidFunction (*load)(void*, const char*))
+void volkGenLoadLoader(void* context, PFN_vkVoidFunction (*load)(void*, const char*))
 {
 	/* VOLK_GENERATE_LOAD_LOADER */
 #if defined(VK_VERSION_1_0)
