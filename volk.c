@@ -49,6 +49,13 @@ VkResult volkInitialize()
 	return VK_SUCCESS;
 }
 
+void volkInitializeCustom(PFN_vkGetInstanceProcAddr handler)
+{
+	vkGetInstanceProcAddr = handler;
+
+	volkGenLoadLoader(NULL, vkGetInstanceProcAddrStub);
+}
+
 uint32_t volkGetInstanceVersion()
 {
 #if defined(VK_VERSION_1_1)

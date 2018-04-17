@@ -39,6 +39,15 @@ struct VolkDeviceTable;
 VkResult volkInitialize();
 
 /**
+ * Initialize library by providing a custom handler to load global symbols.
+ *
+ * This function can be used instead of volkInitialize.
+ * The handler function pointer will be asked to load global Vulkan symbols which require no instance
+ * (such as vkCreateInstance, vkEnumerateInstance* and vkEnumerateInstanceVersion if available).
+ */
+void volkInitializeCustom(PFN_vkGetInstanceProcAddr handler);
+
+/**
  * Get Vulkan instance version supported by the Vulkan loader, or 0 if Vulkan isn't supported
  *
  * Returns 0 if volkInitialize wasn't called or failed.
