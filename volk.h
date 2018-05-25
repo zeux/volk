@@ -14,7 +14,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION */
-#define VOLK_HEADER_VERSION 75
+#define VOLK_HEADER_VERSION 76
 /* VOLK_GENERATE_VERSION */
 
 #ifndef VK_NO_PROTOTYPES
@@ -299,6 +299,10 @@ struct VolkDeviceTable
 #if defined(VK_KHR_display_swapchain)
 	PFN_vkCreateSharedSwapchainsKHR vkCreateSharedSwapchainsKHR;
 #endif /* defined(VK_KHR_display_swapchain) */
+#if defined(VK_KHR_draw_indirect_count)
+	PFN_vkCmdDrawIndexedIndirectCountKHR vkCmdDrawIndexedIndirectCountKHR;
+	PFN_vkCmdDrawIndirectCountKHR vkCmdDrawIndirectCountKHR;
+#endif /* defined(VK_KHR_draw_indirect_count) */
 #if defined(VK_KHR_external_fence_fd)
 	PFN_vkGetFenceFdKHR vkGetFenceFdKHR;
 	PFN_vkImportFenceFdKHR vkImportFenceFdKHR;
@@ -665,6 +669,10 @@ extern PFN_vkGetPhysicalDeviceDisplayPropertiesKHR vkGetPhysicalDeviceDisplayPro
 #if defined(VK_KHR_display_swapchain)
 extern PFN_vkCreateSharedSwapchainsKHR vkCreateSharedSwapchainsKHR;
 #endif /* defined(VK_KHR_display_swapchain) */
+#if defined(VK_KHR_draw_indirect_count)
+extern PFN_vkCmdDrawIndexedIndirectCountKHR vkCmdDrawIndexedIndirectCountKHR;
+extern PFN_vkCmdDrawIndirectCountKHR vkCmdDrawIndirectCountKHR;
+#endif /* defined(VK_KHR_draw_indirect_count) */
 #if defined(VK_KHR_external_fence_capabilities)
 extern PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR vkGetPhysicalDeviceExternalFencePropertiesKHR;
 #endif /* defined(VK_KHR_external_fence_capabilities) */
@@ -698,6 +706,12 @@ extern PFN_vkImportSemaphoreFdKHR vkImportSemaphoreFdKHR;
 extern PFN_vkGetSemaphoreWin32HandleKHR vkGetSemaphoreWin32HandleKHR;
 extern PFN_vkImportSemaphoreWin32HandleKHR vkImportSemaphoreWin32HandleKHR;
 #endif /* defined(VK_KHR_external_semaphore_win32) */
+#if defined(VK_KHR_get_display_properties2)
+extern PFN_vkGetDisplayModeProperties2KHR vkGetDisplayModeProperties2KHR;
+extern PFN_vkGetDisplayPlaneCapabilities2KHR vkGetDisplayPlaneCapabilities2KHR;
+extern PFN_vkGetPhysicalDeviceDisplayPlaneProperties2KHR vkGetPhysicalDeviceDisplayPlaneProperties2KHR;
+extern PFN_vkGetPhysicalDeviceDisplayProperties2KHR vkGetPhysicalDeviceDisplayProperties2KHR;
+#endif /* defined(VK_KHR_get_display_properties2) */
 #if defined(VK_KHR_get_memory_requirements2)
 extern PFN_vkGetBufferMemoryRequirements2KHR vkGetBufferMemoryRequirements2KHR;
 extern PFN_vkGetImageMemoryRequirements2KHR vkGetImageMemoryRequirements2KHR;
