@@ -14,7 +14,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION */
-#define VOLK_HEADER_VERSION 78
+#define VOLK_HEADER_VERSION 80
 /* VOLK_GENERATE_VERSION */
 
 #ifndef VK_NO_PROTOTYPES
@@ -237,6 +237,10 @@ struct VolkDeviceTable
 	PFN_vkGetSwapchainGrallocUsageANDROID vkGetSwapchainGrallocUsageANDROID;
 	PFN_vkQueueSignalReleaseImageANDROID vkQueueSignalReleaseImageANDROID;
 #endif /* defined(VK_ANDROID_native_buffer) */
+#if defined(VK_EXT_conditional_rendering)
+	PFN_vkCmdBeginConditionalRenderingEXT vkCmdBeginConditionalRenderingEXT;
+	PFN_vkCmdEndConditionalRenderingEXT vkCmdEndConditionalRenderingEXT;
+#endif /* defined(VK_EXT_conditional_rendering) */
 #if defined(VK_EXT_debug_marker)
 	PFN_vkCmdDebugMarkerBeginEXT vkCmdDebugMarkerBeginEXT;
 	PFN_vkCmdDebugMarkerEndEXT vkCmdDebugMarkerEndEXT;
@@ -286,6 +290,12 @@ struct VolkDeviceTable
 	PFN_vkBindBufferMemory2KHR vkBindBufferMemory2KHR;
 	PFN_vkBindImageMemory2KHR vkBindImageMemory2KHR;
 #endif /* defined(VK_KHR_bind_memory2) */
+#if defined(VK_KHR_create_renderpass2)
+	PFN_vkCmdBeginRenderPass2KHR vkCmdBeginRenderPass2KHR;
+	PFN_vkCmdEndRenderPass2KHR vkCmdEndRenderPass2KHR;
+	PFN_vkCmdNextSubpass2KHR vkCmdNextSubpass2KHR;
+	PFN_vkCreateRenderPass2KHR vkCreateRenderPass2KHR;
+#endif /* defined(VK_KHR_create_renderpass2) */
 #if defined(VK_KHR_descriptor_update_template)
 	PFN_vkCreateDescriptorUpdateTemplateKHR vkCreateDescriptorUpdateTemplateKHR;
 	PFN_vkDestroyDescriptorUpdateTemplateKHR vkDestroyDescriptorUpdateTemplateKHR;
@@ -577,6 +587,10 @@ extern PFN_vkQueueSignalReleaseImageANDROID vkQueueSignalReleaseImageANDROID;
 extern PFN_vkAcquireXlibDisplayEXT vkAcquireXlibDisplayEXT;
 extern PFN_vkGetRandROutputDisplayEXT vkGetRandROutputDisplayEXT;
 #endif /* defined(VK_EXT_acquire_xlib_display) */
+#if defined(VK_EXT_conditional_rendering)
+extern PFN_vkCmdBeginConditionalRenderingEXT vkCmdBeginConditionalRenderingEXT;
+extern PFN_vkCmdEndConditionalRenderingEXT vkCmdEndConditionalRenderingEXT;
+#endif /* defined(VK_EXT_conditional_rendering) */
 #if defined(VK_EXT_debug_marker)
 extern PFN_vkCmdDebugMarkerBeginEXT vkCmdDebugMarkerBeginEXT;
 extern PFN_vkCmdDebugMarkerEndEXT vkCmdDebugMarkerEndEXT;
@@ -644,6 +658,12 @@ extern PFN_vkCreateAndroidSurfaceKHR vkCreateAndroidSurfaceKHR;
 extern PFN_vkBindBufferMemory2KHR vkBindBufferMemory2KHR;
 extern PFN_vkBindImageMemory2KHR vkBindImageMemory2KHR;
 #endif /* defined(VK_KHR_bind_memory2) */
+#if defined(VK_KHR_create_renderpass2)
+extern PFN_vkCmdBeginRenderPass2KHR vkCmdBeginRenderPass2KHR;
+extern PFN_vkCmdEndRenderPass2KHR vkCmdEndRenderPass2KHR;
+extern PFN_vkCmdNextSubpass2KHR vkCmdNextSubpass2KHR;
+extern PFN_vkCreateRenderPass2KHR vkCreateRenderPass2KHR;
+#endif /* defined(VK_KHR_create_renderpass2) */
 #if defined(VK_KHR_descriptor_update_template)
 extern PFN_vkCreateDescriptorUpdateTemplateKHR vkCreateDescriptorUpdateTemplateKHR;
 extern PFN_vkDestroyDescriptorUpdateTemplateKHR vkDestroyDescriptorUpdateTemplateKHR;
