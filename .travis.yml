@@ -5,7 +5,7 @@ compiler:
   - gcc
 
 env:
-  - SPEC_REV=831e2d4525cc3231adfadc3bc6b0c8372e6f7f68
+  - SPEC_REV=ff0c2339083b76aba0414afafdb195bba15c78d8
 
 script:
   - git clone https://github.com/KhronosGroup/Vulkan-Docs
