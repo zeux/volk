@@ -34,6 +34,14 @@ VkResult volkInitialize()
 		return VK_ERROR_INITIALIZATION_FAILED;
 
 	vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)GetProcAddress(module, "vkGetInstanceProcAddr");
+#elif __APPLE__
+	void* module = dlopen("libvulkan.dylib", RTLD_NOW | RTLD_LOCAL);
+	if (!module)
+		module = dlopen("libvulkan.dylib.1", RTLD_NOW | RTLD_LOCAL);
+	if (!module)
+		return VK_ERROR_INITIALIZATION_FAILED;
+
+	vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)dlsym(module, "vkGetInstanceProcAddr");
 #else
 	void* module = dlopen("libvulkan.so", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
