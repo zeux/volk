@@ -6,7 +6,7 @@ volk is a meta-loader for Vulkan. It allows you to dynamically load entrypoints 
 without linking to vulkan-1.dll or statically linking Vulkan loader. Additionally, volk enables loading
 Vulkan entrypoints directly from the driver which can increase performance by skipping loader dispatch overhead.
 
-volk is written in C89 and supports Windows, Linux and Android.
+volk is written in C89 and supports Windows, Linux, Android and macOS (via MoltenVK).
 
 ## Building
 
