@@ -28,13 +28,13 @@ static PFN_vkVoidFunction vkGetDeviceProcAddrStub(void* context, const char* nam
 
 VkResult volkInitialize()
 {
-#ifdef _WIN32
+#if defined(_WIN32)
 	HMODULE module = LoadLibraryA("vulkan-1.dll");
 	if (!module)
 		return VK_ERROR_INITIALIZATION_FAILED;
 
 	vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)GetProcAddress(module, "vkGetInstanceProcAddr");
-#elif __APPLE__
+#elif defined(__APPLE__)
 	void* module = dlopen("libvulkan.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
 		module = dlopen("libvulkan.dylib.1", RTLD_NOW | RTLD_LOCAL);
