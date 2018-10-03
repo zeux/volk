@@ -69,6 +69,9 @@ if __name__ == "__main__":
 		command_groups[key] = [cmdref.get('name') for cmdref in cmdrefs]
 
 	for ext in sorted(spec.findall('extensions/extension'), key=lambda ext: ext.get('name')):
+		supported = ext.get('supported')
+		if supported == 'disabled':
+			continue
 		name = ext.get('name')
 		for req in ext.findall('require'):
 			key = defined(name)
