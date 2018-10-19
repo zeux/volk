@@ -26,7 +26,7 @@ static PFN_vkVoidFunction vkGetDeviceProcAddrStub(void* context, const char* nam
 	return vkGetDeviceProcAddr((VkDevice)context, name);
 }
 
-VkResult volkInitialize()
+VkResult volkInitialize(void)
 {
 #if defined(_WIN32)
 	HMODULE module = LoadLibraryA("vulkan-1.dll");
@@ -64,7 +64,7 @@ void volkInitializeCustom(PFN_vkGetInstanceProcAddr handler)
 	volkGenLoadLoader(NULL, vkGetInstanceProcAddrStub);
 }
 
-uint32_t volkGetInstanceVersion()
+uint32_t volkGetInstanceVersion(void)
 {
 #if defined(VK_VERSION_1_1)
 	uint32_t apiVersion = 0;

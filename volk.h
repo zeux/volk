@@ -36,7 +36,7 @@ struct VolkDeviceTable;
  *
  * Returns VK_SUCCESS on success and VK_ERROR_INITIALIZATION_FAILED otherwise.
  */
-VkResult volkInitialize();
+VkResult volkInitialize(void);
 
 /**
  * Initialize library by providing a custom handler to load global symbols.
@@ -52,7 +52,7 @@ void volkInitializeCustom(PFN_vkGetInstanceProcAddr handler);
  *
  * Returns 0 if volkInitialize wasn't called or failed.
  */
-uint32_t volkGetInstanceVersion();
+uint32_t volkGetInstanceVersion(void);
 
 /**
  * Load global function pointers using application-created VkInstance; call this function after creating the Vulkan instance.
