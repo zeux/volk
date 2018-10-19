@@ -4,14 +4,8 @@ compiler:
   - clang
   - gcc
 
-env:
-  - SPEC_REV=7ea62a02a910ba4dfe0dfa2c7ef464f731d1453c
-
 script:
   - git clone https://github.com/KhronosGroup/Vulkan-Docs
-  - git -C Vulkan-Docs checkout $SPEC_REV
-  - ./generate.py Vulkan-Docs/xml/vk.xml
-  - git diff --exit-code # make sure output matches repo contents
   - cc -c volk.c -Wall -Wextra -Werror -IVulkan-Docs/include # check Vulkan 1.1 build
   - git -C Vulkan-Docs checkout ab08f0951ef1ad9b84db93f971e113c1d9d55609 # last 1.0 rev
   - cc -c volk.c -Wall -Wextra -Werror -IVulkan-Docs/src # check Vulkan 1.0 build
