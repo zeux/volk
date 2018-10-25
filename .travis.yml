@@ -1,11 +1,8 @@
-language: sh
+language: cpp
 os:
   - linux
   - osx
   - windows
-
-before_script:
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then PATH=$PATH:/c/Program\ Files/CMake/bin; fi
 
 script:
   - git clone https://github.com/KhronosGroup/Vulkan-Docs
