@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# This file is part of volk library; see volk.h for version/license details
 
 from collections import OrderedDict
 import sys
