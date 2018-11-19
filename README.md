@@ -55,6 +55,8 @@ void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device);
 
 The second option requires you to change the application code to store one `VolkDeviceTable` per `VkDevice` and call functions from this table instead.
 
+Device entrypoints are loaded using `vkGetDeviceProcAddr`; when no layers are present, this commonly results in most function pointers pointing directly at the driver functions, minimizing the call overhead. When layers are loaded, the entrypoints will point at the implementations in the first applicable layer, so this is compatible with any layers including validation layers.
+
 ## License
 
 This library is available to anybody free of charge, under the terms of MIT License:
