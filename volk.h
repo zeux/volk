@@ -14,7 +14,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION */
-#define VOLK_HEADER_VERSION 92
+#define VOLK_HEADER_VERSION 96
 /* VOLK_GENERATE_VERSION */
 
 #ifndef VK_NO_PROTOTYPES
@@ -384,21 +384,6 @@ struct VolkDeviceTable
 	PFN_vkRegisterObjectsNVX vkRegisterObjectsNVX;
 	PFN_vkUnregisterObjectsNVX vkUnregisterObjectsNVX;
 #endif /* defined(VK_NVX_device_generated_commands) */
-#if defined(VK_NVX_raytracing)
-	PFN_vkBindAccelerationStructureMemoryNVX vkBindAccelerationStructureMemoryNVX;
-	PFN_vkCmdBuildAccelerationStructureNVX vkCmdBuildAccelerationStructureNVX;
-	PFN_vkCmdCopyAccelerationStructureNVX vkCmdCopyAccelerationStructureNVX;
-	PFN_vkCmdTraceRaysNVX vkCmdTraceRaysNVX;
-	PFN_vkCmdWriteAccelerationStructurePropertiesNVX vkCmdWriteAccelerationStructurePropertiesNVX;
-	PFN_vkCompileDeferredNVX vkCompileDeferredNVX;
-	PFN_vkCreateAccelerationStructureNVX vkCreateAccelerationStructureNVX;
-	PFN_vkCreateRaytracingPipelinesNVX vkCreateRaytracingPipelinesNVX;
-	PFN_vkDestroyAccelerationStructureNVX vkDestroyAccelerationStructureNVX;
-	PFN_vkGetAccelerationStructureHandleNVX vkGetAccelerationStructureHandleNVX;
-	PFN_vkGetAccelerationStructureMemoryRequirementsNVX vkGetAccelerationStructureMemoryRequirementsNVX;
-	PFN_vkGetAccelerationStructureScratchMemoryRequirementsNVX vkGetAccelerationStructureScratchMemoryRequirementsNVX;
-	PFN_vkGetRaytracingShaderHandlesNVX vkGetRaytracingShaderHandlesNVX;
-#endif /* defined(VK_NVX_raytracing) */
 #if defined(VK_NV_clip_space_w_scaling)
 	PFN_vkCmdSetViewportWScalingNV vkCmdSetViewportWScalingNV;
 #endif /* defined(VK_NV_clip_space_w_scaling) */
@@ -884,21 +869,6 @@ extern PFN_vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX vkGetPhysicalDevice
 extern PFN_vkRegisterObjectsNVX vkRegisterObjectsNVX;
 extern PFN_vkUnregisterObjectsNVX vkUnregisterObjectsNVX;
 #endif /* defined(VK_NVX_device_generated_commands) */
-#if defined(VK_NVX_raytracing)
-extern PFN_vkBindAccelerationStructureMemoryNVX vkBindAccelerationStructureMemoryNVX;
-extern PFN_vkCmdBuildAccelerationStructureNVX vkCmdBuildAccelerationStructureNVX;
-extern PFN_vkCmdCopyAccelerationStructureNVX vkCmdCopyAccelerationStructureNVX;
-extern PFN_vkCmdTraceRaysNVX vkCmdTraceRaysNVX;
-extern PFN_vkCmdWriteAccelerationStructurePropertiesNVX vkCmdWriteAccelerationStructurePropertiesNVX;
-extern PFN_vkCompileDeferredNVX vkCompileDeferredNVX;
-extern PFN_vkCreateAccelerationStructureNVX vkCreateAccelerationStructureNVX;
-extern PFN_vkCreateRaytracingPipelinesNVX vkCreateRaytracingPipelinesNVX;
-extern PFN_vkDestroyAccelerationStructureNVX vkDestroyAccelerationStructureNVX;
-extern PFN_vkGetAccelerationStructureHandleNVX vkGetAccelerationStructureHandleNVX;
-extern PFN_vkGetAccelerationStructureMemoryRequirementsNVX vkGetAccelerationStructureMemoryRequirementsNVX;
-extern PFN_vkGetAccelerationStructureScratchMemoryRequirementsNVX vkGetAccelerationStructureScratchMemoryRequirementsNVX;
-extern PFN_vkGetRaytracingShaderHandlesNVX vkGetRaytracingShaderHandlesNVX;
-#endif /* defined(VK_NVX_raytracing) */
 #if defined(VK_NV_clip_space_w_scaling)
 extern PFN_vkCmdSetViewportWScalingNV vkCmdSetViewportWScalingNV;
 #endif /* defined(VK_NV_clip_space_w_scaling) */

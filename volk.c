@@ -566,21 +566,6 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkRegisterObjectsNVX = (PFN_vkRegisterObjectsNVX)load(context, "vkRegisterObjectsNVX");
 	vkUnregisterObjectsNVX = (PFN_vkUnregisterObjectsNVX)load(context, "vkUnregisterObjectsNVX");
 #endif /* defined(VK_NVX_device_generated_commands) */
-#if defined(VK_NVX_raytracing)
-	vkBindAccelerationStructureMemoryNVX = (PFN_vkBindAccelerationStructureMemoryNVX)load(context, "vkBindAccelerationStructureMemoryNVX");
-	vkCmdBuildAccelerationStructureNVX = (PFN_vkCmdBuildAccelerationStructureNVX)load(context, "vkCmdBuildAccelerationStructureNVX");
-	vkCmdCopyAccelerationStructureNVX = (PFN_vkCmdCopyAccelerationStructureNVX)load(context, "vkCmdCopyAccelerationStructureNVX");
-	vkCmdTraceRaysNVX = (PFN_vkCmdTraceRaysNVX)load(context, "vkCmdTraceRaysNVX");
-	vkCmdWriteAccelerationStructurePropertiesNVX = (PFN_vkCmdWriteAccelerationStructurePropertiesNVX)load(context, "vkCmdWriteAccelerationStructurePropertiesNVX");
-	vkCompileDeferredNVX = (PFN_vkCompileDeferredNVX)load(context, "vkCompileDeferredNVX");
-	vkCreateAccelerationStructureNVX = (PFN_vkCreateAccelerationStructureNVX)load(context, "vkCreateAccelerationStructureNVX");
-	vkCreateRaytracingPipelinesNVX = (PFN_vkCreateRaytracingPipelinesNVX)load(context, "vkCreateRaytracingPipelinesNVX");
-	vkDestroyAccelerationStructureNVX = (PFN_vkDestroyAccelerationStructureNVX)load(context, "vkDestroyAccelerationStructureNVX");
-	vkGetAccelerationStructureHandleNVX = (PFN_vkGetAccelerationStructureHandleNVX)load(context, "vkGetAccelerationStructureHandleNVX");
-	vkGetAccelerationStructureMemoryRequirementsNVX = (PFN_vkGetAccelerationStructureMemoryRequirementsNVX)load(context, "vkGetAccelerationStructureMemoryRequirementsNVX");
-	vkGetAccelerationStructureScratchMemoryRequirementsNVX = (PFN_vkGetAccelerationStructureScratchMemoryRequirementsNVX)load(context, "vkGetAccelerationStructureScratchMemoryRequirementsNVX");
-	vkGetRaytracingShaderHandlesNVX = (PFN_vkGetRaytracingShaderHandlesNVX)load(context, "vkGetRaytracingShaderHandlesNVX");
-#endif /* defined(VK_NVX_raytracing) */
 #if defined(VK_NV_clip_space_w_scaling)
 	vkCmdSetViewportWScalingNV = (PFN_vkCmdSetViewportWScalingNV)load(context, "vkCmdSetViewportWScalingNV");
 #endif /* defined(VK_NV_clip_space_w_scaling) */
@@ -940,21 +925,6 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkRegisterObjectsNVX = (PFN_vkRegisterObjectsNVX)load(context, "vkRegisterObjectsNVX");
 	table->vkUnregisterObjectsNVX = (PFN_vkUnregisterObjectsNVX)load(context, "vkUnregisterObjectsNVX");
 #endif /* defined(VK_NVX_device_generated_commands) */
-#if defined(VK_NVX_raytracing)
-	table->vkBindAccelerationStructureMemoryNVX = (PFN_vkBindAccelerationStructureMemoryNVX)load(context, "vkBindAccelerationStructureMemoryNVX");
-	table->vkCmdBuildAccelerationStructureNVX = (PFN_vkCmdBuildAccelerationStructureNVX)load(context, "vkCmdBuildAccelerationStructureNVX");
-	table->vkCmdCopyAccelerationStructureNVX = (PFN_vkCmdCopyAccelerationStructureNVX)load(context, "vkCmdCopyAccelerationStructureNVX");
-	table->vkCmdTraceRaysNVX = (PFN_vkCmdTraceRaysNVX)load(context, "vkCmdTraceRaysNVX");
-	table->vkCmdWriteAccelerationStructurePropertiesNVX = (PFN_vkCmdWriteAccelerationStructurePropertiesNVX)load(context, "vkCmdWriteAccelerationStructurePropertiesNVX");
-	table->vkCompileDeferredNVX = (PFN_vkCompileDeferredNVX)load(context, "vkCompileDeferredNVX");
-	table->vkCreateAccelerationStructureNVX = (PFN_vkCreateAccelerationStructureNVX)load(context, "vkCreateAccelerationStructureNVX");
-	table->vkCreateRaytracingPipelinesNVX = (PFN_vkCreateRaytracingPipelinesNVX)load(context, "vkCreateRaytracingPipelinesNVX");
-	table->vkDestroyAccelerationStructureNVX = (PFN_vkDestroyAccelerationStructureNVX)load(context, "vkDestroyAccelerationStructureNVX");
-	table->vkGetAccelerationStructureHandleNVX = (PFN_vkGetAccelerationStructureHandleNVX)load(context, "vkGetAccelerationStructureHandleNVX");
-	table->vkGetAccelerationStructureMemoryRequirementsNVX = (PFN_vkGetAccelerationStructureMemoryRequirementsNVX)load(context, "vkGetAccelerationStructureMemoryRequirementsNVX");
-	table->vkGetAccelerationStructureScratchMemoryRequirementsNVX = (PFN_vkGetAccelerationStructureScratchMemoryRequirementsNVX)load(context, "vkGetAccelerationStructureScratchMemoryRequirementsNVX");
-	table->vkGetRaytracingShaderHandlesNVX = (PFN_vkGetRaytracingShaderHandlesNVX)load(context, "vkGetRaytracingShaderHandlesNVX");
-#endif /* defined(VK_NVX_raytracing) */
 #if defined(VK_NV_clip_space_w_scaling)
 	table->vkCmdSetViewportWScalingNV = (PFN_vkCmdSetViewportWScalingNV)load(context, "vkCmdSetViewportWScalingNV");
 #endif /* defined(VK_NV_clip_space_w_scaling) */
@@ -1444,21 +1414,6 @@ PFN_vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX vkGetPhysicalDeviceGenerat
 PFN_vkRegisterObjectsNVX vkRegisterObjectsNVX;
 PFN_vkUnregisterObjectsNVX vkUnregisterObjectsNVX;
 #endif /* defined(VK_NVX_device_generated_commands) */
-#if defined(VK_NVX_raytracing)
-PFN_vkBindAccelerationStructureMemoryNVX vkBindAccelerationStructureMemoryNVX;
-PFN_vkCmdBuildAccelerationStructureNVX vkCmdBuildAccelerationStructureNVX;
-PFN_vkCmdCopyAccelerationStructureNVX vkCmdCopyAccelerationStructureNVX;
-PFN_vkCmdTraceRaysNVX vkCmdTraceRaysNVX;
-PFN_vkCmdWriteAccelerationStructurePropertiesNVX vkCmdWriteAccelerationStructurePropertiesNVX;
-PFN_vkCompileDeferredNVX vkCompileDeferredNVX;
-PFN_vkCreateAccelerationStructureNVX vkCreateAccelerationStructureNVX;
-PFN_vkCreateRaytracingPipelinesNVX vkCreateRaytracingPipelinesNVX;
-PFN_vkDestroyAccelerationStructureNVX vkDestroyAccelerationStructureNVX;
-PFN_vkGetAccelerationStructureHandleNVX vkGetAccelerationStructureHandleNVX;
-PFN_vkGetAccelerationStructureMemoryRequirementsNVX vkGetAccelerationStructureMemoryRequirementsNVX;
-PFN_vkGetAccelerationStructureScratchMemoryRequirementsNVX vkGetAccelerationStructureScratchMemoryRequirementsNVX;
-PFN_vkGetRaytracingShaderHandlesNVX vkGetRaytracingShaderHandlesNVX;
-#endif /* defined(VK_NVX_raytracing) */
 #if defined(VK_NV_clip_space_w_scaling)
 PFN_vkCmdSetViewportWScalingNV vkCmdSetViewportWScalingNV;
 #endif /* defined(VK_NV_clip_space_w_scaling) */
