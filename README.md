@@ -61,7 +61,7 @@ Device entrypoints are loaded using `vkGetDeviceProcAddr`; when no layers are pr
 
 This library is available to anybody free of charge, under the terms of MIT License:
 
-	Copyright (c) 2018 Arseny Kapoulkine
+	Copyright (c) 2018-2019 Arseny Kapoulkine
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
