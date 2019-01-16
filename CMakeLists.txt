@@ -7,6 +7,7 @@ if(MSVC)
   target_compile_options(volk PRIVATE /W4 /WX)
 else()
   target_compile_options(volk PRIVATE -Wall -Wextra -Werror)
+  target_link_libraries(volk PRIVATE dl)
 endif()
 
 if(DEFINED ENV{VULKAN_SDK})
