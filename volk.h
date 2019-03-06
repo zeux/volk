@@ -14,7 +14,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION */
-#define VOLK_HEADER_VERSION 101
+#define VOLK_HEADER_VERSION 102
 /* VOLK_GENERATE_VERSION */
 
 #ifndef VK_NO_PROTOTYPES
@@ -387,6 +387,9 @@ struct VolkDeviceTable
 	PFN_vkRegisterObjectsNVX vkRegisterObjectsNVX;
 	PFN_vkUnregisterObjectsNVX vkUnregisterObjectsNVX;
 #endif /* defined(VK_NVX_device_generated_commands) */
+#if defined(VK_NVX_image_view_handle)
+	PFN_vkGetImageViewHandleNVX vkGetImageViewHandleNVX;
+#endif /* defined(VK_NVX_image_view_handle) */
 #if defined(VK_NV_clip_space_w_scaling)
 	PFN_vkCmdSetViewportWScalingNV vkCmdSetViewportWScalingNV;
 #endif /* defined(VK_NV_clip_space_w_scaling) */
@@ -685,6 +688,9 @@ extern PFN_vkSetHdrMetadataEXT vkSetHdrMetadataEXT;
 #if defined(VK_EXT_image_drm_format_modifier)
 extern PFN_vkGetImageDrmFormatModifierPropertiesEXT vkGetImageDrmFormatModifierPropertiesEXT;
 #endif /* defined(VK_EXT_image_drm_format_modifier) */
+#if defined(VK_EXT_metal_surface)
+extern PFN_vkCreateMetalSurfaceEXT vkCreateMetalSurfaceEXT;
+#endif /* defined(VK_EXT_metal_surface) */
 #if defined(VK_EXT_sample_locations)
 extern PFN_vkCmdSetSampleLocationsEXT vkCmdSetSampleLocationsEXT;
 extern PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT vkGetPhysicalDeviceMultisamplePropertiesEXT;
@@ -875,6 +881,9 @@ extern PFN_vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX vkGetPhysicalDevice
 extern PFN_vkRegisterObjectsNVX vkRegisterObjectsNVX;
 extern PFN_vkUnregisterObjectsNVX vkUnregisterObjectsNVX;
 #endif /* defined(VK_NVX_device_generated_commands) */
+#if defined(VK_NVX_image_view_handle)
+extern PFN_vkGetImageViewHandleNVX vkGetImageViewHandleNVX;
+#endif /* defined(VK_NVX_image_view_handle) */
 #if defined(VK_NV_clip_space_w_scaling)
 extern PFN_vkCmdSetViewportWScalingNV vkCmdSetViewportWScalingNV;
 #endif /* defined(VK_NV_clip_space_w_scaling) */

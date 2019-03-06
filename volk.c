@@ -164,6 +164,9 @@ static void volkGenLoadInstance(void* context, PFN_vkVoidFunction (*load)(void*,
 #if defined(VK_EXT_display_surface_counter)
 	vkGetPhysicalDeviceSurfaceCapabilities2EXT = (PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT)load(context, "vkGetPhysicalDeviceSurfaceCapabilities2EXT");
 #endif /* defined(VK_EXT_display_surface_counter) */
+#if defined(VK_EXT_metal_surface)
+	vkCreateMetalSurfaceEXT = (PFN_vkCreateMetalSurfaceEXT)load(context, "vkCreateMetalSurfaceEXT");
+#endif /* defined(VK_EXT_metal_surface) */
 #if defined(VK_EXT_sample_locations)
 	vkGetPhysicalDeviceMultisamplePropertiesEXT = (PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT)load(context, "vkGetPhysicalDeviceMultisamplePropertiesEXT");
 #endif /* defined(VK_EXT_sample_locations) */
@@ -572,6 +575,9 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkRegisterObjectsNVX = (PFN_vkRegisterObjectsNVX)load(context, "vkRegisterObjectsNVX");
 	vkUnregisterObjectsNVX = (PFN_vkUnregisterObjectsNVX)load(context, "vkUnregisterObjectsNVX");
 #endif /* defined(VK_NVX_device_generated_commands) */
+#if defined(VK_NVX_image_view_handle)
+	vkGetImageViewHandleNVX = (PFN_vkGetImageViewHandleNVX)load(context, "vkGetImageViewHandleNVX");
+#endif /* defined(VK_NVX_image_view_handle) */
 #if defined(VK_NV_clip_space_w_scaling)
 	vkCmdSetViewportWScalingNV = (PFN_vkCmdSetViewportWScalingNV)load(context, "vkCmdSetViewportWScalingNV");
 #endif /* defined(VK_NV_clip_space_w_scaling) */
@@ -934,6 +940,9 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkRegisterObjectsNVX = (PFN_vkRegisterObjectsNVX)load(context, "vkRegisterObjectsNVX");
 	table->vkUnregisterObjectsNVX = (PFN_vkUnregisterObjectsNVX)load(context, "vkUnregisterObjectsNVX");
 #endif /* defined(VK_NVX_device_generated_commands) */
+#if defined(VK_NVX_image_view_handle)
+	table->vkGetImageViewHandleNVX = (PFN_vkGetImageViewHandleNVX)load(context, "vkGetImageViewHandleNVX");
+#endif /* defined(VK_NVX_image_view_handle) */
 #if defined(VK_NV_clip_space_w_scaling)
 	table->vkCmdSetViewportWScalingNV = (PFN_vkCmdSetViewportWScalingNV)load(context, "vkCmdSetViewportWScalingNV");
 #endif /* defined(VK_NV_clip_space_w_scaling) */
@@ -1236,6 +1245,9 @@ PFN_vkSetHdrMetadataEXT vkSetHdrMetadataEXT;
 #if defined(VK_EXT_image_drm_format_modifier)
 PFN_vkGetImageDrmFormatModifierPropertiesEXT vkGetImageDrmFormatModifierPropertiesEXT;
 #endif /* defined(VK_EXT_image_drm_format_modifier) */
+#if defined(VK_EXT_metal_surface)
+PFN_vkCreateMetalSurfaceEXT vkCreateMetalSurfaceEXT;
+#endif /* defined(VK_EXT_metal_surface) */
 #if defined(VK_EXT_sample_locations)
 PFN_vkCmdSetSampleLocationsEXT vkCmdSetSampleLocationsEXT;
 PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT vkGetPhysicalDeviceMultisamplePropertiesEXT;
@@ -1426,6 +1438,9 @@ PFN_vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX vkGetPhysicalDeviceGenerat
 PFN_vkRegisterObjectsNVX vkRegisterObjectsNVX;
 PFN_vkUnregisterObjectsNVX vkUnregisterObjectsNVX;
 #endif /* defined(VK_NVX_device_generated_commands) */
+#if defined(VK_NVX_image_view_handle)
+PFN_vkGetImageViewHandleNVX vkGetImageViewHandleNVX;
+#endif /* defined(VK_NVX_image_view_handle) */
 #if defined(VK_NV_clip_space_w_scaling)
 PFN_vkCmdSetViewportWScalingNV vkCmdSetViewportWScalingNV;
 #endif /* defined(VK_NV_clip_space_w_scaling) */
