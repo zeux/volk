@@ -5,10 +5,7 @@ os:
   - windows
 
 script:
-  - git clone https://github.com/KhronosGroup/Vulkan-Docs
-  - export VULKAN_SDK=./Vulkan-Docs
+  - git clone https://github.com/KhronosGroup/Vulkan-Headers
+  - export VULKAN_SDK=./Vulkan-Headers
   - cmake .
-  - cmake --build . # check Vulkan 1.1 build
-  - git -C Vulkan-Docs checkout ab08f0951ef1ad9b84db93f971e113c1d9d55609 # last 1.0 rev
-  - mv Vulkan-Docs/src Vulkan-Docs/include # CMakeLists.txt assume /include location for headers...
-  - cmake --build . # check Vulkan 1.0 build
+  - cmake --build .
