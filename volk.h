@@ -14,7 +14,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION */
-#define VOLK_HEADER_VERSION 108
+#define VOLK_HEADER_VERSION 109
 /* VOLK_GENERATE_VERSION */
 
 #ifndef VK_NO_PROTOTYPES
@@ -308,6 +308,17 @@ struct VolkDeviceTable
 	PFN_vkGetPastPresentationTimingGOOGLE vkGetPastPresentationTimingGOOGLE;
 	PFN_vkGetRefreshCycleDurationGOOGLE vkGetRefreshCycleDurationGOOGLE;
 #endif /* defined(VK_GOOGLE_display_timing) */
+#if defined(VK_INTEL_performance_query)
+	PFN_vkAcquirePerformanceConfigurationINTEL vkAcquirePerformanceConfigurationINTEL;
+	PFN_vkCmdSetPerformanceMarkerINTEL vkCmdSetPerformanceMarkerINTEL;
+	PFN_vkCmdSetPerformanceOverrideINTEL vkCmdSetPerformanceOverrideINTEL;
+	PFN_vkCmdSetPerformanceStreamMarkerINTEL vkCmdSetPerformanceStreamMarkerINTEL;
+	PFN_vkGetPerformanceParameterINTEL vkGetPerformanceParameterINTEL;
+	PFN_vkInitializePerformanceApiINTEL vkInitializePerformanceApiINTEL;
+	PFN_vkQueueSetPerformanceConfigurationINTEL vkQueueSetPerformanceConfigurationINTEL;
+	PFN_vkReleasePerformanceConfigurationINTEL vkReleasePerformanceConfigurationINTEL;
+	PFN_vkUninitializePerformanceApiINTEL vkUninitializePerformanceApiINTEL;
+#endif /* defined(VK_INTEL_performance_query) */
 #if defined(VK_KHR_bind_memory2)
 	PFN_vkBindBufferMemory2KHR vkBindBufferMemory2KHR;
 	PFN_vkBindImageMemory2KHR vkBindImageMemory2KHR;
@@ -746,6 +757,17 @@ extern PFN_vkCreateStreamDescriptorSurfaceGGP vkCreateStreamDescriptorSurfaceGGP
 extern PFN_vkGetPastPresentationTimingGOOGLE vkGetPastPresentationTimingGOOGLE;
 extern PFN_vkGetRefreshCycleDurationGOOGLE vkGetRefreshCycleDurationGOOGLE;
 #endif /* defined(VK_GOOGLE_display_timing) */
+#if defined(VK_INTEL_performance_query)
+extern PFN_vkAcquirePerformanceConfigurationINTEL vkAcquirePerformanceConfigurationINTEL;
+extern PFN_vkCmdSetPerformanceMarkerINTEL vkCmdSetPerformanceMarkerINTEL;
+extern PFN_vkCmdSetPerformanceOverrideINTEL vkCmdSetPerformanceOverrideINTEL;
+extern PFN_vkCmdSetPerformanceStreamMarkerINTEL vkCmdSetPerformanceStreamMarkerINTEL;
+extern PFN_vkGetPerformanceParameterINTEL vkGetPerformanceParameterINTEL;
+extern PFN_vkInitializePerformanceApiINTEL vkInitializePerformanceApiINTEL;
+extern PFN_vkQueueSetPerformanceConfigurationINTEL vkQueueSetPerformanceConfigurationINTEL;
+extern PFN_vkReleasePerformanceConfigurationINTEL vkReleasePerformanceConfigurationINTEL;
+extern PFN_vkUninitializePerformanceApiINTEL vkUninitializePerformanceApiINTEL;
+#endif /* defined(VK_INTEL_performance_query) */
 #if defined(VK_KHR_android_surface)
 extern PFN_vkCreateAndroidSurfaceKHR vkCreateAndroidSurfaceKHR;
 #endif /* defined(VK_KHR_android_surface) */
