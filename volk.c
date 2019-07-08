@@ -3,6 +3,7 @@
 
 #ifdef _WIN32
 	typedef const char* LPCSTR;
+	typedef struct HINSTANCE__* HINSTANCE;
 	typedef HINSTANCE HMODULE;
 	#ifdef _WIN64
 		typedef __int64 (__stdcall* FARPROC)();
