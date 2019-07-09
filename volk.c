@@ -2,13 +2,25 @@
 #include "volk.h"
 
 #ifdef _WIN32
-#	include <windows.h>
+	typedef const char* LPCSTR;
+	typedef struct HINSTANCE__* HINSTANCE;
+	typedef HINSTANCE HMODULE;
+	#ifdef _WIN64
+		typedef __int64 (__stdcall* FARPROC)();
+	#else
+		typedef int (__stdcall* FARPROC)();
+	#endif
 #else
 #	include <dlfcn.h>
 #endif
 
 #ifdef __cplusplus
 extern "C" {
+#endif
+
+#ifdef _WIN32
+__declspec(dllimport) HMODULE __stdcall LoadLibraryA(LPCSTR);
+__declspec(dllimport) FARPROC __stdcall GetProcAddress(HMODULE, LPCSTR);
 #endif
 
 static void volkGenLoadLoader(void* context, PFN_vkVoidFunction (*load)(void*, const char*));
