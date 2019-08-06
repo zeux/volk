@@ -500,6 +500,9 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 #if defined(VK_EXT_image_drm_format_modifier)
 	vkGetImageDrmFormatModifierPropertiesEXT = (PFN_vkGetImageDrmFormatModifierPropertiesEXT)load(context, "vkGetImageDrmFormatModifierPropertiesEXT");
 #endif /* defined(VK_EXT_image_drm_format_modifier) */
+#if defined(VK_EXT_line_rasterization)
+	vkCmdSetLineStippleEXT = (PFN_vkCmdSetLineStippleEXT)load(context, "vkCmdSetLineStippleEXT");
+#endif /* defined(VK_EXT_line_rasterization) */
 #if defined(VK_EXT_sample_locations)
 	vkCmdSetSampleLocationsEXT = (PFN_vkCmdSetSampleLocationsEXT)load(context, "vkCmdSetSampleLocationsEXT");
 #endif /* defined(VK_EXT_sample_locations) */
@@ -889,6 +892,9 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 #if defined(VK_EXT_image_drm_format_modifier)
 	table->vkGetImageDrmFormatModifierPropertiesEXT = (PFN_vkGetImageDrmFormatModifierPropertiesEXT)load(context, "vkGetImageDrmFormatModifierPropertiesEXT");
 #endif /* defined(VK_EXT_image_drm_format_modifier) */
+#if defined(VK_EXT_line_rasterization)
+	table->vkCmdSetLineStippleEXT = (PFN_vkCmdSetLineStippleEXT)load(context, "vkCmdSetLineStippleEXT");
+#endif /* defined(VK_EXT_line_rasterization) */
 #if defined(VK_EXT_sample_locations)
 	table->vkCmdSetSampleLocationsEXT = (PFN_vkCmdSetSampleLocationsEXT)load(context, "vkCmdSetSampleLocationsEXT");
 #endif /* defined(VK_EXT_sample_locations) */
@@ -1332,6 +1338,9 @@ PFN_vkResetQueryPoolEXT vkResetQueryPoolEXT;
 #if defined(VK_EXT_image_drm_format_modifier)
 PFN_vkGetImageDrmFormatModifierPropertiesEXT vkGetImageDrmFormatModifierPropertiesEXT;
 #endif /* defined(VK_EXT_image_drm_format_modifier) */
+#if defined(VK_EXT_line_rasterization)
+PFN_vkCmdSetLineStippleEXT vkCmdSetLineStippleEXT;
+#endif /* defined(VK_EXT_line_rasterization) */
 #if defined(VK_EXT_metal_surface)
 PFN_vkCreateMetalSurfaceEXT vkCreateMetalSurfaceEXT;
 #endif /* defined(VK_EXT_metal_surface) */

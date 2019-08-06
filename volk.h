@@ -14,7 +14,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION */
-#define VOLK_HEADER_VERSION 109
+#define VOLK_HEADER_VERSION 117
 /* VOLK_GENERATE_VERSION */
 
 #ifndef VK_NO_PROTOTYPES
@@ -306,6 +306,9 @@ struct VolkDeviceTable
 #if defined(VK_EXT_image_drm_format_modifier)
 	PFN_vkGetImageDrmFormatModifierPropertiesEXT vkGetImageDrmFormatModifierPropertiesEXT;
 #endif /* defined(VK_EXT_image_drm_format_modifier) */
+#if defined(VK_EXT_line_rasterization)
+	PFN_vkCmdSetLineStippleEXT vkCmdSetLineStippleEXT;
+#endif /* defined(VK_EXT_line_rasterization) */
 #if defined(VK_EXT_sample_locations)
 	PFN_vkCmdSetSampleLocationsEXT vkCmdSetSampleLocationsEXT;
 #endif /* defined(VK_EXT_sample_locations) */
@@ -745,6 +748,9 @@ extern PFN_vkResetQueryPoolEXT vkResetQueryPoolEXT;
 #if defined(VK_EXT_image_drm_format_modifier)
 extern PFN_vkGetImageDrmFormatModifierPropertiesEXT vkGetImageDrmFormatModifierPropertiesEXT;
 #endif /* defined(VK_EXT_image_drm_format_modifier) */
+#if defined(VK_EXT_line_rasterization)
+extern PFN_vkCmdSetLineStippleEXT vkCmdSetLineStippleEXT;
+#endif /* defined(VK_EXT_line_rasterization) */
 #if defined(VK_EXT_metal_surface)
 extern PFN_vkCreateMetalSurfaceEXT vkCreateMetalSurfaceEXT;
 #endif /* defined(VK_EXT_metal_surface) */
