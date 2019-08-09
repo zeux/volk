@@ -6,9 +6,9 @@
 	typedef struct HINSTANCE__* HINSTANCE;
 	typedef HINSTANCE HMODULE;
 	#ifdef _WIN64
-		typedef __int64 (__stdcall* FARPROC)();
+		typedef __int64 (__stdcall* FARPROC)(void);
 	#else
-		typedef int (__stdcall* FARPROC)();
+		typedef int (__stdcall* FARPROC)(void);
 	#endif
 #else
 #	include <dlfcn.h>
