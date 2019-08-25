@@ -7,5 +7,9 @@ os:
 script:
   - git clone https://github.com/KhronosGroup/Vulkan-Headers
   - export VULKAN_SDK=./Vulkan-Headers
-  - cmake .
+  - mkdir build
+  - mkdir installed
+  - cd build
+  - cmake -DCMAKE_INSTALL_PREFIX=../installed ..
   - cmake --build .
+  - cmake --install .

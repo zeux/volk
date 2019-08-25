@@ -26,7 +26,11 @@ find_package(Vulkan)
 if(TARGET Vulkan::Vulkan) 
   target_link_libraries(volk PUBLIC Vulkan::Vulkan)
 elseif(DEFINED ENV{VULKAN_SDK})
-	target_include_directories(volk PUBLIC "$ENV{VULKAN_SDK}/include")
+  if(IS_ABSOLUTE "$ENV{VULKAN_SDK}")
+    target_include_directories(volk PUBLIC "$ENV{VULKAN_SDK}/include")
+  else()
+    message("Detected relative path to Vulkan SDK -- assuming CI build, skipping exporting Vulkan header include path.")
+  endif()
 endif()
 
 # Installation
