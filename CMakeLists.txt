@@ -9,8 +9,6 @@ endif()
 
 project(volk VERSION ${parsed_version} LANGUAGES C)
 
-find_package(Vulkan REQUIRED)
-
 add_library(volk STATIC volk.c volk.h)
 target_include_directories(volk PUBLIC 
   $<INSTALL_INTERFACE:include>
