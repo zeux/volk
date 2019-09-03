@@ -50,7 +50,7 @@ VkResult volkInitialize(void)
 #elif defined(__APPLE__)
 	void* module = dlopen("libvulkan.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
-		module = dlopen("libvulkan.dylib.1", RTLD_NOW | RTLD_LOCAL);
+		module = dlopen("libvulkan.1.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
 		module = dlopen("libMoltenVK.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
