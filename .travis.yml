@@ -26,6 +26,6 @@ script:
   # Try to use volk via package config import
   - mkdir build-usage
   - pushd build-usage
-  - cmake -DCMAKE_PREFIX_PATH=../installed/lib/cmake ../test-cmake-usage
+  - cmake -DCMAKE_PREFIX_PATH=../installed/lib/cmake ../test
   - cmake --build .
   - popd
