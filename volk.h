@@ -22,7 +22,9 @@
 #endif
 
 #ifndef VULKAN_H_
-#	ifdef VK_USE_PLATFORM_WIN32_KHR
+#       ifdef VOLK_VULKAN_H_PATH
+#               include VOLK_VULKAN_H_PATH
+#	elif VK_USE_PLATFORM_WIN32_KHR
 #		include <vulkan/vk_platform.h>
 #		include <vulkan/vulkan_core.h>
 
