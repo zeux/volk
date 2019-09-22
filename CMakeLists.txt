@@ -2,37 +2,72 @@ cmake_minimum_required(VERSION 3.0)
 cmake_policy(PUSH)
 cmake_policy(SET CMP0048 NEW) # project(... VERSION ...) support
 
-# Set the project version to the vulkan header version.
-file(STRINGS volk.h matched_line REGEX "#define[ \t]+VOLK_HEADER_VERSION" LIMIT_INPUT 1000)
-string(REGEX MATCH "([0-9\\.]+)$" parsed_version ${matched_line})
-if(NOT parsed_version)
-  message(FATAL_ERROR "Failed to parse VOLK_HEADER_VERSION!")
+project(volk VERSION 
+# VOLK_GENERATE_VERSION
+121
+# VOLK_GENERATE_VERSION
+  LANGUAGES C
+)
+
+# CMake 3.12 changes the default behaviour of option() to leave local variables
+# unchanged if they exist (which we want), but we must work with older CMake versions.
+if(NOT DEFINED VOLK_STATIC_DEFINES)
+  option(VOLK_STATIC_DEFINES "Additional defines for building the volk static library, e.g. Vulkan platform defines" "")
+endif()
+if(NOT DEFINED VOLK_PULL_IN_VULKAN)
+  option(VOLK_PULL_IN_VULKAN "Vulkan as a transitive dependency" ON)
+endif()
+if(NOT DEFINED VOLK_INSTALL)
+  option(VOLK_INSTALL "Create installation targets" OFF)
 endif()
 
-project(volk VERSION ${parsed_version} LANGUAGES NONE)
+# -----------------------------------------------------
+# Static library
 
-add_library(volk INTERFACE)
-target_include_directories(volk INTERFACE
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
-    $<INSTALL_INTERFACE:include>
+add_library(volk STATIC volk.h volk.c)
+target_include_directories(volk PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+  $<INSTALL_INTERFACE:include>
+)
+if(VOLK_STATIC_DEFINES)
+  target_compile_definitions(volk PUBLIC ${VOLK_STATIC_DEFINES})
+endif()
+if (NOT WIN32)
+  target_link_libraries(volk PUBLIC dl)
+endif()
+
+# -----------------------------------------------------
+# Interface library
+
+add_library(volk_headers INTERFACE)
+target_include_directories(volk_headers INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+  $<INSTALL_INTERFACE:include>
 )
 if (NOT WIN32)
-    target_link_libraries(volk INTERFACE dl)
+  target_link_libraries(volk_headers INTERFACE dl)
 endif()
 
-# If CMake has the FindVulkan module and it works, use it.
-# Otherwise silently rely on the environment variable.
-find_package(Vulkan QUIET)
+# -----------------------------------------------------
+# Vulkan transitive dependency
 
-if(NOT VOLK_INSTALL)
+if(VOLK_PULL_IN_VULKAN)
+  # If CMake has the FindVulkan module and it works, use it.
+  # Otherwise try the environment variable.
+  find_package(Vulkan QUIET)
   if(TARGET Vulkan::Vulkan)
-    target_link_libraries(volk INTERFACE Vulkan::Vulkan)
+      message(" Vulkan as target")
+    target_link_libraries(volk PUBLIC Vulkan::Vulkan)
+    target_link_libraries(volk_headers INTERFACE Vulkan::Vulkan)
   elseif(DEFINED ENV{VULKAN_SDK})
-    target_include_directories(volk INTERFACE "$ENV{VULKAN_SDK}/include")
+      message(" Vulkan as path")
+    target_include_directories(volk PUBLIC "$ENV{VULKAN_SDK}/include")
+    target_include_directories(volk_headers INTERFACE "$ENV{VULKAN_SDK}/include")
   endif()
 endif()
 
-option(VOLK_INSTALL "Create installation target" OFF)
+# -----------------------------------------------------
+# Installation
 
 if(VOLK_INSTALL)
 
@@ -43,7 +78,12 @@ if(VOLK_INSTALL)
   install(FILES volk.h volk.c DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
   # Install library target and add it and any dependencies to export set.
-  install(TARGETS volk EXPORT volk-targets)
+  install(TARGETS volk volk_headers
+    EXPORT volk-targets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  )
 
   # Actually write exported config w/ imported targets
   install(EXPORT volk-targets
