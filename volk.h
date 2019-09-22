@@ -22,7 +22,9 @@
 #endif
 
 #ifndef VULKAN_H_
-#	ifdef VK_USE_PLATFORM_WIN32_KHR
+#       ifdef VOLK_VULKAN_H_PATH
+#               include VOLK_VULKAN_H_PATH
+#	elif VK_USE_PLATFORM_WIN32_KHR
 #		include <vulkan/vk_platform.h>
 #		include <vulkan/vulkan_core.h>
 
@@ -1027,6 +1029,14 @@ extern PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
 }
 #endif
 
+#endif
+
+#ifdef VOLK_IMPLEMENTATION
+#undef VOLK_IMPLEMENTATION
+// Prevent tools like dependency checkers that don't evaluate
+// macros from detecting a cyclic dependency.
+#define VOLK_SOURCE "volk.c"
+#include VOLK_SOURCE
 #endif
 
 /**

@@ -3,9 +3,35 @@ os:
   - linux
   - osx
   - windows
-
 script:
-  - git clone https://github.com/KhronosGroup/Vulkan-Headers
-  - export VULKAN_SDK=./Vulkan-Headers
-  - cmake .
-  - cmake --build .
+  #
+  # Put the Vulkan headers outside the source directory since CMake
+  # will not let us export an include path prefixed in the build dir.
+  #
+  - pushd ..
+  - git clone --depth 1 https://github.com/KhronosGroup/Vulkan-Headers
+  - export VULKAN_SDK=$PWD/Vulkan-Headers
+  - popd
+  #
+  # Install volk into local directory.
+  #
+  - mkdir installed
+  - mkdir build
+  - pushd build
+  - cmake -DVOLK_INSTALL=ON -DCMAKE_INSTALL_PREFIX=../installed ..
+  - cmake --build . --config Debug
+  - cmake --build . --config Release
+  - cmake --build . --target install
+  - popd
+  - export INSTALL_DIR=$PWD/installed
+  #
+  # Build examples
+  #
+  - pushd test
+  - mkdir build
+  - pushd build
+  - cmake -DCMAKE_PREFIX_PATH=${INSTALL_DIR}/lib/cmake ..
+  - cmake --build . --config Debug
+  - cmake --build . --config Release
+  - popd
+  - popd

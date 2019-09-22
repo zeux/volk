@@ -1,0 +1,13 @@
+get_filename_component(volk_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+if(NOT TARGET volk::volk)
+  include("${volk_CMAKE_DIR}/volkTargets.cmake")
+endif()
+set(volk_LIBRARIES volk::volk)
+
+find_package(Vulkan QUIET)
+if(TARGET Vulkan::Vulkan) 
+  add_dependencies(volk::volk Vulkan::Vulkan)
+elseif(DEFINED ENV{VULKAN_SDK})
+  target_include_directories(volk::volk INTERFACE "$ENV{VULKAN_SDK}/include")
+endif()
