@@ -13,9 +13,9 @@
 #	error To use volk, you need to define VK_NO_PROTOTYPES before including vulkan.h
 #endif
 
-/* VOLK_GENERATE_VERSION */
+/* VOLK_GENERATE_VERSION_DEFINE */
 #define VOLK_HEADER_VERSION 121
-/* VOLK_GENERATE_VERSION */
+/* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
 #	define VK_NO_PROTOTYPES
@@ -24,7 +24,7 @@
 #ifndef VULKAN_H_
 #       ifdef VOLK_VULKAN_H_PATH
 #               include VOLK_VULKAN_H_PATH
-#	elif VK_USE_PLATFORM_WIN32_KHR
+#	elif defined(VK_USE_PLATFORM_WIN32_KHR)
 #		include <vulkan/vk_platform.h>
 #		include <vulkan/vulkan_core.h>
 
@@ -1029,6 +1029,14 @@ extern PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
 }
 #endif
 
+#endif
+
+#ifdef VOLK_IMPLEMENTATION
+#undef VOLK_IMPLEMENTATION
+// Prevent tools like dependency checkers that don't evaluate
+// macros from detecting a cyclic dependency.
+#define VOLK_SOURCE "volk.c"
+#include VOLK_SOURCE
 #endif
 
 /**

@@ -25,9 +25,14 @@ def patch_file(path, blocks):
 					block = None
 			else:
 				result.append(line)
+                                # C comment marker
 				if line.strip().startswith('/* VOLK_GENERATE_'):
 					block = line
 					result.append(blocks[line.strip()[17:-3]])
+                                # Shell/CMake comment marker
+				elif line.strip().startswith('# VOLK_GENERATE_'):
+					block = line
+					result.append(blocks[line.strip()[16:]])
 
 	with open(path, 'w') as file:
 		for line in result:
@@ -60,7 +65,8 @@ if __name__ == "__main__":
 	blocks = {}
 
 	version = spec.find('types/type[name="VK_HEADER_VERSION"]')
-	blocks['VERSION'] = '#define VOLK_HEADER_VERSION ' + version.find('name').tail.strip() + '\n'
+	blocks['VERSION'] = version.find('name').tail.strip() + '\n'
+	blocks['VERSION_DEFINE'] = '#define VOLK_HEADER_VERSION ' + version.find('name').tail.strip() + '\n'
 
 	command_groups = OrderedDict()
 	instance_commands = set()
@@ -160,3 +166,4 @@ if __name__ == "__main__":
 
 	patch_file('volk.h', blocks)
 	patch_file('volk.c', blocks)
+	patch_file('CMakeLists.txt', blocks)
