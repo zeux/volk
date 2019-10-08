@@ -14,7 +14,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 121
+#define VOLK_HEADER_VERSION 124
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -417,6 +417,11 @@ struct VolkDeviceTable
 	PFN_vkGetSwapchainImagesKHR vkGetSwapchainImagesKHR;
 	PFN_vkQueuePresentKHR vkQueuePresentKHR;
 #endif /* defined(VK_KHR_swapchain) */
+#if defined(VK_KHR_timeline_semaphore)
+	PFN_vkGetSemaphoreCounterValueKHR vkGetSemaphoreCounterValueKHR;
+	PFN_vkSignalSemaphoreKHR vkSignalSemaphoreKHR;
+	PFN_vkWaitSemaphoresKHR vkWaitSemaphoresKHR;
+#endif /* defined(VK_KHR_timeline_semaphore) */
 #if defined(VK_NVX_device_generated_commands)
 	PFN_vkCmdProcessCommandsNVX vkCmdProcessCommandsNVX;
 	PFN_vkCmdReserveSpaceForCommandsNVX vkCmdReserveSpaceForCommandsNVX;
@@ -924,6 +929,11 @@ extern PFN_vkDestroySwapchainKHR vkDestroySwapchainKHR;
 extern PFN_vkGetSwapchainImagesKHR vkGetSwapchainImagesKHR;
 extern PFN_vkQueuePresentKHR vkQueuePresentKHR;
 #endif /* defined(VK_KHR_swapchain) */
+#if defined(VK_KHR_timeline_semaphore)
+extern PFN_vkGetSemaphoreCounterValueKHR vkGetSemaphoreCounterValueKHR;
+extern PFN_vkSignalSemaphoreKHR vkSignalSemaphoreKHR;
+extern PFN_vkWaitSemaphoresKHR vkWaitSemaphoresKHR;
+#endif /* defined(VK_KHR_timeline_semaphore) */
 #if defined(VK_KHR_wayland_surface)
 extern PFN_vkCreateWaylandSurfaceKHR vkCreateWaylandSurfaceKHR;
 extern PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR vkGetPhysicalDeviceWaylandPresentationSupportKHR;
