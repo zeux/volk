@@ -88,6 +88,18 @@ void volkLoadInstance(VkInstance instance);
 void volkLoadDevice(VkDevice device);
 
 /**
+ * Return last VkInstance for which global function pointers have been loaded via volkLoadInstance(),
+ * or VK_NULL_HANDLE if volkLoadInstance() has not been called.
+ */
+VkInstance volkGetLoadedInstance();
+
+/**
+ * Return last VkDevice for which global function pointers have been loaded via volkLoadDevice(),
+ * or VK_NULL_HANDLE if volkLoadDevice() has not been called.
+ */
+VkDevice volkGetLoadedDevice();
+
+/**
  * Load function pointers using application-created VkDevice into a table.
  * Application should use function pointers from that table instead of using global function pointers.
  */
