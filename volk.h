@@ -6,6 +6,7 @@
  *
  * This library is distributed under the MIT License. See notice at the end of this file.
  */
+/* clang-format off */
 #ifndef VOLK_H_
 #define VOLK_H_
 
@@ -1093,3 +1094,4 @@ extern PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+/* clang-format on */
