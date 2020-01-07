@@ -1,4 +1,5 @@
 /* This file is part of volk library; see volk.h for version/license details */
+/* clang-format off */
 #include "volk.h"
 
 #ifdef _WIN32
@@ -1677,3 +1678,4 @@ PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
 #ifdef __cplusplus
 }
 #endif
+/* clang-format on */
