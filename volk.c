@@ -104,10 +104,20 @@ void volkLoadInstance(VkInstance instance)
 	volkGenLoadDevice(instance, vkGetInstanceProcAddrStub);
 }
 
+VkInstance volkGetLoadedInstance()
+{
+	return loadedInstance;
+}
+
 void volkLoadDevice(VkDevice device)
 {
 	loadedDevice = device;
 	volkGenLoadDevice(device, vkGetDeviceProcAddrStub);
+}
+
+VkDevice volkGetLoadedDevice()
+{
+	return loadedDevice;
 }
 
 void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device)
