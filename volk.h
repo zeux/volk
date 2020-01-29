@@ -82,6 +82,12 @@ uint32_t volkGetInstanceVersion(void);
 void volkLoadInstance(VkInstance instance);
 
 /**
+ * Load global function pointers using application-created VkInstance; call this function after creating the Vulkan instance.
+ * Skips loading device-based function pointers, requires usage of volkLoadDevice afterwards.
+ */
+void volkLoadInstanceOnly(VkInstance instance);
+
+/**
  * Load global function pointers using application-created VkDevice; call this function after creating the Vulkan device.
  *
  * Note: this is not suitable for applications that want to use multiple VkDevice objects concurrently.
@@ -92,13 +98,13 @@ void volkLoadDevice(VkDevice device);
  * Return last VkInstance for which global function pointers have been loaded via volkLoadInstance(),
  * or VK_NULL_HANDLE if volkLoadInstance() has not been called.
  */
-VkInstance volkGetLoadedInstance();
+VkInstance volkGetLoadedInstance(void);
 
 /**
  * Return last VkDevice for which global function pointers have been loaded via volkLoadDevice(),
  * or VK_NULL_HANDLE if volkLoadDevice() has not been called.
  */
-VkDevice volkGetLoadedDevice();
+VkDevice volkGetLoadedDevice(void);
 
 /**
  * Load function pointers using application-created VkDevice into a table.
