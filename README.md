@@ -1,4 +1,4 @@
-# 🐺 volk [![Build Status](https://travis-ci.org/zeux/volk.svg?branch=master)](https://travis-ci.org/zeux/volk)
+# 🐺 volk [![Build Status](https://github.com/zeux/volk/workflows/build/badge.svg)](https://github.com/zeux/volk/actions) 
 
 ## Purpose
 
