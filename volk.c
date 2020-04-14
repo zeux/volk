@@ -1,5 +1,6 @@
 /* This file is part of volk library; see volk.h for version/license details */
 /* clang-format off */
+#define VK_ENABLE_BETA_EXTENSIONS
 #include "volk.h"
 
 #ifdef _WIN32
