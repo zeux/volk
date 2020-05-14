@@ -51,6 +51,11 @@
 #	endif
 #endif
 
+/* Disable VK_NVX_image_view_handle because SDK 140 introduced a change that can't be used with prior versions */
+#if VK_HEADER_VERSION < 140
+#	undef VK_NVX_image_view_handle
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
