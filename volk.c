@@ -1259,7 +1259,11 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 }
 
 #ifdef __GNUC__
+#ifdef VOLK_DEFAULT_VISIBILITY
+#	pragma GCC visibility push(default)
+#else
 #	pragma GCC visibility push(hidden)
+#endif
 #endif
 
 /* VOLK_GENERATE_PROTOTYPES_C */
