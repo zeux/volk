@@ -43,13 +43,7 @@ This function will load all required Vulkan entrypoints, including all extension
 If you use volk as described in the previous section, all device-related function calls, such as `vkCmdDraw`, will go through Vulkan loader dispatch code.
 This allows you to transparently support multiple VkDevice objects in the same application, but comes at a price of dispatch overhead which can be as high as 7% depending on the driver and application.
 
-To avoid this, you can call the following function to skip loading device-based function pointers:
-
-```c++
-void volkLoadInstanceOnly(VkInstance instance);
-```
-
-To load device-based function pointers you have one of two options:
+To avoid this, you have two options:
 
 1. For applications that use just one VkDevice object, load device-related Vulkan entrypoints directly from the driver with this function:
 
@@ -66,6 +60,8 @@ void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device);
 The second option requires you to change the application code to store one `VolkDeviceTable` per `VkDevice` and call functions from this table instead.
 
 Device entrypoints are loaded using `vkGetDeviceProcAddr`; when no layers are present, this commonly results in most function pointers pointing directly at the driver functions, minimizing the call overhead. When layers are loaded, the entrypoints will point at the implementations in the first applicable layer, so this is compatible with any layers including validation layers.
+
+Since `volkLoadDevice` overwrites some function pointers with device-specific versions, you can choose to use `volkLoadInstanceOnly` instead of `volkLoadInstance`; when using table-based interface this can also help enforce the usage of the function tables as `volkLoadInstanceOnly` will leave device-specific functions as `NULL`.
 
 ## CMake support
 
