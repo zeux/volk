@@ -40,6 +40,7 @@ endif()
 # Interface library
 
 add_library(volk_headers INTERFACE)
+add_library(volk::volk_headers ALIAS volk_headers)
 target_include_directories(volk_headers INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
   $<INSTALL_INTERFACE:include>
