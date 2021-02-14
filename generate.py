@@ -34,7 +34,7 @@ def patch_file(path, blocks):
 					block = line
 					result.append(blocks[line.strip()[16:]])
 
-	with open(path, 'w') as file:
+	with open(path, 'w', newline='\n') as file:
 		for line in result:
 			file.write(line)
 
