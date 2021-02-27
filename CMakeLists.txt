@@ -25,6 +25,7 @@ endif()
 # Static library
 
 add_library(volk STATIC volk.h volk.c)
+add_library(volk::volk ALIAS volk)
 target_include_directories(volk PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
   $<INSTALL_INTERFACE:include>
