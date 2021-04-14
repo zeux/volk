@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 170
+#define VOLK_HEADER_VERSION 175
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -305,6 +305,9 @@ struct VolkDeviceTable
 #if defined(VK_EXT_calibrated_timestamps)
 	PFN_vkGetCalibratedTimestampsEXT vkGetCalibratedTimestampsEXT;
 #endif /* defined(VK_EXT_calibrated_timestamps) */
+#if defined(VK_EXT_color_write_enable)
+	PFN_vkCmdSetColorWriteEnableEXT vkCmdSetColorWriteEnableEXT;
+#endif /* defined(VK_EXT_color_write_enable) */
 #if defined(VK_EXT_conditional_rendering)
 	PFN_vkCmdBeginConditionalRenderingEXT vkCmdBeginConditionalRenderingEXT;
 	PFN_vkCmdEndConditionalRenderingEXT vkCmdEndConditionalRenderingEXT;
@@ -381,6 +384,17 @@ struct VolkDeviceTable
 	PFN_vkGetValidationCacheDataEXT vkGetValidationCacheDataEXT;
 	PFN_vkMergeValidationCachesEXT vkMergeValidationCachesEXT;
 #endif /* defined(VK_EXT_validation_cache) */
+#if defined(VK_EXT_vertex_input_dynamic_state)
+	PFN_vkCmdSetVertexInputEXT vkCmdSetVertexInputEXT;
+#endif /* defined(VK_EXT_vertex_input_dynamic_state) */
+#if defined(VK_FUCHSIA_external_memory)
+	PFN_vkGetMemoryZirconHandleFUCHSIA vkGetMemoryZirconHandleFUCHSIA;
+	PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA vkGetMemoryZirconHandlePropertiesFUCHSIA;
+#endif /* defined(VK_FUCHSIA_external_memory) */
+#if defined(VK_FUCHSIA_external_semaphore)
+	PFN_vkGetSemaphoreZirconHandleFUCHSIA vkGetSemaphoreZirconHandleFUCHSIA;
+	PFN_vkImportSemaphoreZirconHandleFUCHSIA vkImportSemaphoreZirconHandleFUCHSIA;
+#endif /* defined(VK_FUCHSIA_external_semaphore) */
 #if defined(VK_GOOGLE_display_timing)
 	PFN_vkGetPastPresentationTimingGOOGLE vkGetPastPresentationTimingGOOGLE;
 	PFN_vkGetRefreshCycleDurationGOOGLE vkGetRefreshCycleDurationGOOGLE;
@@ -553,6 +567,24 @@ struct VolkDeviceTable
 	PFN_vkSignalSemaphoreKHR vkSignalSemaphoreKHR;
 	PFN_vkWaitSemaphoresKHR vkWaitSemaphoresKHR;
 #endif /* defined(VK_KHR_timeline_semaphore) */
+#if defined(VK_KHR_video_decode_queue)
+	PFN_vkCmdDecodeVideoKHR vkCmdDecodeVideoKHR;
+#endif /* defined(VK_KHR_video_decode_queue) */
+#if defined(VK_KHR_video_encode_queue)
+	PFN_vkCmdEncodeVideoKHR vkCmdEncodeVideoKHR;
+#endif /* defined(VK_KHR_video_encode_queue) */
+#if defined(VK_KHR_video_queue)
+	PFN_vkBindVideoSessionMemoryKHR vkBindVideoSessionMemoryKHR;
+	PFN_vkCmdBeginVideoCodingKHR vkCmdBeginVideoCodingKHR;
+	PFN_vkCmdControlVideoCodingKHR vkCmdControlVideoCodingKHR;
+	PFN_vkCmdEndVideoCodingKHR vkCmdEndVideoCodingKHR;
+	PFN_vkCreateVideoSessionKHR vkCreateVideoSessionKHR;
+	PFN_vkCreateVideoSessionParametersKHR vkCreateVideoSessionParametersKHR;
+	PFN_vkDestroyVideoSessionKHR vkDestroyVideoSessionKHR;
+	PFN_vkDestroyVideoSessionParametersKHR vkDestroyVideoSessionParametersKHR;
+	PFN_vkGetVideoSessionMemoryRequirementsKHR vkGetVideoSessionMemoryRequirementsKHR;
+	PFN_vkUpdateVideoSessionParametersKHR vkUpdateVideoSessionParametersKHR;
+#endif /* defined(VK_KHR_video_queue) */
 #if defined(VK_NVX_image_view_handle)
 	PFN_vkGetImageViewAddressNVX vkGetImageViewAddressNVX;
 	PFN_vkGetImageViewHandleNVX vkGetImageViewHandleNVX;
@@ -834,6 +866,9 @@ extern PFN_vkGetBufferDeviceAddressEXT vkGetBufferDeviceAddressEXT;
 extern PFN_vkGetCalibratedTimestampsEXT vkGetCalibratedTimestampsEXT;
 extern PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT vkGetPhysicalDeviceCalibrateableTimeDomainsEXT;
 #endif /* defined(VK_EXT_calibrated_timestamps) */
+#if defined(VK_EXT_color_write_enable)
+extern PFN_vkCmdSetColorWriteEnableEXT vkCmdSetColorWriteEnableEXT;
+#endif /* defined(VK_EXT_color_write_enable) */
 #if defined(VK_EXT_conditional_rendering)
 extern PFN_vkCmdBeginConditionalRenderingEXT vkCmdBeginConditionalRenderingEXT;
 extern PFN_vkCmdEndConditionalRenderingEXT vkCmdEndConditionalRenderingEXT;
@@ -949,6 +984,17 @@ extern PFN_vkDestroyValidationCacheEXT vkDestroyValidationCacheEXT;
 extern PFN_vkGetValidationCacheDataEXT vkGetValidationCacheDataEXT;
 extern PFN_vkMergeValidationCachesEXT vkMergeValidationCachesEXT;
 #endif /* defined(VK_EXT_validation_cache) */
+#if defined(VK_EXT_vertex_input_dynamic_state)
+extern PFN_vkCmdSetVertexInputEXT vkCmdSetVertexInputEXT;
+#endif /* defined(VK_EXT_vertex_input_dynamic_state) */
+#if defined(VK_FUCHSIA_external_memory)
+extern PFN_vkGetMemoryZirconHandleFUCHSIA vkGetMemoryZirconHandleFUCHSIA;
+extern PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA vkGetMemoryZirconHandlePropertiesFUCHSIA;
+#endif /* defined(VK_FUCHSIA_external_memory) */
+#if defined(VK_FUCHSIA_external_semaphore)
+extern PFN_vkGetSemaphoreZirconHandleFUCHSIA vkGetSemaphoreZirconHandleFUCHSIA;
+extern PFN_vkImportSemaphoreZirconHandleFUCHSIA vkImportSemaphoreZirconHandleFUCHSIA;
+#endif /* defined(VK_FUCHSIA_external_semaphore) */
 #if defined(VK_FUCHSIA_imagepipe_surface)
 extern PFN_vkCreateImagePipeSurfaceFUCHSIA vkCreateImagePipeSurfaceFUCHSIA;
 #endif /* defined(VK_FUCHSIA_imagepipe_surface) */
@@ -1180,6 +1226,26 @@ extern PFN_vkGetSemaphoreCounterValueKHR vkGetSemaphoreCounterValueKHR;
 extern PFN_vkSignalSemaphoreKHR vkSignalSemaphoreKHR;
 extern PFN_vkWaitSemaphoresKHR vkWaitSemaphoresKHR;
 #endif /* defined(VK_KHR_timeline_semaphore) */
+#if defined(VK_KHR_video_decode_queue)
+extern PFN_vkCmdDecodeVideoKHR vkCmdDecodeVideoKHR;
+#endif /* defined(VK_KHR_video_decode_queue) */
+#if defined(VK_KHR_video_encode_queue)
+extern PFN_vkCmdEncodeVideoKHR vkCmdEncodeVideoKHR;
+#endif /* defined(VK_KHR_video_encode_queue) */
+#if defined(VK_KHR_video_queue)
+extern PFN_vkBindVideoSessionMemoryKHR vkBindVideoSessionMemoryKHR;
+extern PFN_vkCmdBeginVideoCodingKHR vkCmdBeginVideoCodingKHR;
+extern PFN_vkCmdControlVideoCodingKHR vkCmdControlVideoCodingKHR;
+extern PFN_vkCmdEndVideoCodingKHR vkCmdEndVideoCodingKHR;
+extern PFN_vkCreateVideoSessionKHR vkCreateVideoSessionKHR;
+extern PFN_vkCreateVideoSessionParametersKHR vkCreateVideoSessionParametersKHR;
+extern PFN_vkDestroyVideoSessionKHR vkDestroyVideoSessionKHR;
+extern PFN_vkDestroyVideoSessionParametersKHR vkDestroyVideoSessionParametersKHR;
+extern PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR vkGetPhysicalDeviceVideoCapabilitiesKHR;
+extern PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR vkGetPhysicalDeviceVideoFormatPropertiesKHR;
+extern PFN_vkGetVideoSessionMemoryRequirementsKHR vkGetVideoSessionMemoryRequirementsKHR;
+extern PFN_vkUpdateVideoSessionParametersKHR vkUpdateVideoSessionParametersKHR;
+#endif /* defined(VK_KHR_video_queue) */
 #if defined(VK_KHR_wayland_surface)
 extern PFN_vkCreateWaylandSurfaceKHR vkCreateWaylandSurfaceKHR;
 extern PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR vkGetPhysicalDeviceWaylandPresentationSupportKHR;
@@ -1270,6 +1336,10 @@ extern PFN_vkCmdBindShadingRateImageNV vkCmdBindShadingRateImageNV;
 extern PFN_vkCmdSetCoarseSampleOrderNV vkCmdSetCoarseSampleOrderNV;
 extern PFN_vkCmdSetViewportShadingRatePaletteNV vkCmdSetViewportShadingRatePaletteNV;
 #endif /* defined(VK_NV_shading_rate_image) */
+#if defined(VK_QNX_screen_surface)
+extern PFN_vkCreateScreenSurfaceQNX vkCreateScreenSurfaceQNX;
+extern PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX vkGetPhysicalDeviceScreenPresentationSupportQNX;
+#endif /* defined(VK_QNX_screen_surface) */
 #if (defined(VK_EXT_full_screen_exclusive) && defined(VK_KHR_device_group)) || (defined(VK_EXT_full_screen_exclusive) && defined(VK_VERSION_1_1))
 extern PFN_vkGetDeviceGroupSurfacePresentModes2EXT vkGetDeviceGroupSurfacePresentModes2EXT;
 #endif /* (defined(VK_EXT_full_screen_exclusive) && defined(VK_KHR_device_group)) || (defined(VK_EXT_full_screen_exclusive) && defined(VK_VERSION_1_1)) */
