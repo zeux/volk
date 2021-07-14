@@ -7,10 +7,6 @@ import urllib
 import xml.etree.ElementTree as etree
 import urllib.request
 
-bad_extensions = [
-	'VK_HUAWEI_subpass_shading' # multiple incompatible versions of the extension wrt function name
-]
-
 def parse_xml(path):
 	file = urllib.request.urlopen(path) if path.startswith("http") else open(path, 'r')
 	with file:
@@ -86,8 +82,6 @@ if __name__ == "__main__":
 			continue
 		name = ext.get('name')
 		type = ext.get('type')
-		if name in bad_extensions:
-			continue
 		for req in ext.findall('require'):
 			key = defined(name)
 			if req.get('feature'):
