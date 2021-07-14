@@ -19,7 +19,8 @@ There are multiple ways to use volk in your project:
 ## Basic usage
 
 To use volk, you have to include `volk.h` instead of `vulkan/vulkan.h`; this is necessary to use function definitions from volk.
-If some files in your application include `vulkan/vulkan.h` and don't include `volk.h`, this can result in symbol conflicts; consider defining `VK_NO_PROTOTYPES` when compiling code that uses Vulkan to make sure this doesn't happen.
+
+If some files in your application include `vulkan/vulkan.h` and don't include `volk.h`, this can result in symbol conflicts; consider defining `VK_NO_PROTOTYPES` when compiling code that uses Vulkan to make sure this doesn't happen. It's also important to make sure that `vulkan-1` is not linked into the application, as this results in symbol name conflicts as well.
 
 To initialize volk, call this function first:
 
