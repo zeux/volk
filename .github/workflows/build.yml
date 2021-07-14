@@ -38,3 +38,9 @@ jobs:
         export VULKAN_SDK=~/Vulkan-Headers
         git -C ~/Vulkan-Headers checkout sdk-1.2.131
         test/run_tests.sh
+    - name: build 1.2.182
+      shell: bash
+      run: |
+        export VULKAN_SDK=~/Vulkan-Headers
+        git -C ~/Vulkan-Headers checkout sdk-1.2.182
+        test/run_tests.sh

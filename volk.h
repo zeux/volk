@@ -51,9 +51,12 @@
 #	endif
 #endif
 
-/* Disable VK_NVX_image_view_handle because SDK 140 introduced a change that can't be used with prior versions */
+/* Disable several extensions on earlier SDKs because later SDKs introduce a backwards incompatible change to function signatures */
 #if VK_HEADER_VERSION < 140
 #	undef VK_NVX_image_view_handle
+#endif
+#if VK_HEADER_VERSION < 184
+#	undef VK_HUAWEI_subpass_shading
 #endif
 
 #ifdef __cplusplus
