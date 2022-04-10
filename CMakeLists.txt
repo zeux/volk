@@ -20,21 +20,26 @@ endif()
 if(NOT DEFINED VOLK_INSTALL)
   option(VOLK_INSTALL "Create installation targets" OFF)
 endif()
+if(NOT DEFINED VOLK_HEADERS_ONLY)
+  option(VOLK_HEADERS_ONLY "Add interface library only" OFF)
+endif()
 
 # -----------------------------------------------------
 # Static library
 
-add_library(volk STATIC volk.h volk.c)
-add_library(volk::volk ALIAS volk)
-target_include_directories(volk PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
-  $<INSTALL_INTERFACE:include>
-)
-if(VOLK_STATIC_DEFINES)
-  target_compile_definitions(volk PUBLIC ${VOLK_STATIC_DEFINES})
-endif()
-if (NOT WIN32)
-  target_link_libraries(volk PUBLIC dl)
+if(NOT VOLK_HEADERS_ONLY OR VOLK_INSTALL)
+  add_library(volk STATIC volk.h volk.c)
+  add_library(volk::volk ALIAS volk)
+  target_include_directories(volk PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+    $<INSTALL_INTERFACE:include>
+  )
+  if(VOLK_STATIC_DEFINES)
+    target_compile_definitions(volk PUBLIC ${VOLK_STATIC_DEFINES})
+  endif()
+  if (NOT WIN32)
+    target_link_libraries(volk PUBLIC dl)
+  endif()
 endif()
 
 # -----------------------------------------------------
@@ -58,12 +63,16 @@ if(VOLK_PULL_IN_VULKAN)
   # Otherwise try the environment variable.
   find_package(Vulkan QUIET)
   if(TARGET Vulkan::Vulkan)
-      message(" Vulkan as target")
-    target_link_libraries(volk PUBLIC Vulkan::Vulkan)
+    message(" Vulkan as target")
+    if(TARGET volk)
+      target_link_libraries(volk PUBLIC Vulkan::Vulkan)
+    endif()
     target_link_libraries(volk_headers INTERFACE Vulkan::Vulkan)
   elseif(DEFINED ENV{VULKAN_SDK})
-      message(" Vulkan as path")
-    target_include_directories(volk PUBLIC "$ENV{VULKAN_SDK}/include")
+    message(" Vulkan as path")
+    if(TARGET volk)
+      target_include_directories(volk PUBLIC "$ENV{VULKAN_SDK}/include")
+    endif()
     target_include_directories(volk_headers INTERFACE "$ENV{VULKAN_SDK}/include")
   endif()
 endif()
