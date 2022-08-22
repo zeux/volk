@@ -11,9 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: update
-        run: python3 generate.py >version.txt
-      - name: commit
-        run: git commit --author "GitHub <noreply@github.com>" -a -m "Update to 1.3.`cat version.txt`""
-        continue-on-error: true
+        run: |
+          python3 generate.py >version.txt
+          echo "VOLK_VERSION=`cat version.txt`" >> $GITHUB_ENV
+          rm version.txt
       - name: create pr
         uses: peter-evans/create-pull-request@v4
+        with:
+          branch-suffix: short-commit-hash
+          delete-branch: true
+          title: Update to 1.3.${{env.VOLK_VERSION}}
