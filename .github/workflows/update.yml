@@ -1,3 +1,5 @@
+name: update
+
 on:
   schedule:
     - cron: '0 9 * * *'
