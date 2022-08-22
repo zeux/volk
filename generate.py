@@ -167,3 +167,5 @@ if __name__ == "__main__":
 	patch_file('volk.h', blocks)
 	patch_file('volk.c', blocks)
 	patch_file('CMakeLists.txt', blocks)
+
+	print(version.find('name').tail.strip())
