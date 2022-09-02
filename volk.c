@@ -633,6 +633,11 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 #if defined(VK_EXT_line_rasterization)
 	vkCmdSetLineStippleEXT = (PFN_vkCmdSetLineStippleEXT)load(context, "vkCmdSetLineStippleEXT");
 #endif /* defined(VK_EXT_line_rasterization) */
+#if defined(VK_EXT_mesh_shader)
+	vkCmdDrawMeshTasksEXT = (PFN_vkCmdDrawMeshTasksEXT)load(context, "vkCmdDrawMeshTasksEXT");
+	vkCmdDrawMeshTasksIndirectCountEXT = (PFN_vkCmdDrawMeshTasksIndirectCountEXT)load(context, "vkCmdDrawMeshTasksIndirectCountEXT");
+	vkCmdDrawMeshTasksIndirectEXT = (PFN_vkCmdDrawMeshTasksIndirectEXT)load(context, "vkCmdDrawMeshTasksIndirectEXT");
+#endif /* defined(VK_EXT_mesh_shader) */
 #if defined(VK_EXT_metal_objects)
 	vkExportMetalObjectsEXT = (PFN_vkExportMetalObjectsEXT)load(context, "vkExportMetalObjectsEXT");
 #endif /* defined(VK_EXT_metal_objects) */
@@ -1274,6 +1279,11 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 #if defined(VK_EXT_line_rasterization)
 	table->vkCmdSetLineStippleEXT = (PFN_vkCmdSetLineStippleEXT)load(context, "vkCmdSetLineStippleEXT");
 #endif /* defined(VK_EXT_line_rasterization) */
+#if defined(VK_EXT_mesh_shader)
+	table->vkCmdDrawMeshTasksEXT = (PFN_vkCmdDrawMeshTasksEXT)load(context, "vkCmdDrawMeshTasksEXT");
+	table->vkCmdDrawMeshTasksIndirectCountEXT = (PFN_vkCmdDrawMeshTasksIndirectCountEXT)load(context, "vkCmdDrawMeshTasksIndirectCountEXT");
+	table->vkCmdDrawMeshTasksIndirectEXT = (PFN_vkCmdDrawMeshTasksIndirectEXT)load(context, "vkCmdDrawMeshTasksIndirectEXT");
+#endif /* defined(VK_EXT_mesh_shader) */
 #if defined(VK_EXT_metal_objects)
 	table->vkExportMetalObjectsEXT = (PFN_vkExportMetalObjectsEXT)load(context, "vkExportMetalObjectsEXT");
 #endif /* defined(VK_EXT_metal_objects) */
@@ -1992,6 +2002,11 @@ PFN_vkGetImageDrmFormatModifierPropertiesEXT vkGetImageDrmFormatModifierProperti
 #if defined(VK_EXT_line_rasterization)
 PFN_vkCmdSetLineStippleEXT vkCmdSetLineStippleEXT;
 #endif /* defined(VK_EXT_line_rasterization) */
+#if defined(VK_EXT_mesh_shader)
+PFN_vkCmdDrawMeshTasksEXT vkCmdDrawMeshTasksEXT;
+PFN_vkCmdDrawMeshTasksIndirectCountEXT vkCmdDrawMeshTasksIndirectCountEXT;
+PFN_vkCmdDrawMeshTasksIndirectEXT vkCmdDrawMeshTasksIndirectEXT;
+#endif /* defined(VK_EXT_mesh_shader) */
 #if defined(VK_EXT_metal_objects)
 PFN_vkExportMetalObjectsEXT vkExportMetalObjectsEXT;
 #endif /* defined(VK_EXT_metal_objects) */
