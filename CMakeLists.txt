@@ -23,6 +23,9 @@ endif()
 if(NOT DEFINED VOLK_HEADERS_ONLY)
   option(VOLK_HEADERS_ONLY "Add interface library only" OFF)
 endif()
+if(NOT DEFINED VULKAN_HEADERS_INSTALL_DIR)
+  option(VULKAN_HEADERS_INSTALL_DIR "Where to get the Vulkan headers" "")
+endif()
 
 # -----------------------------------------------------
 # Static library
