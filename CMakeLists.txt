@@ -23,6 +23,9 @@ endif()
 if(NOT DEFINED VOLK_HEADERS_ONLY)
   option(VOLK_HEADERS_ONLY "Add interface library only" OFF)
 endif()
+if(NOT DEFINED VULKAN_HEADERS_INSTALL_DIR)
+  option(VULKAN_HEADERS_INSTALL_DIR "Where to get the Vulkan headers" "")
+endif()
 
 # -----------------------------------------------------
 # Static library
@@ -60,9 +63,18 @@ endif()
 
 if(VOLK_PULL_IN_VULKAN)
   # If CMake has the FindVulkan module and it works, use it.
-  # Otherwise try the environment variable.
   find_package(Vulkan QUIET)
-  if(TARGET Vulkan::Vulkan)
+
+  # Try an explicit CMake variable first, then any Vulkan targets
+  # discovered by FindVulkan.cmake, then the $VULKAN_SDK environment
+  # variable if nothing else works.
+  if(VULKAN_HEADERS_INSTALL_DIR)
+    message(" Vulkan as path")
+    if(TARGET volk)
+      target_include_directories(volk PUBLIC "${VULKAN_HEADERS_INSTALL_DIR}/include")
+    endif()
+    target_include_directories(volk_headers INTERFACE "${VULKAN_HEADERS_INSTALL_DIR}/include")
+  elseif(TARGET Vulkan::Vulkan)
     message(" Vulkan as target")
     if(TARGET volk)
       target_link_libraries(volk PUBLIC Vulkan::Vulkan)
@@ -75,7 +87,7 @@ if(VOLK_PULL_IN_VULKAN)
     endif()
     target_link_libraries(volk_headers INTERFACE Vulkan::Headers)
   elseif(DEFINED ENV{VULKAN_SDK})
-    message(" Vulkan as path")
+    message(" Vulkan as VULKAN_SDK path")
     if(TARGET volk)
       target_include_directories(volk PUBLIC "$ENV{VULKAN_SDK}/include")
     endif()
