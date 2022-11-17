@@ -85,9 +85,11 @@ if __name__ == "__main__":
 		for req in ext.findall('require'):
 			key = defined(name)
 			if req.get('feature'):
-				key += ' && ' + defined(req.get('feature'))
+				for i in req.get('feature').split(','):
+					key += ' && ' + defined(i)
 			if req.get('extension'):
-				key += ' && ' + defined(req.get('extension'))
+				for i in req.get('extension').split(','):
+					key += ' && ' + defined(i)
 			cmdrefs = req.findall('command')
 			command_groups.setdefault(key, []).extend([cmdref.get('name') for cmdref in cmdrefs])
 			if type == 'instance':
