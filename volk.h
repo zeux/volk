@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 236
+#define VOLK_HEADER_VERSION 237
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -510,6 +510,9 @@ struct VolkDeviceTable
 	PFN_vkGetShaderModuleCreateInfoIdentifierEXT vkGetShaderModuleCreateInfoIdentifierEXT;
 	PFN_vkGetShaderModuleIdentifierEXT vkGetShaderModuleIdentifierEXT;
 #endif /* defined(VK_EXT_shader_module_identifier) */
+#if defined(VK_EXT_swapchain_maintenance1)
+	PFN_vkReleaseSwapchainImagesEXT vkReleaseSwapchainImagesEXT;
+#endif /* defined(VK_EXT_swapchain_maintenance1) */
 #if defined(VK_EXT_transform_feedback)
 	PFN_vkCmdBeginQueryIndexedEXT vkCmdBeginQueryIndexedEXT;
 	PFN_vkCmdBeginTransformFeedbackEXT vkCmdBeginTransformFeedbackEXT;
@@ -1310,6 +1313,9 @@ extern PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT vkGetPhysicalDeviceMultis
 extern PFN_vkGetShaderModuleCreateInfoIdentifierEXT vkGetShaderModuleCreateInfoIdentifierEXT;
 extern PFN_vkGetShaderModuleIdentifierEXT vkGetShaderModuleIdentifierEXT;
 #endif /* defined(VK_EXT_shader_module_identifier) */
+#if defined(VK_EXT_swapchain_maintenance1)
+extern PFN_vkReleaseSwapchainImagesEXT vkReleaseSwapchainImagesEXT;
+#endif /* defined(VK_EXT_swapchain_maintenance1) */
 #if defined(VK_EXT_tooling_info)
 extern PFN_vkGetPhysicalDeviceToolPropertiesEXT vkGetPhysicalDeviceToolPropertiesEXT;
 #endif /* defined(VK_EXT_tooling_info) */
