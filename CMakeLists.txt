@@ -9,6 +9,18 @@ project(volk VERSION
   LANGUAGES C
 )
 
+# CRYPTIC PATCH >>>
+
+if(BUILD_CRYPTIC)
+  set(VOLK_STATIC_DEFINES "")
+  set(VOLK_PULL_IN_VULKAN OFF)
+  set(VOLK_INSTALL OFF)
+  set(VOLK_HEADERS_ONLY OFF)
+  set(VULKAN_HEADERS_INSTALL_DIR OFF)
+endif()
+
+# <<< CRYPTIC PATCH
+
 # CMake 3.12 changes the default behaviour of option() to leave local variables
 # unchanged if they exist (which we want), but we must work with older CMake versions.
 if(NOT DEFINED VOLK_STATIC_DEFINES)
@@ -94,6 +106,14 @@ if(VOLK_PULL_IN_VULKAN)
     target_include_directories(volk_headers INTERFACE "$ENV{VULKAN_SDK}/include")
   endif()
 endif()
+
+# CRYPTIC PATCH >>>
+
+if(BUILD_CRYPTIC)
+  target_link_libraries(volk_headers INTERFACE Vulkan::Headers)
+endif()
+
+# <<< CRYPTIC PATCH
 
 # -----------------------------------------------------
 # Installation
