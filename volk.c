@@ -773,6 +773,10 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkGetPastPresentationTimingGOOGLE = (PFN_vkGetPastPresentationTimingGOOGLE)load(context, "vkGetPastPresentationTimingGOOGLE");
 	vkGetRefreshCycleDurationGOOGLE = (PFN_vkGetRefreshCycleDurationGOOGLE)load(context, "vkGetRefreshCycleDurationGOOGLE");
 #endif /* defined(VK_GOOGLE_display_timing) */
+#if defined(VK_HUAWEI_cluster_culling_shader)
+	vkCmdDrawClusterHUAWEI = (PFN_vkCmdDrawClusterHUAWEI)load(context, "vkCmdDrawClusterHUAWEI");
+	vkCmdDrawClusterIndirectHUAWEI = (PFN_vkCmdDrawClusterIndirectHUAWEI)load(context, "vkCmdDrawClusterIndirectHUAWEI");
+#endif /* defined(VK_HUAWEI_cluster_culling_shader) */
 #if defined(VK_HUAWEI_invocation_mask)
 	vkCmdBindInvocationMaskHUAWEI = (PFN_vkCmdBindInvocationMaskHUAWEI)load(context, "vkCmdBindInvocationMaskHUAWEI");
 #endif /* defined(VK_HUAWEI_invocation_mask) */
@@ -1503,6 +1507,10 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkGetPastPresentationTimingGOOGLE = (PFN_vkGetPastPresentationTimingGOOGLE)load(context, "vkGetPastPresentationTimingGOOGLE");
 	table->vkGetRefreshCycleDurationGOOGLE = (PFN_vkGetRefreshCycleDurationGOOGLE)load(context, "vkGetRefreshCycleDurationGOOGLE");
 #endif /* defined(VK_GOOGLE_display_timing) */
+#if defined(VK_HUAWEI_cluster_culling_shader)
+	table->vkCmdDrawClusterHUAWEI = (PFN_vkCmdDrawClusterHUAWEI)load(context, "vkCmdDrawClusterHUAWEI");
+	table->vkCmdDrawClusterIndirectHUAWEI = (PFN_vkCmdDrawClusterIndirectHUAWEI)load(context, "vkCmdDrawClusterIndirectHUAWEI");
+#endif /* defined(VK_HUAWEI_cluster_culling_shader) */
 #if defined(VK_HUAWEI_invocation_mask)
 	table->vkCmdBindInvocationMaskHUAWEI = (PFN_vkCmdBindInvocationMaskHUAWEI)load(context, "vkCmdBindInvocationMaskHUAWEI");
 #endif /* defined(VK_HUAWEI_invocation_mask) */
@@ -2323,6 +2331,10 @@ PFN_vkCreateStreamDescriptorSurfaceGGP vkCreateStreamDescriptorSurfaceGGP;
 PFN_vkGetPastPresentationTimingGOOGLE vkGetPastPresentationTimingGOOGLE;
 PFN_vkGetRefreshCycleDurationGOOGLE vkGetRefreshCycleDurationGOOGLE;
 #endif /* defined(VK_GOOGLE_display_timing) */
+#if defined(VK_HUAWEI_cluster_culling_shader)
+PFN_vkCmdDrawClusterHUAWEI vkCmdDrawClusterHUAWEI;
+PFN_vkCmdDrawClusterIndirectHUAWEI vkCmdDrawClusterIndirectHUAWEI;
+#endif /* defined(VK_HUAWEI_cluster_culling_shader) */
 #if defined(VK_HUAWEI_invocation_mask)
 PFN_vkCmdBindInvocationMaskHUAWEI vkCmdBindInvocationMaskHUAWEI;
 #endif /* defined(VK_HUAWEI_invocation_mask) */
