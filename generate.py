@@ -72,13 +72,16 @@ if __name__ == "__main__":
 	instance_commands = set()
 
 	for feature in spec.findall('feature'):
+		api = feature.get('api')
+		if 'vulkan' not in api.split(','):
+			continue
 		key = defined(feature.get('name'))
 		cmdrefs = feature.findall('require/command')
 		command_groups[key] = [cmdref.get('name') for cmdref in cmdrefs]
 
 	for ext in sorted(spec.findall('extensions/extension'), key=lambda ext: ext.get('name')):
 		supported = ext.get('supported')
-		if supported == 'disabled':
+		if 'vulkan' not in supported.split(','):
 			continue
 		name = ext.get('name')
 		type = ext.get('type')
