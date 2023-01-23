@@ -14,17 +14,17 @@ jobs:
     - uses: actions/checkout@v1
       with:
         repository: KhronosGroup/Vulkan-Headers
-        ref: master
+        ref: main
         path: Vulkan-Headers
     - name: move sdk
       shell: bash
       run: |
         mv ../Vulkan-Headers ~/Vulkan-Headers
-    - name: build master
+    - name: build main
       shell: bash
       run: |
         export VULKAN_SDK=~/Vulkan-Headers
-        git -C ~/Vulkan-Headers checkout master
+        git -C ~/Vulkan-Headers checkout main
         test/run_tests.sh
     - name: build 1.1.101
       shell: bash
