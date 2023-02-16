@@ -2,6 +2,7 @@
 # This file is part of volk library; see volk.h for version/license details
 
 from collections import OrderedDict
+import re
 import sys
 import urllib
 import xml.etree.ElementTree as etree
@@ -52,6 +53,9 @@ def is_descendant_type(types, name, base):
 def defined(key):
 	return 'defined(' + key + ')'
 
+def cdepends(key):
+	return re.sub(r'[a-zA-Z0-9_]+', lambda m: defined(m.group(0)), key).replace(',', ' || ').replace('+', ' && ')
+
 if __name__ == "__main__":
 	specpath = "https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/main/xml/vk.xml"
 
@@ -87,12 +91,15 @@ if __name__ == "__main__":
 		type = ext.get('type')
 		for req in ext.findall('require'):
 			key = defined(name)
-			if req.get('feature'):
+			if req.get('feature'): # old-style XML depends specification
 				for i in req.get('feature').split(','):
 					key += ' && ' + defined(i)
-			if req.get('extension'):
+			if req.get('extension'): # old-style XML depends specification
 				for i in req.get('extension').split(','):
 					key += ' && ' + defined(i)
+			if req.get('depends'): # new-style XML depends specification
+				dep = cdepends(req.get('depends'))
+				key += ' && ' + ('(' + dep + ')' if '||' in dep else dep)
 			cmdrefs = req.findall('command')
 			command_groups.setdefault(key, []).extend([cmdref.get('name') for cmdref in cmdrefs])
 			if type == 'instance':
