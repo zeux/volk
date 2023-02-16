@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 240
+#define VOLK_HEADER_VERSION 241
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -364,6 +364,7 @@ struct VolkDeviceTable
 	PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT vkCmdBindDescriptorBufferEmbeddedSamplersEXT;
 	PFN_vkCmdBindDescriptorBuffersEXT vkCmdBindDescriptorBuffersEXT;
 	PFN_vkCmdSetDescriptorBufferOffsetsEXT vkCmdSetDescriptorBufferOffsetsEXT;
+	PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT;
 	PFN_vkGetBufferOpaqueCaptureDescriptorDataEXT vkGetBufferOpaqueCaptureDescriptorDataEXT;
 	PFN_vkGetDescriptorEXT vkGetDescriptorEXT;
 	PFN_vkGetDescriptorSetLayoutBindingOffsetEXT vkGetDescriptorSetLayoutBindingOffsetEXT;
@@ -372,14 +373,13 @@ struct VolkDeviceTable
 	PFN_vkGetImageViewOpaqueCaptureDescriptorDataEXT vkGetImageViewOpaqueCaptureDescriptorDataEXT;
 	PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT vkGetSamplerOpaqueCaptureDescriptorDataEXT;
 #endif /* defined(VK_EXT_descriptor_buffer) */
-#if defined(VK_EXT_descriptor_buffer) && defined(VK_KHR_acceleration_structure) && defined(VK_NV_ray_tracing)
-	PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT;
-#endif /* defined(VK_EXT_descriptor_buffer) && defined(VK_KHR_acceleration_structure) && defined(VK_NV_ray_tracing) */
 #if defined(VK_EXT_device_fault)
 	PFN_vkGetDeviceFaultInfoEXT vkGetDeviceFaultInfoEXT;
 #endif /* defined(VK_EXT_device_fault) */
 #if defined(VK_EXT_discard_rectangles)
 	PFN_vkCmdSetDiscardRectangleEXT vkCmdSetDiscardRectangleEXT;
+	PFN_vkCmdSetDiscardRectangleEnableEXT vkCmdSetDiscardRectangleEnableEXT;
+	PFN_vkCmdSetDiscardRectangleModeEXT vkCmdSetDiscardRectangleModeEXT;
 #endif /* defined(VK_EXT_discard_rectangles) */
 #if defined(VK_EXT_display_control)
 	PFN_vkDisplayPowerControlEXT vkDisplayPowerControlEXT;
@@ -698,9 +698,9 @@ struct VolkDeviceTable
 #if defined(VK_KHR_push_descriptor)
 	PFN_vkCmdPushDescriptorSetKHR vkCmdPushDescriptorSetKHR;
 #endif /* defined(VK_KHR_push_descriptor) */
-#if defined(VK_KHR_ray_tracing_maintenance1) && defined(VK_KHR_ray_tracing_pipeline)
+#if defined(VK_KHR_ray_tracing_maintenance1)
 	PFN_vkCmdTraceRaysIndirect2KHR vkCmdTraceRaysIndirect2KHR;
-#endif /* defined(VK_KHR_ray_tracing_maintenance1) && defined(VK_KHR_ray_tracing_pipeline) */
+#endif /* defined(VK_KHR_ray_tracing_maintenance1) */
 #if defined(VK_KHR_ray_tracing_pipeline)
 	PFN_vkCmdSetRayTracingPipelineStackSizeKHR vkCmdSetRayTracingPipelineStackSizeKHR;
 	PFN_vkCmdTraceRaysIndirectKHR vkCmdTraceRaysIndirectKHR;
@@ -729,15 +729,11 @@ struct VolkDeviceTable
 	PFN_vkCmdResetEvent2KHR vkCmdResetEvent2KHR;
 	PFN_vkCmdSetEvent2KHR vkCmdSetEvent2KHR;
 	PFN_vkCmdWaitEvents2KHR vkCmdWaitEvents2KHR;
+	PFN_vkCmdWriteBufferMarker2AMD vkCmdWriteBufferMarker2AMD;
 	PFN_vkCmdWriteTimestamp2KHR vkCmdWriteTimestamp2KHR;
+	PFN_vkGetQueueCheckpointData2NV vkGetQueueCheckpointData2NV;
 	PFN_vkQueueSubmit2KHR vkQueueSubmit2KHR;
 #endif /* defined(VK_KHR_synchronization2) */
-#if defined(VK_KHR_synchronization2) && defined(VK_AMD_buffer_marker)
-	PFN_vkCmdWriteBufferMarker2AMD vkCmdWriteBufferMarker2AMD;
-#endif /* defined(VK_KHR_synchronization2) && defined(VK_AMD_buffer_marker) */
-#if defined(VK_KHR_synchronization2) && defined(VK_NV_device_diagnostic_checkpoints)
-	PFN_vkGetQueueCheckpointData2NV vkGetQueueCheckpointData2NV;
-#endif /* defined(VK_KHR_synchronization2) && defined(VK_NV_device_diagnostic_checkpoints) */
 #if defined(VK_KHR_timeline_semaphore)
 	PFN_vkGetSemaphoreCounterValueKHR vkGetSemaphoreCounterValueKHR;
 	PFN_vkSignalSemaphoreKHR vkSignalSemaphoreKHR;
@@ -830,6 +826,7 @@ struct VolkDeviceTable
 	PFN_vkGetRayTracingShaderGroupHandlesNV vkGetRayTracingShaderGroupHandlesNV;
 #endif /* defined(VK_NV_ray_tracing) */
 #if defined(VK_NV_scissor_exclusive)
+	PFN_vkCmdSetExclusiveScissorEnableNV vkCmdSetExclusiveScissorEnableNV;
 	PFN_vkCmdSetExclusiveScissorNV vkCmdSetExclusiveScissorNV;
 #endif /* defined(VK_NV_scissor_exclusive) */
 #if defined(VK_NV_shading_rate_image)
@@ -845,19 +842,17 @@ struct VolkDeviceTable
 	PFN_vkGetDescriptorSetHostMappingVALVE vkGetDescriptorSetHostMappingVALVE;
 	PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE vkGetDescriptorSetLayoutHostMappingInfoVALVE;
 #endif /* defined(VK_VALVE_descriptor_set_host_mapping) */
-#if (defined(VK_EXT_full_screen_exclusive) && defined(VK_KHR_device_group)) || (defined(VK_EXT_full_screen_exclusive) && defined(VK_VERSION_1_1))
+#if (defined(VK_EXT_full_screen_exclusive)) || (defined(VK_EXT_full_screen_exclusive))
 	PFN_vkGetDeviceGroupSurfacePresentModes2EXT vkGetDeviceGroupSurfacePresentModes2EXT;
-#endif /* (defined(VK_EXT_full_screen_exclusive) && defined(VK_KHR_device_group)) || (defined(VK_EXT_full_screen_exclusive) && defined(VK_VERSION_1_1)) */
-#if (defined(VK_KHR_descriptor_update_template) && defined(VK_KHR_push_descriptor)) || (defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1)) || (defined(VK_KHR_push_descriptor) && defined(VK_KHR_descriptor_update_template))
+#endif /* (defined(VK_EXT_full_screen_exclusive)) || (defined(VK_EXT_full_screen_exclusive)) */
+#if (defined(VK_KHR_descriptor_update_template)) || (defined(VK_KHR_push_descriptor)) || (defined(VK_KHR_push_descriptor))
 	PFN_vkCmdPushDescriptorSetWithTemplateKHR vkCmdPushDescriptorSetWithTemplateKHR;
-#endif /* (defined(VK_KHR_descriptor_update_template) && defined(VK_KHR_push_descriptor)) || (defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1)) || (defined(VK_KHR_push_descriptor) && defined(VK_KHR_descriptor_update_template)) */
-#if (defined(VK_KHR_device_group) && defined(VK_KHR_surface)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1))
+#endif /* (defined(VK_KHR_descriptor_update_template)) || (defined(VK_KHR_push_descriptor)) || (defined(VK_KHR_push_descriptor)) */
+#if (defined(VK_KHR_device_group)) || (defined(VK_KHR_swapchain))
+	PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
 	PFN_vkGetDeviceGroupPresentCapabilitiesKHR vkGetDeviceGroupPresentCapabilitiesKHR;
 	PFN_vkGetDeviceGroupSurfacePresentModesKHR vkGetDeviceGroupSurfacePresentModesKHR;
-#endif /* (defined(VK_KHR_device_group) && defined(VK_KHR_surface)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1)) */
-#if (defined(VK_KHR_device_group) && defined(VK_KHR_swapchain)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1))
-	PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
-#endif /* (defined(VK_KHR_device_group) && defined(VK_KHR_swapchain)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1)) */
+#endif /* (defined(VK_KHR_device_group)) || (defined(VK_KHR_swapchain)) */
 	/* VOLK_GENERATE_DEVICE_TABLE */
 };
 
@@ -1153,6 +1148,7 @@ extern PFN_vkSubmitDebugUtilsMessageEXT vkSubmitDebugUtilsMessageEXT;
 extern PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT vkCmdBindDescriptorBufferEmbeddedSamplersEXT;
 extern PFN_vkCmdBindDescriptorBuffersEXT vkCmdBindDescriptorBuffersEXT;
 extern PFN_vkCmdSetDescriptorBufferOffsetsEXT vkCmdSetDescriptorBufferOffsetsEXT;
+extern PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT;
 extern PFN_vkGetBufferOpaqueCaptureDescriptorDataEXT vkGetBufferOpaqueCaptureDescriptorDataEXT;
 extern PFN_vkGetDescriptorEXT vkGetDescriptorEXT;
 extern PFN_vkGetDescriptorSetLayoutBindingOffsetEXT vkGetDescriptorSetLayoutBindingOffsetEXT;
@@ -1161,9 +1157,6 @@ extern PFN_vkGetImageOpaqueCaptureDescriptorDataEXT vkGetImageOpaqueCaptureDescr
 extern PFN_vkGetImageViewOpaqueCaptureDescriptorDataEXT vkGetImageViewOpaqueCaptureDescriptorDataEXT;
 extern PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT vkGetSamplerOpaqueCaptureDescriptorDataEXT;
 #endif /* defined(VK_EXT_descriptor_buffer) */
-#if defined(VK_EXT_descriptor_buffer) && defined(VK_KHR_acceleration_structure) && defined(VK_NV_ray_tracing)
-extern PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT;
-#endif /* defined(VK_EXT_descriptor_buffer) && defined(VK_KHR_acceleration_structure) && defined(VK_NV_ray_tracing) */
 #if defined(VK_EXT_device_fault)
 extern PFN_vkGetDeviceFaultInfoEXT vkGetDeviceFaultInfoEXT;
 #endif /* defined(VK_EXT_device_fault) */
@@ -1176,6 +1169,8 @@ extern PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT vkGetPhysicalDevice
 #endif /* defined(VK_EXT_directfb_surface) */
 #if defined(VK_EXT_discard_rectangles)
 extern PFN_vkCmdSetDiscardRectangleEXT vkCmdSetDiscardRectangleEXT;
+extern PFN_vkCmdSetDiscardRectangleEnableEXT vkCmdSetDiscardRectangleEnableEXT;
+extern PFN_vkCmdSetDiscardRectangleModeEXT vkCmdSetDiscardRectangleModeEXT;
 #endif /* defined(VK_EXT_discard_rectangles) */
 #if defined(VK_EXT_display_control)
 extern PFN_vkDisplayPowerControlEXT vkDisplayPowerControlEXT;
@@ -1560,9 +1555,9 @@ extern PFN_vkWaitForPresentKHR vkWaitForPresentKHR;
 #if defined(VK_KHR_push_descriptor)
 extern PFN_vkCmdPushDescriptorSetKHR vkCmdPushDescriptorSetKHR;
 #endif /* defined(VK_KHR_push_descriptor) */
-#if defined(VK_KHR_ray_tracing_maintenance1) && defined(VK_KHR_ray_tracing_pipeline)
+#if defined(VK_KHR_ray_tracing_maintenance1)
 extern PFN_vkCmdTraceRaysIndirect2KHR vkCmdTraceRaysIndirect2KHR;
-#endif /* defined(VK_KHR_ray_tracing_maintenance1) && defined(VK_KHR_ray_tracing_pipeline) */
+#endif /* defined(VK_KHR_ray_tracing_maintenance1) */
 #if defined(VK_KHR_ray_tracing_pipeline)
 extern PFN_vkCmdSetRayTracingPipelineStackSizeKHR vkCmdSetRayTracingPipelineStackSizeKHR;
 extern PFN_vkCmdTraceRaysIndirectKHR vkCmdTraceRaysIndirectKHR;
@@ -1598,15 +1593,11 @@ extern PFN_vkCmdPipelineBarrier2KHR vkCmdPipelineBarrier2KHR;
 extern PFN_vkCmdResetEvent2KHR vkCmdResetEvent2KHR;
 extern PFN_vkCmdSetEvent2KHR vkCmdSetEvent2KHR;
 extern PFN_vkCmdWaitEvents2KHR vkCmdWaitEvents2KHR;
+extern PFN_vkCmdWriteBufferMarker2AMD vkCmdWriteBufferMarker2AMD;
 extern PFN_vkCmdWriteTimestamp2KHR vkCmdWriteTimestamp2KHR;
+extern PFN_vkGetQueueCheckpointData2NV vkGetQueueCheckpointData2NV;
 extern PFN_vkQueueSubmit2KHR vkQueueSubmit2KHR;
 #endif /* defined(VK_KHR_synchronization2) */
-#if defined(VK_KHR_synchronization2) && defined(VK_AMD_buffer_marker)
-extern PFN_vkCmdWriteBufferMarker2AMD vkCmdWriteBufferMarker2AMD;
-#endif /* defined(VK_KHR_synchronization2) && defined(VK_AMD_buffer_marker) */
-#if defined(VK_KHR_synchronization2) && defined(VK_NV_device_diagnostic_checkpoints)
-extern PFN_vkGetQueueCheckpointData2NV vkGetQueueCheckpointData2NV;
-#endif /* defined(VK_KHR_synchronization2) && defined(VK_NV_device_diagnostic_checkpoints) */
 #if defined(VK_KHR_timeline_semaphore)
 extern PFN_vkGetSemaphoreCounterValueKHR vkGetSemaphoreCounterValueKHR;
 extern PFN_vkSignalSemaphoreKHR vkSignalSemaphoreKHR;
@@ -1740,6 +1731,7 @@ extern PFN_vkGetAccelerationStructureMemoryRequirementsNV vkGetAccelerationStruc
 extern PFN_vkGetRayTracingShaderGroupHandlesNV vkGetRayTracingShaderGroupHandlesNV;
 #endif /* defined(VK_NV_ray_tracing) */
 #if defined(VK_NV_scissor_exclusive)
+extern PFN_vkCmdSetExclusiveScissorEnableNV vkCmdSetExclusiveScissorEnableNV;
 extern PFN_vkCmdSetExclusiveScissorNV vkCmdSetExclusiveScissorNV;
 #endif /* defined(VK_NV_scissor_exclusive) */
 #if defined(VK_NV_shading_rate_image)
@@ -1759,20 +1751,18 @@ extern PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX vkGetPhysicalDeviceSc
 extern PFN_vkGetDescriptorSetHostMappingVALVE vkGetDescriptorSetHostMappingVALVE;
 extern PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE vkGetDescriptorSetLayoutHostMappingInfoVALVE;
 #endif /* defined(VK_VALVE_descriptor_set_host_mapping) */
-#if (defined(VK_EXT_full_screen_exclusive) && defined(VK_KHR_device_group)) || (defined(VK_EXT_full_screen_exclusive) && defined(VK_VERSION_1_1))
+#if (defined(VK_EXT_full_screen_exclusive)) || (defined(VK_EXT_full_screen_exclusive))
 extern PFN_vkGetDeviceGroupSurfacePresentModes2EXT vkGetDeviceGroupSurfacePresentModes2EXT;
-#endif /* (defined(VK_EXT_full_screen_exclusive) && defined(VK_KHR_device_group)) || (defined(VK_EXT_full_screen_exclusive) && defined(VK_VERSION_1_1)) */
-#if (defined(VK_KHR_descriptor_update_template) && defined(VK_KHR_push_descriptor)) || (defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1)) || (defined(VK_KHR_push_descriptor) && defined(VK_KHR_descriptor_update_template))
+#endif /* (defined(VK_EXT_full_screen_exclusive)) || (defined(VK_EXT_full_screen_exclusive)) */
+#if (defined(VK_KHR_descriptor_update_template)) || (defined(VK_KHR_push_descriptor)) || (defined(VK_KHR_push_descriptor))
 extern PFN_vkCmdPushDescriptorSetWithTemplateKHR vkCmdPushDescriptorSetWithTemplateKHR;
-#endif /* (defined(VK_KHR_descriptor_update_template) && defined(VK_KHR_push_descriptor)) || (defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1)) || (defined(VK_KHR_push_descriptor) && defined(VK_KHR_descriptor_update_template)) */
-#if (defined(VK_KHR_device_group) && defined(VK_KHR_surface)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1))
+#endif /* (defined(VK_KHR_descriptor_update_template)) || (defined(VK_KHR_push_descriptor)) || (defined(VK_KHR_push_descriptor)) */
+#if (defined(VK_KHR_device_group)) || (defined(VK_KHR_swapchain))
+extern PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
 extern PFN_vkGetDeviceGroupPresentCapabilitiesKHR vkGetDeviceGroupPresentCapabilitiesKHR;
 extern PFN_vkGetDeviceGroupSurfacePresentModesKHR vkGetDeviceGroupSurfacePresentModesKHR;
 extern PFN_vkGetPhysicalDevicePresentRectanglesKHR vkGetPhysicalDevicePresentRectanglesKHR;
-#endif /* (defined(VK_KHR_device_group) && defined(VK_KHR_surface)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1)) */
-#if (defined(VK_KHR_device_group) && defined(VK_KHR_swapchain)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1))
-extern PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
-#endif /* (defined(VK_KHR_device_group) && defined(VK_KHR_swapchain)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1)) */
+#endif /* (defined(VK_KHR_device_group)) || (defined(VK_KHR_swapchain)) */
 /* VOLK_GENERATE_PROTOTYPES_H */
 
 #ifdef __cplusplus
