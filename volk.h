@@ -58,10 +58,6 @@
 #if VK_HEADER_VERSION < 184
 #	undef VK_HUAWEI_subpass_shading
 #endif
-#if VK_HEADER_VERSION < 241
-#	undef VK_EXT_discard_rectangles
-#	undef VK_NV_scissor_exclusive
-#endif
 
 #ifdef __cplusplus
 extern "C" {
