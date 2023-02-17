@@ -384,9 +384,11 @@ struct VolkDeviceTable
 #endif /* defined(VK_EXT_device_fault) */
 #if defined(VK_EXT_discard_rectangles)
 	PFN_vkCmdSetDiscardRectangleEXT vkCmdSetDiscardRectangleEXT;
+#endif /* defined(VK_EXT_discard_rectangles) */
+#if defined(VK_EXT_discard_rectangles) && VK_EXT_DISCARD_RECTANGLES_SPEC_VERSION >= 2
 	PFN_vkCmdSetDiscardRectangleEnableEXT vkCmdSetDiscardRectangleEnableEXT;
 	PFN_vkCmdSetDiscardRectangleModeEXT vkCmdSetDiscardRectangleModeEXT;
-#endif /* defined(VK_EXT_discard_rectangles) */
+#endif /* defined(VK_EXT_discard_rectangles) && VK_EXT_DISCARD_RECTANGLES_SPEC_VERSION >= 2 */
 #if defined(VK_EXT_display_control)
 	PFN_vkDisplayPowerControlEXT vkDisplayPowerControlEXT;
 	PFN_vkGetSwapchainCounterEXT vkGetSwapchainCounterEXT;
@@ -835,8 +837,10 @@ struct VolkDeviceTable
 	PFN_vkGetAccelerationStructureMemoryRequirementsNV vkGetAccelerationStructureMemoryRequirementsNV;
 	PFN_vkGetRayTracingShaderGroupHandlesNV vkGetRayTracingShaderGroupHandlesNV;
 #endif /* defined(VK_NV_ray_tracing) */
-#if defined(VK_NV_scissor_exclusive)
+#if defined(VK_NV_scissor_exclusive) && VK_NV_SCISSOR_EXCLUSIVE_SPEC_VERSION >= 2
 	PFN_vkCmdSetExclusiveScissorEnableNV vkCmdSetExclusiveScissorEnableNV;
+#endif /* defined(VK_NV_scissor_exclusive) && VK_NV_SCISSOR_EXCLUSIVE_SPEC_VERSION >= 2 */
+#if defined(VK_NV_scissor_exclusive)
 	PFN_vkCmdSetExclusiveScissorNV vkCmdSetExclusiveScissorNV;
 #endif /* defined(VK_NV_scissor_exclusive) */
 #if defined(VK_NV_shading_rate_image)
@@ -1183,9 +1187,11 @@ extern PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT vkGetPhysicalDevice
 #endif /* defined(VK_EXT_directfb_surface) */
 #if defined(VK_EXT_discard_rectangles)
 extern PFN_vkCmdSetDiscardRectangleEXT vkCmdSetDiscardRectangleEXT;
+#endif /* defined(VK_EXT_discard_rectangles) */
+#if defined(VK_EXT_discard_rectangles) && VK_EXT_DISCARD_RECTANGLES_SPEC_VERSION >= 2
 extern PFN_vkCmdSetDiscardRectangleEnableEXT vkCmdSetDiscardRectangleEnableEXT;
 extern PFN_vkCmdSetDiscardRectangleModeEXT vkCmdSetDiscardRectangleModeEXT;
-#endif /* defined(VK_EXT_discard_rectangles) */
+#endif /* defined(VK_EXT_discard_rectangles) && VK_EXT_DISCARD_RECTANGLES_SPEC_VERSION >= 2 */
 #if defined(VK_EXT_display_control)
 extern PFN_vkDisplayPowerControlEXT vkDisplayPowerControlEXT;
 extern PFN_vkGetSwapchainCounterEXT vkGetSwapchainCounterEXT;
@@ -1748,8 +1754,10 @@ extern PFN_vkGetAccelerationStructureHandleNV vkGetAccelerationStructureHandleNV
 extern PFN_vkGetAccelerationStructureMemoryRequirementsNV vkGetAccelerationStructureMemoryRequirementsNV;
 extern PFN_vkGetRayTracingShaderGroupHandlesNV vkGetRayTracingShaderGroupHandlesNV;
 #endif /* defined(VK_NV_ray_tracing) */
-#if defined(VK_NV_scissor_exclusive)
+#if defined(VK_NV_scissor_exclusive) && VK_NV_SCISSOR_EXCLUSIVE_SPEC_VERSION >= 2
 extern PFN_vkCmdSetExclusiveScissorEnableNV vkCmdSetExclusiveScissorEnableNV;
+#endif /* defined(VK_NV_scissor_exclusive) && VK_NV_SCISSOR_EXCLUSIVE_SPEC_VERSION >= 2 */
+#if defined(VK_NV_scissor_exclusive)
 extern PFN_vkCmdSetExclusiveScissorNV vkCmdSetExclusiveScissorNV;
 #endif /* defined(VK_NV_scissor_exclusive) */
 #if defined(VK_NV_shading_rate_image)

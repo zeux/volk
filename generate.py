@@ -8,6 +8,12 @@ import urllib
 import xml.etree.ElementTree as etree
 import urllib.request
 
+cmdversions = {
+	"vkCmdSetDiscardRectangleEnableEXT": 2,
+	"vkCmdSetDiscardRectangleModeEXT": 2,
+	"vkCmdSetExclusiveScissorEnableNV": 2
+}
+
 def parse_xml(path):
 	file = urllib.request.urlopen(path) if path.startswith("http") else open(path, 'r')
 	with file:
@@ -101,7 +107,12 @@ if __name__ == "__main__":
 				dep = cdepends(req.get('depends'))
 				key += ' && ' + ('(' + dep + ')' if '||' in dep else dep)
 			cmdrefs = req.findall('command')
-			command_groups.setdefault(key, []).extend([cmdref.get('name') for cmdref in cmdrefs])
+			for cmdref in cmdrefs:
+				ver = cmdversions.get(cmdref.get('name'))
+				if ver:
+					command_groups.setdefault(key + ' && ' + name.upper() + '_SPEC_VERSION >= ' + str(ver), []).append(cmdref.get('name'))
+				else:
+					command_groups.setdefault(key, []).append(cmdref.get('name'))
 			if type == 'instance':
 				for cmdref in cmdrefs:
 					instance_commands.add(cmdref.get('name'))
