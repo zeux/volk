@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 242
+#define VOLK_HEADER_VERSION 244
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -687,6 +687,10 @@ struct VolkDeviceTable
 	PFN_vkGetDeviceImageMemoryRequirementsKHR vkGetDeviceImageMemoryRequirementsKHR;
 	PFN_vkGetDeviceImageSparseMemoryRequirementsKHR vkGetDeviceImageSparseMemoryRequirementsKHR;
 #endif /* defined(VK_KHR_maintenance4) */
+#if defined(VK_KHR_map_memory2)
+	PFN_vkMapMemory2KHR vkMapMemory2KHR;
+	PFN_vkUnmapMemory2KHR vkUnmapMemory2KHR;
+#endif /* defined(VK_KHR_map_memory2) */
 #if defined(VK_KHR_performance_query)
 	PFN_vkAcquireProfilingLockKHR vkAcquireProfilingLockKHR;
 	PFN_vkReleaseProfilingLockKHR vkReleaseProfilingLockKHR;
@@ -1554,6 +1558,10 @@ extern PFN_vkGetDeviceBufferMemoryRequirementsKHR vkGetDeviceBufferMemoryRequire
 extern PFN_vkGetDeviceImageMemoryRequirementsKHR vkGetDeviceImageMemoryRequirementsKHR;
 extern PFN_vkGetDeviceImageSparseMemoryRequirementsKHR vkGetDeviceImageSparseMemoryRequirementsKHR;
 #endif /* defined(VK_KHR_maintenance4) */
+#if defined(VK_KHR_map_memory2)
+extern PFN_vkMapMemory2KHR vkMapMemory2KHR;
+extern PFN_vkUnmapMemory2KHR vkUnmapMemory2KHR;
+#endif /* defined(VK_KHR_map_memory2) */
 #if defined(VK_KHR_performance_query)
 extern PFN_vkAcquireProfilingLockKHR vkAcquireProfilingLockKHR;
 extern PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR;
