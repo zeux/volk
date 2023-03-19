@@ -1,0 +1,2 @@
+/usr/bin/ar qc libvolk.a CMakeFiles/volk.dir/volk.c.o
+/usr/bin/ranlib libvolk.a

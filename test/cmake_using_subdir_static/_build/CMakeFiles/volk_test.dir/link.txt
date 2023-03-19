@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/volk_test.dir/main.c.o -o volk_test  volk/libvolk.a -ldl 

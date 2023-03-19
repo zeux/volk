@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/volk_test.dir/main.c.o CMakeFiles/volk_test.dir/home/runner/work/volk/volk/volk.c.o -o volk_test  -ldl 

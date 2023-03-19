@@ -1,0 +1,6 @@
+/home/runner/work/volk/volk/test/cmake_using_subdir_static/_build/CMakeFiles/volk_test.dir
+/home/runner/work/volk/volk/test/cmake_using_subdir_static/_build/CMakeFiles/edit_cache.dir
+/home/runner/work/volk/volk/test/cmake_using_subdir_static/_build/CMakeFiles/rebuild_cache.dir
+/home/runner/work/volk/volk/test/cmake_using_subdir_static/_build/volk/CMakeFiles/volk.dir
+/home/runner/work/volk/volk/test/cmake_using_subdir_static/_build/volk/CMakeFiles/edit_cache.dir
+/home/runner/work/volk/volk/test/cmake_using_subdir_static/_build/volk/CMakeFiles/rebuild_cache.dir
