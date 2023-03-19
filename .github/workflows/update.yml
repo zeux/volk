@@ -9,18 +9,35 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: update
-        run: |
-          python3 generate.py >version.txt
-          echo "VOLK_VERSION=`cat version.txt`" >> $GITHUB_ENV
-          rm version.txt
-      - name: create pr
-        uses: peter-evans/create-pull-request@v4
-        with:
-          branch: update/${{env.VOLK_VERSION}}
-          delete-branch: true
-          commit-message: Update to 1.3.${{env.VOLK_VERSION}}
-          title: Update to 1.3.${{env.VOLK_VERSION}}
-          author: GitHub <noreply@github.com>
-          token: ${{ secrets.REPO_SCOPED_TOKEN }}
+    - uses: actions/checkout@v3
+    - name: update
+      run: |
+        python3 generate.py >version.txt
+        echo "VOLK_VERSION=`cat version.txt`" >> $GITHUB_ENV
+        rm version.txt
+    - uses: actions/checkout@v1
+      with:
+        repository: KhronosGroup/Vulkan-Headers
+        ref: main
+        path: Vulkan-Headers
+    - name: move sdk
+      shell: bash
+      run: |
+        mv ../Vulkan-Headers ~/Vulkan-Headers
+    - name: build main
+      shell: bash
+      run: |
+        export VULKAN_SDK=~/Vulkan-Headers
+        git -C ~/Vulkan-Headers checkout main
+        test/run_tests.sh
+    - name: create pr
+      uses: peter-evans/create-pull-request@v4
+      with:
+        branch: update/${{env.VOLK_VERSION}}
+        delete-branch: true
+        commit-message: Update to 1.3.${{env.VOLK_VERSION}}
+        title: Update to 1.3.${{env.VOLK_VERSION}}
+        author: GitHub <noreply@github.com>
+        # The token fixes the problem with PR actions getting run, but introduces a problem with lack of PR notifications...
+        # For now we work around this with the 'build' step above
+        # token: ${{ secrets.REPO_SCOPED_TOKEN }}
