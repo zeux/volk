@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 249
+#define VOLK_HEADER_VERSION 250
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -340,6 +340,9 @@ struct VolkDeviceTable
 	PFN_vkGetAndroidHardwareBufferPropertiesANDROID vkGetAndroidHardwareBufferPropertiesANDROID;
 	PFN_vkGetMemoryAndroidHardwareBufferANDROID vkGetMemoryAndroidHardwareBufferANDROID;
 #endif /* defined(VK_ANDROID_external_memory_android_hardware_buffer) */
+#if defined(VK_EXT_attachment_feedback_loop_dynamic_state)
+	PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT vkCmdSetAttachmentFeedbackLoopEnableEXT;
+#endif /* defined(VK_EXT_attachment_feedback_loop_dynamic_state) */
 #if defined(VK_EXT_buffer_device_address)
 	PFN_vkGetBufferDeviceAddressEXT vkGetBufferDeviceAddressEXT;
 #endif /* defined(VK_EXT_buffer_device_address) */
@@ -1127,6 +1130,9 @@ extern PFN_vkGetDrmDisplayEXT vkGetDrmDisplayEXT;
 extern PFN_vkAcquireXlibDisplayEXT vkAcquireXlibDisplayEXT;
 extern PFN_vkGetRandROutputDisplayEXT vkGetRandROutputDisplayEXT;
 #endif /* defined(VK_EXT_acquire_xlib_display) */
+#if defined(VK_EXT_attachment_feedback_loop_dynamic_state)
+extern PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT vkCmdSetAttachmentFeedbackLoopEnableEXT;
+#endif /* defined(VK_EXT_attachment_feedback_loop_dynamic_state) */
 #if defined(VK_EXT_buffer_device_address)
 extern PFN_vkGetBufferDeviceAddressEXT vkGetBufferDeviceAddressEXT;
 #endif /* defined(VK_EXT_buffer_device_address) */
