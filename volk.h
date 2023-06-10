@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 252
+#define VOLK_HEADER_VERSION 253
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -708,6 +708,7 @@ struct VolkDeviceTable
 #endif /* defined(VK_KHR_video_decode_queue) */
 #if defined(VK_KHR_video_encode_queue)
 	PFN_vkCmdEncodeVideoKHR vkCmdEncodeVideoKHR;
+	PFN_vkGetEncodedVideoSessionParametersKHR vkGetEncodedVideoSessionParametersKHR;
 #endif /* defined(VK_KHR_video_encode_queue) */
 #if defined(VK_KHR_video_queue)
 	PFN_vkBindVideoSessionMemoryKHR vkBindVideoSessionMemoryKHR;
@@ -1597,6 +1598,8 @@ extern PFN_vkCmdDecodeVideoKHR vkCmdDecodeVideoKHR;
 #endif /* defined(VK_KHR_video_decode_queue) */
 #if defined(VK_KHR_video_encode_queue)
 extern PFN_vkCmdEncodeVideoKHR vkCmdEncodeVideoKHR;
+extern PFN_vkGetEncodedVideoSessionParametersKHR vkGetEncodedVideoSessionParametersKHR;
+extern PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR;
 #endif /* defined(VK_KHR_video_encode_queue) */
 #if defined(VK_KHR_video_queue)
 extern PFN_vkBindVideoSessionMemoryKHR vkBindVideoSessionMemoryKHR;
