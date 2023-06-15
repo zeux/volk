@@ -805,6 +805,9 @@ struct VolkDeviceTable
 	PFN_vkGetDynamicRenderingTilePropertiesQCOM vkGetDynamicRenderingTilePropertiesQCOM;
 	PFN_vkGetFramebufferTilePropertiesQCOM vkGetFramebufferTilePropertiesQCOM;
 #endif /* defined(VK_QCOM_tile_properties) */
+#if defined(VK_QNX_external_memory_screen_buffer)
+	PFN_vkGetScreenBufferPropertiesQNX vkGetScreenBufferPropertiesQNX;
+#endif /* defined(VK_QNX_external_memory_screen_buffer) */
 #if defined(VK_VALVE_descriptor_set_host_mapping)
 	PFN_vkGetDescriptorSetHostMappingVALVE vkGetDescriptorSetHostMappingVALVE;
 	PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE vkGetDescriptorSetLayoutHostMappingInfoVALVE;
@@ -1737,6 +1740,9 @@ extern PFN_vkCmdSetViewportShadingRatePaletteNV vkCmdSetViewportShadingRatePalet
 extern PFN_vkGetDynamicRenderingTilePropertiesQCOM vkGetDynamicRenderingTilePropertiesQCOM;
 extern PFN_vkGetFramebufferTilePropertiesQCOM vkGetFramebufferTilePropertiesQCOM;
 #endif /* defined(VK_QCOM_tile_properties) */
+#if defined(VK_QNX_external_memory_screen_buffer)
+extern PFN_vkGetScreenBufferPropertiesQNX vkGetScreenBufferPropertiesQNX;
+#endif /* defined(VK_QNX_external_memory_screen_buffer) */
 #if defined(VK_QNX_screen_surface)
 extern PFN_vkCreateScreenSurfaceQNX vkCreateScreenSurfaceQNX;
 extern PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX vkGetPhysicalDeviceScreenPresentationSupportQNX;
