@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 253
+#define VOLK_HEADER_VERSION 254
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -363,6 +363,9 @@ struct VolkDeviceTable
 	PFN_vkDebugMarkerSetObjectNameEXT vkDebugMarkerSetObjectNameEXT;
 	PFN_vkDebugMarkerSetObjectTagEXT vkDebugMarkerSetObjectTagEXT;
 #endif /* defined(VK_EXT_debug_marker) */
+#if defined(VK_EXT_depth_bias_control)
+	PFN_vkCmdSetDepthBias2EXT vkCmdSetDepthBias2EXT;
+#endif /* defined(VK_EXT_depth_bias_control) */
 #if defined(VK_EXT_descriptor_buffer)
 	PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT vkCmdBindDescriptorBufferEmbeddedSamplersEXT;
 	PFN_vkCmdBindDescriptorBuffersEXT vkCmdBindDescriptorBuffersEXT;
@@ -1176,6 +1179,9 @@ extern PFN_vkSetDebugUtilsObjectNameEXT vkSetDebugUtilsObjectNameEXT;
 extern PFN_vkSetDebugUtilsObjectTagEXT vkSetDebugUtilsObjectTagEXT;
 extern PFN_vkSubmitDebugUtilsMessageEXT vkSubmitDebugUtilsMessageEXT;
 #endif /* defined(VK_EXT_debug_utils) */
+#if defined(VK_EXT_depth_bias_control)
+extern PFN_vkCmdSetDepthBias2EXT vkCmdSetDepthBias2EXT;
+#endif /* defined(VK_EXT_depth_bias_control) */
 #if defined(VK_EXT_descriptor_buffer)
 extern PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT vkCmdBindDescriptorBufferEmbeddedSamplersEXT;
 extern PFN_vkCmdBindDescriptorBuffersEXT vkCmdBindDescriptorBuffersEXT;
