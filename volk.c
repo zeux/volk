@@ -590,6 +590,9 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkDebugMarkerSetObjectNameEXT = (PFN_vkDebugMarkerSetObjectNameEXT)load(context, "vkDebugMarkerSetObjectNameEXT");
 	vkDebugMarkerSetObjectTagEXT = (PFN_vkDebugMarkerSetObjectTagEXT)load(context, "vkDebugMarkerSetObjectTagEXT");
 #endif /* defined(VK_EXT_debug_marker) */
+#if defined(VK_EXT_depth_bias_control)
+	vkCmdSetDepthBias2EXT = (PFN_vkCmdSetDepthBias2EXT)load(context, "vkCmdSetDepthBias2EXT");
+#endif /* defined(VK_EXT_depth_bias_control) */
 #if defined(VK_EXT_descriptor_buffer)
 	vkCmdBindDescriptorBufferEmbeddedSamplersEXT = (PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT)load(context, "vkCmdBindDescriptorBufferEmbeddedSamplersEXT");
 	vkCmdBindDescriptorBuffersEXT = (PFN_vkCmdBindDescriptorBuffersEXT)load(context, "vkCmdBindDescriptorBuffersEXT");
@@ -1348,6 +1351,9 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkDebugMarkerSetObjectNameEXT = (PFN_vkDebugMarkerSetObjectNameEXT)load(context, "vkDebugMarkerSetObjectNameEXT");
 	table->vkDebugMarkerSetObjectTagEXT = (PFN_vkDebugMarkerSetObjectTagEXT)load(context, "vkDebugMarkerSetObjectTagEXT");
 #endif /* defined(VK_EXT_debug_marker) */
+#if defined(VK_EXT_depth_bias_control)
+	table->vkCmdSetDepthBias2EXT = (PFN_vkCmdSetDepthBias2EXT)load(context, "vkCmdSetDepthBias2EXT");
+#endif /* defined(VK_EXT_depth_bias_control) */
 #if defined(VK_EXT_descriptor_buffer)
 	table->vkCmdBindDescriptorBufferEmbeddedSamplersEXT = (PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT)load(context, "vkCmdBindDescriptorBufferEmbeddedSamplersEXT");
 	table->vkCmdBindDescriptorBuffersEXT = (PFN_vkCmdBindDescriptorBuffersEXT)load(context, "vkCmdBindDescriptorBuffersEXT");
@@ -2169,6 +2175,9 @@ PFN_vkSetDebugUtilsObjectNameEXT vkSetDebugUtilsObjectNameEXT;
 PFN_vkSetDebugUtilsObjectTagEXT vkSetDebugUtilsObjectTagEXT;
 PFN_vkSubmitDebugUtilsMessageEXT vkSubmitDebugUtilsMessageEXT;
 #endif /* defined(VK_EXT_debug_utils) */
+#if defined(VK_EXT_depth_bias_control)
+PFN_vkCmdSetDepthBias2EXT vkCmdSetDepthBias2EXT;
+#endif /* defined(VK_EXT_depth_bias_control) */
 #if defined(VK_EXT_descriptor_buffer)
 PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT vkCmdBindDescriptorBufferEmbeddedSamplersEXT;
 PFN_vkCmdBindDescriptorBuffersEXT vkCmdBindDescriptorBuffersEXT;
