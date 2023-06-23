@@ -242,6 +242,9 @@ static void volkGenLoadInstance(void* context, PFN_vkVoidFunction (*load)(void*,
 #if defined(VK_KHR_android_surface)
 	vkCreateAndroidSurfaceKHR = (PFN_vkCreateAndroidSurfaceKHR)load(context, "vkCreateAndroidSurfaceKHR");
 #endif /* defined(VK_KHR_android_surface) */
+#if defined(VK_KHR_cooperative_matrix)
+	vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = (PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR)load(context, "vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR");
+#endif /* defined(VK_KHR_cooperative_matrix) */
 #if defined(VK_KHR_device_group_creation)
 	vkEnumeratePhysicalDeviceGroupsKHR = (PFN_vkEnumeratePhysicalDeviceGroupsKHR)load(context, "vkEnumeratePhysicalDeviceGroupsKHR");
 #endif /* defined(VK_KHR_device_group_creation) */
@@ -2399,6 +2402,9 @@ PFN_vkGetBufferDeviceAddressKHR vkGetBufferDeviceAddressKHR;
 PFN_vkGetBufferOpaqueCaptureAddressKHR vkGetBufferOpaqueCaptureAddressKHR;
 PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR vkGetDeviceMemoryOpaqueCaptureAddressKHR;
 #endif /* defined(VK_KHR_buffer_device_address) */
+#if defined(VK_KHR_cooperative_matrix)
+PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR;
+#endif /* defined(VK_KHR_cooperative_matrix) */
 #if defined(VK_KHR_copy_commands2)
 PFN_vkCmdBlitImage2KHR vkCmdBlitImage2KHR;
 PFN_vkCmdCopyBuffer2KHR vkCmdCopyBuffer2KHR;
