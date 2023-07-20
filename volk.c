@@ -110,7 +110,7 @@ void volkLoadInstanceOnly(VkInstance instance)
     volkGenLoadInstance(instance, vkGetInstanceProcAddrStub);
 }
 
-VkInstance volkGetLoadedInstance()
+VkInstance volkGetLoadedInstance(void)
 {
 	return loadedInstance;
 }
@@ -121,7 +121,7 @@ void volkLoadDevice(VkDevice device)
 	volkGenLoadDevice(device, vkGetDeviceProcAddrStub);
 }
 
-VkDevice volkGetLoadedDevice()
+VkDevice volkGetLoadedDevice(void)
 {
 	return loadedDevice;
 }
