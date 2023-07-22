@@ -989,7 +989,7 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkGetGeneratedCommandsMemoryRequirementsNV = (PFN_vkGetGeneratedCommandsMemoryRequirementsNV)load(context, "vkGetGeneratedCommandsMemoryRequirementsNV");
 #endif /* defined(VK_NV_device_generated_commands) */
 #if defined(VK_NV_device_generated_commands_compute)
-	vkCmdUpdatePipelineIndirectBuffer = (PFN_vkCmdUpdatePipelineIndirectBuffer)load(context, "vkCmdUpdatePipelineIndirectBuffer");
+	vkCmdUpdatePipelineIndirectBufferNV = (PFN_vkCmdUpdatePipelineIndirectBufferNV)load(context, "vkCmdUpdatePipelineIndirectBufferNV");
 	vkGetPipelineIndirectDeviceAddressNV = (PFN_vkGetPipelineIndirectDeviceAddressNV)load(context, "vkGetPipelineIndirectDeviceAddressNV");
 	vkGetPipelineIndirectMemoryRequirementsNV = (PFN_vkGetPipelineIndirectMemoryRequirementsNV)load(context, "vkGetPipelineIndirectMemoryRequirementsNV");
 #endif /* defined(VK_NV_device_generated_commands_compute) */
@@ -1761,7 +1761,7 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkGetGeneratedCommandsMemoryRequirementsNV = (PFN_vkGetGeneratedCommandsMemoryRequirementsNV)load(context, "vkGetGeneratedCommandsMemoryRequirementsNV");
 #endif /* defined(VK_NV_device_generated_commands) */
 #if defined(VK_NV_device_generated_commands_compute)
-	table->vkCmdUpdatePipelineIndirectBuffer = (PFN_vkCmdUpdatePipelineIndirectBuffer)load(context, "vkCmdUpdatePipelineIndirectBuffer");
+	table->vkCmdUpdatePipelineIndirectBufferNV = (PFN_vkCmdUpdatePipelineIndirectBufferNV)load(context, "vkCmdUpdatePipelineIndirectBufferNV");
 	table->vkGetPipelineIndirectDeviceAddressNV = (PFN_vkGetPipelineIndirectDeviceAddressNV)load(context, "vkGetPipelineIndirectDeviceAddressNV");
 	table->vkGetPipelineIndirectMemoryRequirementsNV = (PFN_vkGetPipelineIndirectMemoryRequirementsNV)load(context, "vkGetPipelineIndirectMemoryRequirementsNV");
 #endif /* defined(VK_NV_device_generated_commands_compute) */
@@ -2717,7 +2717,7 @@ PFN_vkDestroyIndirectCommandsLayoutNV vkDestroyIndirectCommandsLayoutNV;
 PFN_vkGetGeneratedCommandsMemoryRequirementsNV vkGetGeneratedCommandsMemoryRequirementsNV;
 #endif /* defined(VK_NV_device_generated_commands) */
 #if defined(VK_NV_device_generated_commands_compute)
-PFN_vkCmdUpdatePipelineIndirectBuffer vkCmdUpdatePipelineIndirectBuffer;
+PFN_vkCmdUpdatePipelineIndirectBufferNV vkCmdUpdatePipelineIndirectBufferNV;
 PFN_vkGetPipelineIndirectDeviceAddressNV vkGetPipelineIndirectDeviceAddressNV;
 PFN_vkGetPipelineIndirectMemoryRequirementsNV vkGetPipelineIndirectMemoryRequirementsNV;
 #endif /* defined(VK_NV_device_generated_commands_compute) */
