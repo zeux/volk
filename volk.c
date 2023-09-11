@@ -6,7 +6,9 @@
 	typedef const char* LPCSTR;
 	typedef struct HINSTANCE__* HINSTANCE;
 	typedef HINSTANCE HMODULE;
-	#ifdef _WIN64
+	#if defined(_MINWINDEF_)
+		/* minwindef.h defines FARPROC, and attempting to redefine it may conflict with -Wstrict-prototypes */
+	#elif defined(_WIN64)
 		typedef __int64 (__stdcall* FARPROC)(void);
 	#else
 		typedef int (__stdcall* FARPROC)(void);
