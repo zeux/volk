@@ -28,4 +28,6 @@ jobs:
         author: GitHub <noreply@github.com>
     - name: enable pr automerge
       run: gh pr merge --merge --auto "1"
+      env:
+        GH_TOKEN: ${{ github.token }}
       continue-on-error: true
