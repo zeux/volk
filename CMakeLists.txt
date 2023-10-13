@@ -4,7 +4,7 @@ cmake_policy(SET CMP0048 NEW) # project(... VERSION ...) support
 
 project(volk VERSION 
 # VOLK_GENERATE_VERSION
-267
+268
 # VOLK_GENERATE_VERSION
   LANGUAGES C
 )
