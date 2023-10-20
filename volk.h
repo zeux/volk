@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 268
+#define VOLK_HEADER_VERSION 269
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -761,6 +761,14 @@ struct VolkDeviceTable
 	PFN_vkCmdCopyMemoryIndirectNV vkCmdCopyMemoryIndirectNV;
 	PFN_vkCmdCopyMemoryToImageIndirectNV vkCmdCopyMemoryToImageIndirectNV;
 #endif /* defined(VK_NV_copy_memory_indirect) */
+#if defined(VK_NV_cuda_kernel_launch)
+	PFN_vkCmdCudaLaunchKernelNV vkCmdCudaLaunchKernelNV;
+	PFN_vkCreateCudaFunctionNV vkCreateCudaFunctionNV;
+	PFN_vkCreateCudaModuleNV vkCreateCudaModuleNV;
+	PFN_vkDestroyCudaFunctionNV vkDestroyCudaFunctionNV;
+	PFN_vkDestroyCudaModuleNV vkDestroyCudaModuleNV;
+	PFN_vkGetCudaModuleCacheNV vkGetCudaModuleCacheNV;
+#endif /* defined(VK_NV_cuda_kernel_launch) */
 #if defined(VK_NV_device_diagnostic_checkpoints)
 	PFN_vkCmdSetCheckpointNV vkCmdSetCheckpointNV;
 	PFN_vkGetQueueCheckpointDataNV vkGetQueueCheckpointDataNV;
@@ -1745,6 +1753,14 @@ extern PFN_vkCmdCopyMemoryToImageIndirectNV vkCmdCopyMemoryToImageIndirectNV;
 #if defined(VK_NV_coverage_reduction_mode)
 extern PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV;
 #endif /* defined(VK_NV_coverage_reduction_mode) */
+#if defined(VK_NV_cuda_kernel_launch)
+extern PFN_vkCmdCudaLaunchKernelNV vkCmdCudaLaunchKernelNV;
+extern PFN_vkCreateCudaFunctionNV vkCreateCudaFunctionNV;
+extern PFN_vkCreateCudaModuleNV vkCreateCudaModuleNV;
+extern PFN_vkDestroyCudaFunctionNV vkDestroyCudaFunctionNV;
+extern PFN_vkDestroyCudaModuleNV vkDestroyCudaModuleNV;
+extern PFN_vkGetCudaModuleCacheNV vkGetCudaModuleCacheNV;
+#endif /* defined(VK_NV_cuda_kernel_launch) */
 #if defined(VK_NV_device_diagnostic_checkpoints)
 extern PFN_vkCmdSetCheckpointNV vkCmdSetCheckpointNV;
 extern PFN_vkGetQueueCheckpointDataNV vkGetQueueCheckpointDataNV;
