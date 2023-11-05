@@ -169,16 +169,20 @@ if __name__ == "__main__":
 			if name == 'vkGetDeviceProcAddr':
 				type = 'VkInstance'
 
+			load_fn = '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+			def_table = '\tPFN_' + name + ' ' + name + ';\n'
+			load_table = '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+
 			if is_descendant_type(types, type, 'VkDevice') and name not in instance_commands:
-				blocks['LOAD_DEVICE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
-				blocks['DEVICE_TABLE'] += '\tPFN_' + name + ' ' + name + ';\n'
-				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['LOAD_DEVICE'] += load_fn
+				blocks['DEVICE_TABLE'] += def_table
+				blocks['LOAD_DEVICE_TABLE'] += load_table
 			elif is_descendant_type(types, type, 'VkInstance'):
-				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
-				blocks['INSTANCE_TABLE'] += '\tPFN_' + name + ' ' + name + ';\n'
-				blocks['LOAD_INSTANCE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['LOAD_INSTANCE'] += load_fn
+				blocks['INSTANCE_TABLE'] += def_table
+				blocks['LOAD_INSTANCE_TABLE'] += load_table
 			elif type != '':
-				blocks['LOAD_LOADER'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['LOAD_LOADER'] += load_fn
 
 			blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
 			blocks['PROTOTYPES_C'] += 'PFN_' + name + ' ' + name + ';\n'
