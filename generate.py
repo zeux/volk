@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
 	spec = parse_xml(specpath)
 
-	block_keys = ('DEVICE_TABLE', 'PROTOTYPES_H', 'PROTOTYPES_C', 'LOAD_LOADER', 'LOAD_INSTANCE', 'LOAD_DEVICE', 'LOAD_DEVICE_TABLE')
+	block_keys = ('INSTANCE_TABLE', 'DEVICE_TABLE', 'PROTOTYPES_H', 'PROTOTYPES_C', 'LOAD_LOADER', 'LOAD_INSTANCE', 'LOAD_INSTANCE_TABLE', 'LOAD_DEVICE', 'LOAD_DEVICE_TABLE')
 
 	blocks = {}
 
@@ -175,6 +175,8 @@ if __name__ == "__main__":
 				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 			elif is_descendant_type(types, type, 'VkInstance'):
 				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['INSTANCE_TABLE'] += '\tPFN_' + name + ' ' + name + ';\n'
+				blocks['LOAD_INSTANCE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 			elif type != '':
 				blocks['LOAD_LOADER'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 
