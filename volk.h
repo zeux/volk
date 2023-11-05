@@ -82,6 +82,11 @@ VkResult volkInitialize(void);
 void volkInitializeCustom(PFN_vkGetInstanceProcAddr handler);
 
 /**
+ * Finalize library by unloading Vulkan loader and resetting global symbols to NULL.
+ */
+void volkFinalize(void);
+
+/**
  * Get Vulkan instance version supported by the Vulkan loader, or 0 if Vulkan isn't supported
  *
  * Returns 0 if volkInitialize wasn't called or failed.

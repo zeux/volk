@@ -24,8 +24,10 @@ extern "C" {
 #ifdef _WIN32
 __declspec(dllimport) HMODULE __stdcall LoadLibraryA(LPCSTR);
 __declspec(dllimport) FARPROC __stdcall GetProcAddress(HMODULE, LPCSTR);
+__declspec(dllimport) int __stdcall FreeLibrary(HMODULE);
 #endif
 
+static void* loadedModule = NULL;
 static VkInstance loadedInstance = VK_NULL_HANDLE;
 static VkDevice loadedDevice = VK_NULL_HANDLE;
 
@@ -42,6 +44,14 @@ static PFN_vkVoidFunction vkGetInstanceProcAddrStub(void* context, const char* n
 static PFN_vkVoidFunction vkGetDeviceProcAddrStub(void* context, const char* name)
 {
 	return vkGetDeviceProcAddr((VkDevice)context, name);
+}
+
+static PFN_vkVoidFunction nullProcAddrStub(void* context, const char* name)
+{
+	(void)context;
+	(void)name;
+
+	return NULL;
 }
 
 VkResult volkInitialize(void)
@@ -73,6 +83,7 @@ VkResult volkInitialize(void)
 	vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)dlsym(module, "vkGetInstanceProcAddr");
 #endif
 
+	loadedModule = module;
 	volkGenLoadLoader(NULL, vkGetInstanceProcAddrStub);
 
 	return VK_SUCCESS;
@@ -82,7 +93,29 @@ void volkInitializeCustom(PFN_vkGetInstanceProcAddr handler)
 {
 	vkGetInstanceProcAddr = handler;
 
+	loadedModule = NULL;
 	volkGenLoadLoader(NULL, vkGetInstanceProcAddrStub);
+}
+
+void volkFinalize(void)
+{
+	if (loadedModule)
+	{
+#if defined(_WIN32)
+		FreeLibrary((HMODULE)loadedModule);
+#else
+		dlclose(loadedModule);
+#endif
+	}
+
+	vkGetInstanceProcAddr = NULL;
+	volkGenLoadLoader(NULL, nullProcAddrStub);
+	volkGenLoadInstance(NULL, nullProcAddrStub);
+	volkGenLoadDevice(NULL, nullProcAddrStub);
+
+	loadedModule = NULL;
+	loadedInstance = VK_NULL_HANDLE;
+	loadedDevice = VK_NULL_HANDLE;
 }
 
 uint32_t volkGetInstanceVersion(void)
