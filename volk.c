@@ -50,7 +50,6 @@ static PFN_vkVoidFunction nullProcAddrStub(void* context, const char* name)
 {
 	(void)context;
 	(void)name;
-
 	return NULL;
 }
 
@@ -141,8 +140,8 @@ void volkLoadInstance(VkInstance instance)
 
 void volkLoadInstanceOnly(VkInstance instance)
 {
-    loadedInstance = instance;
-    volkGenLoadInstance(instance, vkGetInstanceProcAddrStub);
+	loadedInstance = instance;
+	volkGenLoadInstance(instance, vkGetInstanceProcAddrStub);
 }
 
 VkInstance volkGetLoadedInstance(void)
