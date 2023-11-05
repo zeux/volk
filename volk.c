@@ -108,6 +108,7 @@ void volkFinalize(void)
 #endif
 	}
 
+	vkGetInstanceProcAddr = NULL;
 	volkGenLoadLoader(NULL, nullProcAddrStub);
 	volkGenLoadInstance(NULL, nullProcAddrStub);
 	volkGenLoadDevice(NULL, nullProcAddrStub);
