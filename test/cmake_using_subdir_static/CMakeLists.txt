@@ -2,7 +2,7 @@
 # We must set platform defines.
 # By default, Vulkan is pulled in as transitive dependency if found.
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 project(volk_test LANGUAGES C)
 
 # Set a suitable platform define to compile volk with.

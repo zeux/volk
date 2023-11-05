@@ -1,6 +1,6 @@
 # Include the volk target through add_subdirectory.
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 project(volk_test LANGUAGES C)
 
 # Include volk as part of the build tree to make the target known.
