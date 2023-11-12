@@ -83,6 +83,9 @@ void volkInitializeCustom(PFN_vkGetInstanceProcAddr handler);
 
 /**
  * Finalize library by unloading Vulkan loader and resetting global symbols to NULL.
+ *
+ * This function does not need to be called on process exit (as loader will be unloaded automatically) or if volkInitialize failed.
+ * In general this function is optional to call but may be useful in rare cases eg if volk needs to be reinitialized multiple times.
  */
 void volkFinalize(void);
 
