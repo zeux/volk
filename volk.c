@@ -276,6 +276,9 @@ static void volkGenLoadInstance(void* context, PFN_vkVoidFunction (*load)(void*,
 #if defined(VK_KHR_android_surface)
 	vkCreateAndroidSurfaceKHR = (PFN_vkCreateAndroidSurfaceKHR)load(context, "vkCreateAndroidSurfaceKHR");
 #endif /* defined(VK_KHR_android_surface) */
+#if defined(VK_KHR_calibrated_timestamps)
+	vkGetPhysicalDeviceCalibrateableTimeDomainsKHR = (PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR)load(context, "vkGetPhysicalDeviceCalibrateableTimeDomainsKHR");
+#endif /* defined(VK_KHR_calibrated_timestamps) */
 #if defined(VK_KHR_cooperative_matrix)
 	vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = (PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR)load(context, "vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR");
 #endif /* defined(VK_KHR_cooperative_matrix) */
@@ -833,6 +836,9 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkGetBufferOpaqueCaptureAddressKHR = (PFN_vkGetBufferOpaqueCaptureAddressKHR)load(context, "vkGetBufferOpaqueCaptureAddressKHR");
 	vkGetDeviceMemoryOpaqueCaptureAddressKHR = (PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR)load(context, "vkGetDeviceMemoryOpaqueCaptureAddressKHR");
 #endif /* defined(VK_KHR_buffer_device_address) */
+#if defined(VK_KHR_calibrated_timestamps)
+	vkGetCalibratedTimestampsKHR = (PFN_vkGetCalibratedTimestampsKHR)load(context, "vkGetCalibratedTimestampsKHR");
+#endif /* defined(VK_KHR_calibrated_timestamps) */
 #if defined(VK_KHR_copy_commands2)
 	vkCmdBlitImage2KHR = (PFN_vkCmdBlitImage2KHR)load(context, "vkCmdBlitImage2KHR");
 	vkCmdCopyBuffer2KHR = (PFN_vkCmdCopyBuffer2KHR)load(context, "vkCmdCopyBuffer2KHR");
@@ -1649,6 +1655,9 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkGetBufferOpaqueCaptureAddressKHR = (PFN_vkGetBufferOpaqueCaptureAddressKHR)load(context, "vkGetBufferOpaqueCaptureAddressKHR");
 	table->vkGetDeviceMemoryOpaqueCaptureAddressKHR = (PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR)load(context, "vkGetDeviceMemoryOpaqueCaptureAddressKHR");
 #endif /* defined(VK_KHR_buffer_device_address) */
+#if defined(VK_KHR_calibrated_timestamps)
+	table->vkGetCalibratedTimestampsKHR = (PFN_vkGetCalibratedTimestampsKHR)load(context, "vkGetCalibratedTimestampsKHR");
+#endif /* defined(VK_KHR_calibrated_timestamps) */
 #if defined(VK_KHR_copy_commands2)
 	table->vkCmdBlitImage2KHR = (PFN_vkCmdBlitImage2KHR)load(context, "vkCmdBlitImage2KHR");
 	table->vkCmdCopyBuffer2KHR = (PFN_vkCmdCopyBuffer2KHR)load(context, "vkCmdCopyBuffer2KHR");
@@ -2558,6 +2567,10 @@ PFN_vkGetBufferDeviceAddressKHR vkGetBufferDeviceAddressKHR;
 PFN_vkGetBufferOpaqueCaptureAddressKHR vkGetBufferOpaqueCaptureAddressKHR;
 PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR vkGetDeviceMemoryOpaqueCaptureAddressKHR;
 #endif /* defined(VK_KHR_buffer_device_address) */
+#if defined(VK_KHR_calibrated_timestamps)
+PFN_vkGetCalibratedTimestampsKHR vkGetCalibratedTimestampsKHR;
+PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;
+#endif /* defined(VK_KHR_calibrated_timestamps) */
 #if defined(VK_KHR_cooperative_matrix)
 PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR;
 #endif /* defined(VK_KHR_cooperative_matrix) */

@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 272
+#define VOLK_HEADER_VERSION 273
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -577,6 +577,9 @@ struct VolkDeviceTable
 	PFN_vkGetBufferOpaqueCaptureAddressKHR vkGetBufferOpaqueCaptureAddressKHR;
 	PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR vkGetDeviceMemoryOpaqueCaptureAddressKHR;
 #endif /* defined(VK_KHR_buffer_device_address) */
+#if defined(VK_KHR_calibrated_timestamps)
+	PFN_vkGetCalibratedTimestampsKHR vkGetCalibratedTimestampsKHR;
+#endif /* defined(VK_KHR_calibrated_timestamps) */
 #if defined(VK_KHR_copy_commands2)
 	PFN_vkCmdBlitImage2KHR vkCmdBlitImage2KHR;
 	PFN_vkCmdCopyBuffer2KHR vkCmdCopyBuffer2KHR;
@@ -1478,6 +1481,10 @@ extern PFN_vkGetBufferDeviceAddressKHR vkGetBufferDeviceAddressKHR;
 extern PFN_vkGetBufferOpaqueCaptureAddressKHR vkGetBufferOpaqueCaptureAddressKHR;
 extern PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR vkGetDeviceMemoryOpaqueCaptureAddressKHR;
 #endif /* defined(VK_KHR_buffer_device_address) */
+#if defined(VK_KHR_calibrated_timestamps)
+extern PFN_vkGetCalibratedTimestampsKHR vkGetCalibratedTimestampsKHR;
+extern PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;
+#endif /* defined(VK_KHR_calibrated_timestamps) */
 #if defined(VK_KHR_cooperative_matrix)
 extern PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR;
 #endif /* defined(VK_KHR_cooperative_matrix) */
