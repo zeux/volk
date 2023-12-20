@@ -68,6 +68,10 @@ VkResult volkInitialize(void)
 		module = dlopen("libvulkan.1.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
 		module = dlopen("libMoltenVK.dylib", RTLD_NOW | RTLD_LOCAL);
+	// modern versions of macOS don't search /usr/local/lib automatically contrary to what man dlopen says
+	// Vulkan SDK uses this as the system-wide installation location, so we're going to fallback to this if all else fails
+	if (!module)
+		module = dlopen("/usr/local/lib/libvulkan.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
 		return VK_ERROR_INITIALIZATION_FAILED;
 
