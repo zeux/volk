@@ -17,6 +17,10 @@
 #	include <dlfcn.h>
 #endif
 
+#ifdef __APPLE__
+#	include <stdlib.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -70,7 +74,7 @@ VkResult volkInitialize(void)
 		module = dlopen("libMoltenVK.dylib", RTLD_NOW | RTLD_LOCAL);
 	// modern versions of macOS don't search /usr/local/lib automatically contrary to what man dlopen says
 	// Vulkan SDK uses this as the system-wide installation location, so we're going to fallback to this if all else fails
-	if (!module)
+	if (!module && getenv("DYLD_FALLBACK_LIBRARY_PATH") == NULL)
 		module = dlopen("/usr/local/lib/libvulkan.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
 		return VK_ERROR_INITIALIZATION_FAILED;
