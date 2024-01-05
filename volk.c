@@ -944,10 +944,8 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 #endif /* defined(VK_KHR_maintenance6) */
 #if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor)
 	vkCmdPushDescriptorSet2KHR = (PFN_vkCmdPushDescriptorSet2KHR)load(context, "vkCmdPushDescriptorSet2KHR");
-#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
-#if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1)
 	vkCmdPushDescriptorSetWithTemplate2KHR = (PFN_vkCmdPushDescriptorSetWithTemplate2KHR)load(context, "vkCmdPushDescriptorSetWithTemplate2KHR");
-#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1) */
+#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
 #if defined(VK_KHR_maintenance6) && defined(VK_EXT_descriptor_buffer)
 	vkCmdBindDescriptorBufferEmbeddedSamplers2EXT = (PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT)load(context, "vkCmdBindDescriptorBufferEmbeddedSamplers2EXT");
 	vkCmdSetDescriptorBufferOffsets2EXT = (PFN_vkCmdSetDescriptorBufferOffsets2EXT)load(context, "vkCmdSetDescriptorBufferOffsets2EXT");
@@ -1777,10 +1775,8 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 #endif /* defined(VK_KHR_maintenance6) */
 #if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor)
 	table->vkCmdPushDescriptorSet2KHR = (PFN_vkCmdPushDescriptorSet2KHR)load(context, "vkCmdPushDescriptorSet2KHR");
-#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
-#if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1)
 	table->vkCmdPushDescriptorSetWithTemplate2KHR = (PFN_vkCmdPushDescriptorSetWithTemplate2KHR)load(context, "vkCmdPushDescriptorSetWithTemplate2KHR");
-#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1) */
+#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
 #if defined(VK_KHR_maintenance6) && defined(VK_EXT_descriptor_buffer)
 	table->vkCmdBindDescriptorBufferEmbeddedSamplers2EXT = (PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT)load(context, "vkCmdBindDescriptorBufferEmbeddedSamplers2EXT");
 	table->vkCmdSetDescriptorBufferOffsets2EXT = (PFN_vkCmdSetDescriptorBufferOffsets2EXT)load(context, "vkCmdSetDescriptorBufferOffsets2EXT");
@@ -2748,10 +2744,8 @@ PFN_vkCmdPushConstants2KHR vkCmdPushConstants2KHR;
 #endif /* defined(VK_KHR_maintenance6) */
 #if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor)
 PFN_vkCmdPushDescriptorSet2KHR vkCmdPushDescriptorSet2KHR;
-#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
-#if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1)
 PFN_vkCmdPushDescriptorSetWithTemplate2KHR vkCmdPushDescriptorSetWithTemplate2KHR;
-#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1) */
+#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
 #if defined(VK_KHR_maintenance6) && defined(VK_EXT_descriptor_buffer)
 PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT vkCmdBindDescriptorBufferEmbeddedSamplers2EXT;
 PFN_vkCmdSetDescriptorBufferOffsets2EXT vkCmdSetDescriptorBufferOffsets2EXT;

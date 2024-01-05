@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 274
+#define VOLK_HEADER_VERSION 275
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -677,10 +677,8 @@ struct VolkDeviceTable
 #endif /* defined(VK_KHR_maintenance6) */
 #if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor)
 	PFN_vkCmdPushDescriptorSet2KHR vkCmdPushDescriptorSet2KHR;
-#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
-#if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1)
 	PFN_vkCmdPushDescriptorSetWithTemplate2KHR vkCmdPushDescriptorSetWithTemplate2KHR;
-#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1) */
+#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
 #if defined(VK_KHR_maintenance6) && defined(VK_EXT_descriptor_buffer)
 	PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT vkCmdBindDescriptorBufferEmbeddedSamplers2EXT;
 	PFN_vkCmdSetDescriptorBufferOffsets2EXT vkCmdSetDescriptorBufferOffsets2EXT;
@@ -1640,10 +1638,8 @@ extern PFN_vkCmdPushConstants2KHR vkCmdPushConstants2KHR;
 #endif /* defined(VK_KHR_maintenance6) */
 #if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor)
 extern PFN_vkCmdPushDescriptorSet2KHR vkCmdPushDescriptorSet2KHR;
-#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
-#if defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1)
 extern PFN_vkCmdPushDescriptorSetWithTemplate2KHR vkCmdPushDescriptorSetWithTemplate2KHR;
-#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) && defined(VK_VERSION_1_1) */
+#endif /* defined(VK_KHR_maintenance6) && defined(VK_KHR_push_descriptor) */
 #if defined(VK_KHR_maintenance6) && defined(VK_EXT_descriptor_buffer)
 extern PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT vkCmdBindDescriptorBufferEmbeddedSamplers2EXT;
 extern PFN_vkCmdSetDescriptorBufferOffsets2EXT vkCmdSetDescriptorBufferOffsets2EXT;
