@@ -41,7 +41,7 @@ if(NOT VOLK_HEADERS_ONLY OR VOLK_INSTALL)
     target_compile_definitions(volk PUBLIC ${VOLK_STATIC_DEFINES})
   endif()
   if (NOT WIN32)
-    target_link_libraries(volk PUBLIC dl)
+    target_link_libraries(volk PUBLIC ${CMAKE_DL_LIBS})
   endif()
 endif()
 
@@ -55,7 +55,7 @@ target_include_directories(volk_headers INTERFACE
   $<INSTALL_INTERFACE:include>
 )
 if (NOT WIN32)
-  target_link_libraries(volk_headers INTERFACE dl)
+  target_link_libraries(volk_headers INTERFACE ${CMAKE_DL_LIBS})
 endif()
 
 # -----------------------------------------------------
