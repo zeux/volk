@@ -10,7 +10,7 @@ jobs:
     if: github.repository == 'zeux/volk'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
     - name: update
@@ -19,7 +19,7 @@ jobs:
         echo "VOLK_VERSION=`cat version.txt`" >> $GITHUB_ENV
         rm version.txt
     - name: create pr
-      uses: peter-evans/create-pull-request@v4
+      uses: peter-evans/create-pull-request@v6
       with:
         branch: update/${{env.VOLK_VERSION}}
         delete-branch: true
