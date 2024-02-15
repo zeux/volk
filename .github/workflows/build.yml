@@ -19,7 +19,7 @@ jobs:
     - name: move sdk
       shell: bash
       run: |
-        mv ../Vulkan-Headers ~/Vulkan-Headers
+        mv Vulkan-Headers ~/Vulkan-Headers
     - name: build main
       shell: bash
       run: |
