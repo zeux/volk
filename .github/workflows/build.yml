@@ -16,6 +16,7 @@ jobs:
         repository: KhronosGroup/Vulkan-Headers
         ref: main
         path: Vulkan-Headers
+        fetch-tags: true
     - name: move sdk
       shell: bash
       run: |
