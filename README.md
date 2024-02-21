@@ -13,8 +13,8 @@ volk is written in C89 and supports Windows, Linux, Android and macOS (via Molte
 There are multiple ways to use volk in your project:
 
 1. You can just add `volk.c` to your build system. Note that the usual preprocessor defines that enable Vulkan's platform-specific functions (VK_USE_PLATFORM_WIN32_KHR, VK_USE_PLATFORM_XLIB_KHR, VK_USE_PLATFORM_MACOS_MVK, etc) must be passed as desired to the compiler when building `volk.c`.
-2. You can use volk in header-only fashion. Include `volk.h` wherever you want to use Vulkan functions. In exactly one source file, define `VOLK_IMPLEMENTATION` before including `volk.h`. Do not build `volk.c` at all in this case. This method of integrating volk makes it possible to set the platform defines mentioned above with arbitrary (preprocessor) logic in your code.
-3. You can use provided CMake files, with the usage detailed below.
+2. You can use provided CMake files, with the usage detailed below.
+3. You can use volk in header-only fashion. Include `volk.h` wherever you want to use Vulkan functions. In exactly one source file, define `VOLK_IMPLEMENTATION` before including `volk.h`. Do not build `volk.c` at all in this case - however, `volk.c` must still be in the same directory as `volk.h`. This method of integrating volk makes it possible to set the platform defines mentioned above with arbitrary (preprocessor) logic in your code.
 
 ## Basic usage
 
