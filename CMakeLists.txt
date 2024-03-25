@@ -12,7 +12,7 @@ project(volk VERSION
 # CMake 3.12 changes the default behaviour of option() to leave local variables
 # unchanged if they exist (which we want), but we must work with older CMake versions.
 if(NOT DEFINED VOLK_STATIC_DEFINES)
-  option(VOLK_STATIC_DEFINES "Additional defines for building the volk static library, e.g. Vulkan platform defines" "")
+  set(VOLK_STATIC_DEFINES "" CACHE STRING "Additional defines for building the volk static library, e.g. Vulkan platform defines")
 endif()
 if(NOT DEFINED VOLK_PULL_IN_VULKAN)
   option(VOLK_PULL_IN_VULKAN "Vulkan as a transitive dependency" ON)
@@ -24,7 +24,7 @@ if(NOT DEFINED VOLK_HEADERS_ONLY)
   option(VOLK_HEADERS_ONLY "Add interface library only" OFF)
 endif()
 if(NOT DEFINED VULKAN_HEADERS_INSTALL_DIR)
-  option(VULKAN_HEADERS_INSTALL_DIR "Where to get the Vulkan headers" "")
+  set(VULKAN_HEADERS_INSTALL_DIR "" CACHE PATH "Where to get the Vulkan headers")
 endif()
 
 # -----------------------------------------------------
