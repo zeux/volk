@@ -31,6 +31,17 @@ __declspec(dllimport) FARPROC __stdcall GetProcAddress(HMODULE, LPCSTR);
 __declspec(dllimport) int __stdcall FreeLibrary(HMODULE);
 #endif
 
+#if defined(__GNUC__)
+#    define VOLK_DISABLE_GCC_PEDANTIC_WARNINGS \
+		_Pragma("GCC diagnostic push") \
+		_Pragma("GCC diagnostic ignored \"-Wpedantic\"")
+#    define VOLK_RESTORE_GCC_PEDANTIC_WARNINGS \
+		_Pragma("GCC diagnostic pop")
+#else
+#    define VOLK_DISABLE_GCC_PEDANTIC_WARNINGS
+#    define VOLK_RESTORE_GCC_PEDANTIC_WARNINGS
+#endif
+
 static void* loadedModule = NULL;
 static VkInstance loadedInstance = VK_NULL_HANDLE;
 static VkDevice loadedDevice = VK_NULL_HANDLE;
@@ -92,8 +103,9 @@ VkResult volkInitialize(void)
 		module = dlopen("libvulkan.so", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
 		return VK_ERROR_INITIALIZATION_FAILED;
-
+	VOLK_DISABLE_GCC_PEDANTIC_WARNINGS
 	vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)dlsym(module, "vkGetInstanceProcAddr");
+	VOLK_RESTORE_GCC_PEDANTIC_WARNINGS
 #endif
 
 	loadedModule = module;
