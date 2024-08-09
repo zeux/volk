@@ -22,26 +22,137 @@
 #	define VK_NO_PROTOTYPES
 #endif
 
+
+/* When VK_USE_PLATFORM_XYZ is defined, instead of including vulkan.h directly, we include individual parts of the SDK
+ * This is necessary to avoid including platform-specific headers which may be very heavy -
+ * it takes 200ms to parse windows.h without WIN32_LEAN_AND_MEAN and 100ms to parse with it.
+ * The WSI only needs a few symbols that are straightforward to redefine ourselves.
+ * Currently supported platforms:
+ * VK_USE_PLATFORM_FUCHSIA
+ * VK_USE_PLATFORM_WIN32_KHR
+ * VK_USE_PLATFORM_XLIB_KHR
+ * VK_USE_PLATFORM_XCB_KHR
+ * VK_USE_PLATFORM_DIRECTFB_EXT
+ * VK_USE_PLATFORM_XLIB_XRANDR_EXT
+ * VK_USE_PLATFORM_SCI
+ *
+ * Nothing needs to be done for the following platforms as they don't depends on platform-specific headers:
+ * VK_USE_PLATFORM_METAL_EXT
+ * VK_USE_PLATFORM_MACOS_MVK
+ * VK_USE_PLATFORM_METAL_EXT
+ * VK_USE_PLATFORM_VI_NN
+ * VK_USE_PLATFORM_WAYLAND_KHR
+ * VK_USE_PLATFORM_SCREEN_QNX
+ */
+
 #ifndef VULKAN_H_
 #	ifdef VOLK_VULKAN_H_PATH
 #		include VOLK_VULKAN_H_PATH
-#	elif defined(VK_USE_PLATFORM_WIN32_KHR)
+#	elif defined(VK_USE_PLATFORM_FUCHSIA)
 #		include <vulkan/vk_platform.h>
 #		include <vulkan/vulkan_core.h>
 
-		/* When VK_USE_PLATFORM_WIN32_KHR is defined, instead of including vulkan.h directly, we include individual parts of the SDK
-		 * This is necessary to avoid including <windows.h> which is very heavy - it takes 200ms to parse without WIN32_LEAN_AND_MEAN
-		 * and 100ms to parse with it. vulkan_win32.h only needs a few symbols that are easy to redefine ourselves.
-		 */
-		typedef unsigned long DWORD;
-		typedef const wchar_t* LPCWSTR;
-		typedef void* HANDLE;
-		typedef struct HINSTANCE__* HINSTANCE;
-		typedef struct HWND__* HWND;
-		typedef struct HMONITOR__* HMONITOR;
-		typedef struct _SECURITY_ATTRIBUTES SECURITY_ATTRIBUTES;
+        // If someone knows what the include guard for <lib/zx/handle.h> is, please add a guard arround this
+#       include <stdint.h>
+        uint32_t zx_handle_t;
+
+#		include <vulkan/vulkan_xcb.h>
+
+#		ifdef VK_ENABLE_BETA_EXTENSIONS
+#			include <vulkan/vulkan_beta.h>
+#		endif
+#	elif defined(VK_USE_PLATFORM_WIN32_KHR)
+#		include <vulkan/vk_platform.h>
+#		include <vulkan/vulkan_core.h>
+#       if !defined(WINDOWS_H)
+		    typedef unsigned long DWORD;
+		    typedef const wchar_t* LPCWSTR;
+		    typedef void* HANDLE;
+		    typedef struct HINSTANCE__* HINSTANCE;
+		    typedef struct HWND__* HWND;
+		    typedef struct HMONITOR__* HMONITOR;
+		    typedef struct _SECURITY_ATTRIBUTES SECURITY_ATTRIBUTES;
+#       endif
 
 #		include <vulkan/vulkan_win32.h>
+
+#		ifdef VK_ENABLE_BETA_EXTENSIONS
+#			include <vulkan/vulkan_beta.h>
+#		endif
+#	elif defined(VK_USE_PLATFORM_XLIB_KHR)
+#		include <vulkan/vk_platform.h>
+#		include <vulkan/vulkan_core.h>
+
+        // This is not 1:1 what Xlib uses, but it's close enough for most purposes.
+#       if !defined(X_H)
+#           include <stdint.h>
+            typedef struct Display Display;
+            typedef uint32_t Window;
+            typedef uint32_t VisualID;
+#       endif
+
+#		include <vulkan/vulkan_xlib.h>
+
+#		ifdef VK_ENABLE_BETA_EXTENSIONS
+#			include <vulkan/vulkan_beta.h>
+#		endif
+#	elif defined(VK_USE_PLATFORM_XCB_KHR)
+#		include <vulkan/vk_platform.h>
+#		include <vulkan/vulkan_core.h>
+
+#if !defined(__XCB_H__)
+#       include <stdint.h>
+        typedef struct xcb_connection_t xcb_connection_t;
+        typedef uint32_t xcb_window_t;
+#endif
+
+#		include <vulkan/vulkan_xcb.h>
+
+#		ifdef VK_ENABLE_BETA_EXTENSIONS
+#			include <vulkan/vulkan_beta.h>
+#		endif
+#	elif defined(VK_USE_PLATFORM_DIRECTFB_EXT)
+#		include <vulkan/vk_platform.h>
+#		include <vulkan/vulkan_core.h>
+
+        struct IDirectFB;
+        struct IDirectFBSurface;
+
+#		include <vulkan/vulkan_directfb.h>
+
+#		ifdef VK_ENABLE_BETA_EXTENSIONS
+#			include <vulkan/vulkan_beta.h>
+#		endif
+#	elif defined(VK_USE_PLATFORM_XLIB_XRANDR_EXT)
+#		include <vulkan/vk_platform.h>
+#		include <vulkan/vulkan_core.h>
+
+        // This is not 1:1 what Xlib uses, but it's close enough for most purposes.
+#       if !defined(X_H)
+            typedef struct Display Display;
+#       endif
+#       if !defined(_RANDRSTR_H_)
+#           include <stdint.h>
+            typedef uint32_t RROutput;
+#       endif
+
+#		include <vulkan/vulkan_xlib_xrandr.h>
+
+#		ifdef VK_ENABLE_BETA_EXTENSIONS
+#			include <vulkan/vulkan_beta.h>
+#		endif
+#	elif defined(VK_USE_PLATFORM_SCREEN_QNX)
+#		include <vulkan/vk_platform.h>
+#		include <vulkan/vulkan_core.h>
+
+        // This is not 1:1 what Xlib uses, but it's close enough for most purposes.
+#       if !defined(X_H)
+            typedef struct Display Display;
+#           include <stdint.h>
+            typedef uint32_t RROutput;
+#       endif
+
+#		include <vulkan/vulkan_ggp.h>
 
 #		ifdef VK_ENABLE_BETA_EXTENSIONS
 #			include <vulkan/vulkan_beta.h>
