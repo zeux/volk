@@ -36,7 +36,7 @@
  * VK_USE_PLATFORM_XLIB_XRANDR_EXT
  * VK_USE_PLATFORM_SCI
  *
- * Nothing needs to be done for the following platforms as they don't depends on platform-specific headers:
+ * Nothing needs to be done for the following platforms as they don't depend on platform-specific headers:
  * VK_USE_PLATFORM_METAL_EXT
  * VK_USE_PLATFORM_MACOS_MVK
  * VK_USE_PLATFORM_METAL_EXT
@@ -127,7 +127,6 @@
 #		include <vulkan/vk_platform.h>
 #		include <vulkan/vulkan_core.h>
 
-        // This is not 1:1 what Xlib uses, but it's close enough for most purposes.
 #       if !defined(X_H)
             typedef struct Display Display;
 #       endif
@@ -145,7 +144,6 @@
 #		include <vulkan/vk_platform.h>
 #		include <vulkan/vulkan_core.h>
 
-        // This is not 1:1 what Xlib uses, but it's close enough for most purposes.
 #       if !defined(X_H)
             typedef struct Display Display;
 #           include <stdint.h>
