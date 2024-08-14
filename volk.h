@@ -37,7 +37,6 @@
  * VK_USE_PLATFORM_SCI
  *
  * Nothing needs to be done for the following platforms as they don't depend on platform-specific headers:
- * VK_USE_PLATFORM_METAL_EXT
  * VK_USE_PLATFORM_MACOS_MVK
  * VK_USE_PLATFORM_METAL_EXT
  * VK_USE_PLATFORM_VI_NN
