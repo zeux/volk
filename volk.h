@@ -100,12 +100,12 @@
 #		include <vulkan/vk_platform.h>
 #		include <vulkan/vulkan_core.h>
 
-#if !defined(__XCB_H__)
-#       include <stdint.h>
-        typedef struct xcb_connection_t xcb_connection_t;
-        typedef uint32_t xcb_window_t;
-        typedef uint32_t xcb_visualid_t;
-#endif
+#       if !defined(__XCB_H__)
+#           include <stdint.h>
+            typedef struct xcb_connection_t xcb_connection_t;
+            typedef uint32_t xcb_window_t;
+            typedef uint32_t xcb_visualid_t;
+#       endif
 
 #		include <vulkan/vulkan_xcb.h>
 
