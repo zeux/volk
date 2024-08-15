@@ -34,7 +34,7 @@
  * VK_USE_PLATFORM_XCB_KHR
  * VK_USE_PLATFORM_DIRECTFB_EXT
  * VK_USE_PLATFORM_XLIB_XRANDR_EXT
- * VK_USE_PLATFORM_SCI
+ * VK_USE_PLATFORM_GGP
  *
  * Nothing needs to be done for the following platforms as they don't depend on platform-specific headers:
  * VK_USE_PLATFORM_MACOS_MVK
@@ -47,117 +47,136 @@
 #ifndef VULKAN_H_
 #	ifdef VOLK_VULKAN_H_PATH
 #		include VOLK_VULKAN_H_PATH
-#	elif defined(VK_USE_PLATFORM_FUCHSIA)
-#		include <vulkan/vk_platform.h>
-#		include <vulkan/vulkan_core.h>
+#   else
+#       if defined(VK_USE_PLATFORM_FUCHSIA)
+#		    include <vulkan/vk_platform.h>
+#		    include <vulkan/vulkan_core.h>
 
-        // If someone knows what the include guard for <lib/zx/handle.h> is, please add a guard arround this
-#       include <stdint.h>
-        uint32_t zx_handle_t;
-
-#		include <vulkan/vulkan_xcb.h>
-
-#		ifdef VK_ENABLE_BETA_EXTENSIONS
-#			include <vulkan/vulkan_beta.h>
-#		endif
-#	elif defined(VK_USE_PLATFORM_WIN32_KHR)
-#		include <vulkan/vk_platform.h>
-#		include <vulkan/vulkan_core.h>
-#       if !defined(WINDOWS_H)
-		    typedef unsigned long DWORD;
-		    typedef const wchar_t* LPCWSTR;
-		    typedef void* HANDLE;
-		    typedef struct HINSTANCE__* HINSTANCE;
-		    typedef struct HWND__* HWND;
-		    typedef struct HMONITOR__* HMONITOR;
-		    typedef struct _SECURITY_ATTRIBUTES SECURITY_ATTRIBUTES;
-#       endif
-
-#		include <vulkan/vulkan_win32.h>
-
-#		ifdef VK_ENABLE_BETA_EXTENSIONS
-#			include <vulkan/vulkan_beta.h>
-#		endif
-#	elif defined(VK_USE_PLATFORM_XLIB_KHR)
-#		include <vulkan/vk_platform.h>
-#		include <vulkan/vulkan_core.h>
-
-        // This is not 1:1 what Xlib uses, but it's close enough for most purposes.
-#       if !defined(X_H)
+            // If someone knows what the include guard for <lib/zx/handle.h> is, please add a guard arround this
 #           include <stdint.h>
-            typedef struct Display Display;
-            typedef uint32_t Window;
-            typedef uint32_t VisualID;
+            typedef uint32_t zx_handle_t;
+
+#		    include <vulkan/vulkan_fuchsia.h>
+
+#		    ifdef VK_ENABLE_BETA_EXTENSIONS
+#		    	include <vulkan/vulkan_beta.h>
+#		    endif
 #       endif
+#	    if defined(VK_USE_PLATFORM_WIN32_KHR)
+#	    	include <vulkan/vk_platform.h>
+#	    	include <vulkan/vulkan_core.h>
+#           if !defined(WINDOWS_H)
+	    	    typedef unsigned long DWORD;
+	    	    typedef const wchar_t* LPCWSTR;
+	    	    typedef void* HANDLE;
+	    	    typedef struct HINSTANCE__* HINSTANCE;
+	    	    typedef struct HWND__* HWND;
+	    	    typedef struct HMONITOR__* HMONITOR;
+	    	    typedef struct _SECURITY_ATTRIBUTES SECURITY_ATTRIBUTES;
+#           endif
 
-#		include <vulkan/vulkan_xlib.h>
+#	    	include <vulkan/vulkan_win32.h>
 
-#		ifdef VK_ENABLE_BETA_EXTENSIONS
-#			include <vulkan/vulkan_beta.h>
-#		endif
-#	elif defined(VK_USE_PLATFORM_XCB_KHR)
-#		include <vulkan/vk_platform.h>
-#		include <vulkan/vulkan_core.h>
+#	    	ifdef VK_ENABLE_BETA_EXTENSIONS
+#	    		include <vulkan/vulkan_beta.h>
+#	    	endif
+#   	else
+#   		include <vulkan/vulkan.h>
+#   	endif
+#	    if defined(VK_USE_PLATFORM_XLIB_KHR)
+#	    	include <vulkan/vk_platform.h>
+#	    	include <vulkan/vulkan_core.h>
 
-#       if !defined(__XCB_H__)
-#           include <stdint.h>
-            typedef struct xcb_connection_t xcb_connection_t;
-            typedef uint32_t xcb_window_t;
-            typedef uint32_t xcb_visualid_t;
-#       endif
+            // This is not 1:1 what Xlib uses, but it's close enough for most purposes.
+#           if !defined(X_H)
+               // This is an include guard for the XLIB_XRANDR platform.
+#              define VOLK_VULKAN_H_DEFINE_XLIB_STRUCTURES
+#              include <stdint.h>
+               typedef struct Display Display;
+               typedef uint32_t Window;
+               typedef uint32_t VisualID;
+#          endif
 
-#		include <vulkan/vulkan_xcb.h>
+#		    include <vulkan/vulkan_xlib.h>
 
-#		ifdef VK_ENABLE_BETA_EXTENSIONS
-#			include <vulkan/vulkan_beta.h>
-#		endif
-#	elif defined(VK_USE_PLATFORM_DIRECTFB_EXT)
-#		include <vulkan/vk_platform.h>
-#		include <vulkan/vulkan_core.h>
+#	    	ifdef VK_ENABLE_BETA_EXTENSIONS
+#		    	include <vulkan/vulkan_beta.h>
+#	    	endif
+#   	else
+#   		include <vulkan/vulkan.h>
+#   	endif
+#	    if defined(VK_USE_PLATFORM_XCB_KHR)
+#	    	include <vulkan/vk_platform.h>
+#	    	include <vulkan/vulkan_core.h>
 
-        struct IDirectFB;
-        struct IDirectFBSurface;
+#          if !defined(__XCB_H__)
+#              include <stdint.h>
+               typedef struct xcb_connection_t xcb_connection_t;
+               typedef uint32_t xcb_window_t;
+               typedef uint32_t xcb_visualid_t;
+#          endif
 
-#		include <vulkan/vulkan_directfb.h>
+#	    	include <vulkan/vulkan_xcb.h>
 
-#		ifdef VK_ENABLE_BETA_EXTENSIONS
-#			include <vulkan/vulkan_beta.h>
-#		endif
-#	elif defined(VK_USE_PLATFORM_XLIB_XRANDR_EXT)
-#		include <vulkan/vk_platform.h>
-#		include <vulkan/vulkan_core.h>
+#		    ifdef VK_ENABLE_BETA_EXTENSIONS
+#		    	include <vulkan/vulkan_beta.h>
+#	    	endif
+#   	else
+#   		include <vulkan/vulkan.h>
+#   	endif
+#	    if defined(VK_USE_PLATFORM_DIRECTFB_EXT)
+#		    include <vulkan/vk_platform.h>
+#		    include <vulkan/vulkan_core.h>
 
-#       if !defined(X_H)
-            typedef struct Display Display;
-#       endif
-#       if !defined(_RANDRSTR_H_)
-#           include <stdint.h>
-            typedef uint32_t RROutput;
-#       endif
+            struct IDirectFB;
+            struct IDirectFBSurface;
 
-#		include <vulkan/vulkan_xlib_xrandr.h>
+#		    include <vulkan/vulkan_directfb.h>
 
-#		ifdef VK_ENABLE_BETA_EXTENSIONS
-#			include <vulkan/vulkan_beta.h>
-#		endif
-#	elif defined(VK_USE_PLATFORM_SCREEN_QNX)
-#		include <vulkan/vk_platform.h>
-#		include <vulkan/vulkan_core.h>
+#		    ifdef VK_ENABLE_BETA_EXTENSIONS
+#			    include <vulkan/vulkan_beta.h>
+#		    endif
+#   	else
+#   		include <vulkan/vulkan.h>
+#   	endif
+#   	if defined(VK_USE_PLATFORM_XLIB_XRANDR_EXT)
+#   		include <vulkan/vk_platform.h>
+#   		include <vulkan/vulkan_core.h>
 
-#       if !defined(X_H)
-            typedef struct Display Display;
-#           include <stdint.h>
-            typedef uint32_t RROutput;
-#       endif
+#          if !defined(X_H) && !defined(VOLK_VULKAN_H_DEFINE_XLIB_STRUCTURES)
+               typedef struct Display Display;
+#          endif
+#          if !defined(_RANDRSTR_H_)
+#              include <stdint.h>
+               typedef uint32_t RROutput;
+#          endif
 
-#		include <vulkan/vulkan_ggp.h>
+#   		include <vulkan/vulkan_xlib_xrandr.h>
 
-#		ifdef VK_ENABLE_BETA_EXTENSIONS
-#			include <vulkan/vulkan_beta.h>
-#		endif
-#	else
-#		include <vulkan/vulkan.h>
-#	endif
+#   		ifdef VK_ENABLE_BETA_EXTENSIONS
+#   			include <vulkan/vulkan_beta.h>
+#   		endif
+#   	else
+#   		include <vulkan/vulkan.h>
+#   	endif
+#   	if defined(VK_USE_PLATFORM_GGP)
+#   		include <vulkan/vk_platform.h>
+#   		include <vulkan/vulkan_core.h>
+
+#          if !defined(X_H)
+#             include <stdint.h>
+              typedef uint32_t GgpStreamDescriptor;
+              typedef uint64_t GgpFrameToken;
+#          endif
+
+#   		include <vulkan/vulkan_ggp.h>
+
+#   		ifdef VK_ENABLE_BETA_EXTENSIONS
+#   			include <vulkan/vulkan_beta.h>
+#   		endif
+#   	else
+#   		include <vulkan/vulkan.h>
+#   	endif
 #endif
 
 /* Disable several extensions on earlier SDKs because later SDKs introduce a backwards incompatible change to function signatures */
