@@ -35,13 +35,13 @@
  * VK_USE_PLATFORM_DIRECTFB_EXT
  * VK_USE_PLATFORM_XLIB_XRANDR_EXT
  * VK_USE_PLATFORM_GGP
+ * VK_USE_PLATFORM_SCREEN_QNX
  *
  * Nothing needs to be done for the following platforms as they don't depend on platform-specific headers:
  * VK_USE_PLATFORM_MACOS_MVK
  * VK_USE_PLATFORM_METAL_EXT
  * VK_USE_PLATFORM_VI_NN
  * VK_USE_PLATFORM_WAYLAND_KHR
- * VK_USE_PLATFORM_SCREEN_QNX
  */
 
 #ifndef VULKAN_H_
@@ -55,6 +55,7 @@
 			typedef uint32_t zx_handle_t;
 
 #			include <vulkan/vulkan_fuchsia.h>
+#           undef VK_USE_PLATFORM_FUCHSIA
 #		endif
 #		if defined(VK_USE_PLATFORM_WIN32_KHR)
 #			if !defined(WINDOWS_H)
@@ -68,6 +69,7 @@
 #			endif
 
 #			include <vulkan/vulkan_win32.h>
+#           undef VK_USE_PLATFORM_WIN32_KHR
 #		endif
 #		if defined(VK_USE_PLATFORM_XLIB_KHR)
 			// This is not 1:1 what Xlib uses, but it's close enough for most purposes.
@@ -80,6 +82,7 @@
 #			endif
 
 #			include <vulkan/vulkan_xlib.h>
+#           undef VK_USE_PLATFORM_XLIB_KHR
 #		endif
 #		if defined(VK_USE_PLATFORM_XCB_KHR)
 #			if !defined(__XCB_H__)
@@ -89,12 +92,14 @@
 #			endif
 
 #			include <vulkan/vulkan_xcb.h>
+#           undef VK_USE_PLATFORM_XCB_KHR
 #		endif
 #		if defined(VK_USE_PLATFORM_DIRECTFB_EXT)
 			typedef struct IDirectFB IDirectFB;
 			typedef struct IDirectFBSurface IDirectFBSurface;
 
 #			include <vulkan/vulkan_directfb.h>
+#           undef VK_USE_PLATFORM_DIRECTFB_EXT
 #		endif
 #		if defined(VK_USE_PLATFORM_XLIB_XRANDR_EXT)
 #			if !defined(X_H) && !defined(VOLK_VULKAN_H_DEFINE_XLIB_STRUCTURES)
@@ -105,18 +110,20 @@
 #			endif
 
 #			include <vulkan/vulkan_xlib_xrandr.h>
+#           undef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 #		endif
 #		if defined(VK_USE_PLATFORM_GGP)
-#			if !defined(X_H)
-				typedef uint32_t GgpStreamDescriptor;
-				typedef uint64_t GgpFrameToken;
-#			endif
+            typedef uint32_t GgpStreamDescriptor;
+            typedef uint64_t GgpFrameToken;
 
 #			include <vulkan/vulkan_ggp.h>
+#           undef VK_USE_PLATFORM_GGP
 #		endif
-#		ifdef VK_ENABLE_BETA_EXTENSIONS
-#			include <vulkan/vulkan_beta.h>
+#		if defined(VK_USE_PLATFORM_SCREEN_QNX)
+#			include <vulkan/vulkan_screen.h>
+#           undef VK_USE_PLATFORM_SCREEN_QNX
 #		endif
+#		include <vulkan/vulkan.h>
 #	endif
 #endif
 
