@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 293
+#define VOLK_HEADER_VERSION 294
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -704,6 +704,13 @@ struct VolkDeviceTable
 	PFN_vkAcquireProfilingLockKHR vkAcquireProfilingLockKHR;
 	PFN_vkReleaseProfilingLockKHR vkReleaseProfilingLockKHR;
 #endif /* defined(VK_KHR_performance_query) */
+#if defined(VK_KHR_pipeline_binary)
+	PFN_vkCreatePipelineBinariesKHR vkCreatePipelineBinariesKHR;
+	PFN_vkDestroyPipelineBinaryKHR vkDestroyPipelineBinaryKHR;
+	PFN_vkGetPipelineBinaryDataKHR vkGetPipelineBinaryDataKHR;
+	PFN_vkGetPipelineKeyKHR vkGetPipelineKeyKHR;
+	PFN_vkReleaseCapturedPipelineDataKHR vkReleaseCapturedPipelineDataKHR;
+#endif /* defined(VK_KHR_pipeline_binary) */
 #if defined(VK_KHR_pipeline_executable_properties)
 	PFN_vkGetPipelineExecutableInternalRepresentationsKHR vkGetPipelineExecutableInternalRepresentationsKHR;
 	PFN_vkGetPipelineExecutablePropertiesKHR vkGetPipelineExecutablePropertiesKHR;
@@ -1695,6 +1702,13 @@ extern PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR vkEnu
 extern PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR;
 extern PFN_vkReleaseProfilingLockKHR vkReleaseProfilingLockKHR;
 #endif /* defined(VK_KHR_performance_query) */
+#if defined(VK_KHR_pipeline_binary)
+extern PFN_vkCreatePipelineBinariesKHR vkCreatePipelineBinariesKHR;
+extern PFN_vkDestroyPipelineBinaryKHR vkDestroyPipelineBinaryKHR;
+extern PFN_vkGetPipelineBinaryDataKHR vkGetPipelineBinaryDataKHR;
+extern PFN_vkGetPipelineKeyKHR vkGetPipelineKeyKHR;
+extern PFN_vkReleaseCapturedPipelineDataKHR vkReleaseCapturedPipelineDataKHR;
+#endif /* defined(VK_KHR_pipeline_binary) */
 #if defined(VK_KHR_pipeline_executable_properties)
 extern PFN_vkGetPipelineExecutableInternalRepresentationsKHR vkGetPipelineExecutableInternalRepresentationsKHR;
 extern PFN_vkGetPipelineExecutablePropertiesKHR vkGetPipelineExecutablePropertiesKHR;

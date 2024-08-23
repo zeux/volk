@@ -989,6 +989,13 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkAcquireProfilingLockKHR = (PFN_vkAcquireProfilingLockKHR)load(context, "vkAcquireProfilingLockKHR");
 	vkReleaseProfilingLockKHR = (PFN_vkReleaseProfilingLockKHR)load(context, "vkReleaseProfilingLockKHR");
 #endif /* defined(VK_KHR_performance_query) */
+#if defined(VK_KHR_pipeline_binary)
+	vkCreatePipelineBinariesKHR = (PFN_vkCreatePipelineBinariesKHR)load(context, "vkCreatePipelineBinariesKHR");
+	vkDestroyPipelineBinaryKHR = (PFN_vkDestroyPipelineBinaryKHR)load(context, "vkDestroyPipelineBinaryKHR");
+	vkGetPipelineBinaryDataKHR = (PFN_vkGetPipelineBinaryDataKHR)load(context, "vkGetPipelineBinaryDataKHR");
+	vkGetPipelineKeyKHR = (PFN_vkGetPipelineKeyKHR)load(context, "vkGetPipelineKeyKHR");
+	vkReleaseCapturedPipelineDataKHR = (PFN_vkReleaseCapturedPipelineDataKHR)load(context, "vkReleaseCapturedPipelineDataKHR");
+#endif /* defined(VK_KHR_pipeline_binary) */
 #if defined(VK_KHR_pipeline_executable_properties)
 	vkGetPipelineExecutableInternalRepresentationsKHR = (PFN_vkGetPipelineExecutableInternalRepresentationsKHR)load(context, "vkGetPipelineExecutableInternalRepresentationsKHR");
 	vkGetPipelineExecutablePropertiesKHR = (PFN_vkGetPipelineExecutablePropertiesKHR)load(context, "vkGetPipelineExecutablePropertiesKHR");
@@ -1848,6 +1855,13 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkAcquireProfilingLockKHR = (PFN_vkAcquireProfilingLockKHR)load(context, "vkAcquireProfilingLockKHR");
 	table->vkReleaseProfilingLockKHR = (PFN_vkReleaseProfilingLockKHR)load(context, "vkReleaseProfilingLockKHR");
 #endif /* defined(VK_KHR_performance_query) */
+#if defined(VK_KHR_pipeline_binary)
+	table->vkCreatePipelineBinariesKHR = (PFN_vkCreatePipelineBinariesKHR)load(context, "vkCreatePipelineBinariesKHR");
+	table->vkDestroyPipelineBinaryKHR = (PFN_vkDestroyPipelineBinaryKHR)load(context, "vkDestroyPipelineBinaryKHR");
+	table->vkGetPipelineBinaryDataKHR = (PFN_vkGetPipelineBinaryDataKHR)load(context, "vkGetPipelineBinaryDataKHR");
+	table->vkGetPipelineKeyKHR = (PFN_vkGetPipelineKeyKHR)load(context, "vkGetPipelineKeyKHR");
+	table->vkReleaseCapturedPipelineDataKHR = (PFN_vkReleaseCapturedPipelineDataKHR)load(context, "vkReleaseCapturedPipelineDataKHR");
+#endif /* defined(VK_KHR_pipeline_binary) */
 #if defined(VK_KHR_pipeline_executable_properties)
 	table->vkGetPipelineExecutableInternalRepresentationsKHR = (PFN_vkGetPipelineExecutableInternalRepresentationsKHR)load(context, "vkGetPipelineExecutableInternalRepresentationsKHR");
 	table->vkGetPipelineExecutablePropertiesKHR = (PFN_vkGetPipelineExecutablePropertiesKHR)load(context, "vkGetPipelineExecutablePropertiesKHR");
@@ -2847,6 +2861,13 @@ PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR vkEnumerateP
 PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR;
 PFN_vkReleaseProfilingLockKHR vkReleaseProfilingLockKHR;
 #endif /* defined(VK_KHR_performance_query) */
+#if defined(VK_KHR_pipeline_binary)
+PFN_vkCreatePipelineBinariesKHR vkCreatePipelineBinariesKHR;
+PFN_vkDestroyPipelineBinaryKHR vkDestroyPipelineBinaryKHR;
+PFN_vkGetPipelineBinaryDataKHR vkGetPipelineBinaryDataKHR;
+PFN_vkGetPipelineKeyKHR vkGetPipelineKeyKHR;
+PFN_vkReleaseCapturedPipelineDataKHR vkReleaseCapturedPipelineDataKHR;
+#endif /* defined(VK_KHR_pipeline_binary) */
 #if defined(VK_KHR_pipeline_executable_properties)
 PFN_vkGetPipelineExecutableInternalRepresentationsKHR vkGetPipelineExecutableInternalRepresentationsKHR;
 PFN_vkGetPipelineExecutablePropertiesKHR vkGetPipelineExecutablePropertiesKHR;
