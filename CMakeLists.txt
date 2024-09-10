@@ -97,7 +97,7 @@ if(VOLK_INSTALL)
   set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/volk)
 
   # Install files
-  install(FILES volk.h volk.c DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+  install(FILES volk.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
   # Install library target and add it and any dependencies to export set.
   install(TARGETS volk volk_headers
