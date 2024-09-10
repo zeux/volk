@@ -34,7 +34,7 @@ option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
 if(NOT VOLK_HEADERS_ONLY OR VOLK_INSTALL)
   if(BUILD_SHARED_LIBS)
-  add_library(volk STATIC volk.h volk.c)
+  add_library(volk SHARED volk.h volk.c)
   else()
   add_library(volk STATIC volk.h volk.c)
   endif()
