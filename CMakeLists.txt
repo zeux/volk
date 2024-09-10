@@ -27,11 +27,17 @@ if(NOT DEFINED VULKAN_HEADERS_INSTALL_DIR)
   set(VULKAN_HEADERS_INSTALL_DIR "" CACHE PATH "Where to get the Vulkan headers")
 endif()
 
+option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+
 # -----------------------------------------------------
 # Static library
 
 if(NOT VOLK_HEADERS_ONLY OR VOLK_INSTALL)
+  if(BUILD_SHARED_LIBS)
   add_library(volk STATIC volk.h volk.c)
+  else()
+  add_library(volk STATIC volk.h volk.c)
+  endif()
   add_library(volk::volk ALIAS volk)
   target_include_directories(volk PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
