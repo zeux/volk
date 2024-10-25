@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 299
+#define VOLK_HEADER_VERSION 300
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -1862,6 +1862,9 @@ extern PFN_vkCmdSetViewportWScalingNV vkCmdSetViewportWScalingNV;
 #if defined(VK_NV_cooperative_matrix)
 extern PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV vkGetPhysicalDeviceCooperativeMatrixPropertiesNV;
 #endif /* defined(VK_NV_cooperative_matrix) */
+#if defined(VK_NV_cooperative_matrix2)
+extern PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV;
+#endif /* defined(VK_NV_cooperative_matrix2) */
 #if defined(VK_NV_copy_memory_indirect)
 extern PFN_vkCmdCopyMemoryIndirectNV vkCmdCopyMemoryIndirectNV;
 extern PFN_vkCmdCopyMemoryToImageIndirectNV vkCmdCopyMemoryToImageIndirectNV;
