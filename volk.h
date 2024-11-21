@@ -796,9 +796,11 @@ struct VolkDeviceTable
 	PFN_vkDestroyCuModuleNVX vkDestroyCuModuleNVX;
 #endif /* defined(VK_NVX_binary_import) */
 #if defined(VK_NVX_image_view_handle)
-	PFN_vkGetImageViewHandle64NVX vkGetImageViewHandle64NVX;
 	PFN_vkGetImageViewHandleNVX vkGetImageViewHandleNVX;
 #endif /* defined(VK_NVX_image_view_handle) */
+#if defined(VK_NVX_image_view_handle) && VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION >= 3
+	PFN_vkGetImageViewHandle64NVX vkGetImageViewHandle64NVX;
+#endif /* defined(VK_NVX_image_view_handle) && VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION >= 3 */
 #if defined(VK_NVX_image_view_handle) && VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION >= 2
 	PFN_vkGetImageViewAddressNVX vkGetImageViewAddressNVX;
 #endif /* defined(VK_NVX_image_view_handle) && VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION >= 2 */
@@ -1848,9 +1850,11 @@ extern PFN_vkDestroyCuFunctionNVX vkDestroyCuFunctionNVX;
 extern PFN_vkDestroyCuModuleNVX vkDestroyCuModuleNVX;
 #endif /* defined(VK_NVX_binary_import) */
 #if defined(VK_NVX_image_view_handle)
-extern PFN_vkGetImageViewHandle64NVX vkGetImageViewHandle64NVX;
 extern PFN_vkGetImageViewHandleNVX vkGetImageViewHandleNVX;
 #endif /* defined(VK_NVX_image_view_handle) */
+#if defined(VK_NVX_image_view_handle) && VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION >= 3
+extern PFN_vkGetImageViewHandle64NVX vkGetImageViewHandle64NVX;
+#endif /* defined(VK_NVX_image_view_handle) && VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION >= 3 */
 #if defined(VK_NVX_image_view_handle) && VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION >= 2
 extern PFN_vkGetImageViewAddressNVX vkGetImageViewAddressNVX;
 #endif /* defined(VK_NVX_image_view_handle) && VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION >= 2 */

@@ -13,6 +13,7 @@ cmdversions = {
 	"vkCmdSetDiscardRectangleModeEXT": 2,
 	"vkCmdSetExclusiveScissorEnableNV": 2,
 	"vkGetImageViewAddressNVX": 2,
+	"vkGetImageViewHandle64NVX": 3,
 	"vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI": 2,
 }
 
