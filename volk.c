@@ -619,6 +619,27 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkQueueSubmit2 = (PFN_vkQueueSubmit2)load(context, "vkQueueSubmit2");
 	vkSetPrivateData = (PFN_vkSetPrivateData)load(context, "vkSetPrivateData");
 #endif /* defined(VK_VERSION_1_3) */
+#if defined(VK_VERSION_1_4)
+	vkCmdBindDescriptorSets2 = (PFN_vkCmdBindDescriptorSets2)load(context, "vkCmdBindDescriptorSets2");
+	vkCmdBindIndexBuffer2 = (PFN_vkCmdBindIndexBuffer2)load(context, "vkCmdBindIndexBuffer2");
+	vkCmdPushConstants2 = (PFN_vkCmdPushConstants2)load(context, "vkCmdPushConstants2");
+	vkCmdPushDescriptorSet = (PFN_vkCmdPushDescriptorSet)load(context, "vkCmdPushDescriptorSet");
+	vkCmdPushDescriptorSet2 = (PFN_vkCmdPushDescriptorSet2)load(context, "vkCmdPushDescriptorSet2");
+	vkCmdPushDescriptorSetWithTemplate = (PFN_vkCmdPushDescriptorSetWithTemplate)load(context, "vkCmdPushDescriptorSetWithTemplate");
+	vkCmdPushDescriptorSetWithTemplate2 = (PFN_vkCmdPushDescriptorSetWithTemplate2)load(context, "vkCmdPushDescriptorSetWithTemplate2");
+	vkCmdSetLineStipple = (PFN_vkCmdSetLineStipple)load(context, "vkCmdSetLineStipple");
+	vkCmdSetRenderingAttachmentLocations = (PFN_vkCmdSetRenderingAttachmentLocations)load(context, "vkCmdSetRenderingAttachmentLocations");
+	vkCmdSetRenderingInputAttachmentIndices = (PFN_vkCmdSetRenderingInputAttachmentIndices)load(context, "vkCmdSetRenderingInputAttachmentIndices");
+	vkCopyImageToImage = (PFN_vkCopyImageToImage)load(context, "vkCopyImageToImage");
+	vkCopyImageToMemory = (PFN_vkCopyImageToMemory)load(context, "vkCopyImageToMemory");
+	vkCopyMemoryToImage = (PFN_vkCopyMemoryToImage)load(context, "vkCopyMemoryToImage");
+	vkGetDeviceImageSubresourceLayout = (PFN_vkGetDeviceImageSubresourceLayout)load(context, "vkGetDeviceImageSubresourceLayout");
+	vkGetImageSubresourceLayout2 = (PFN_vkGetImageSubresourceLayout2)load(context, "vkGetImageSubresourceLayout2");
+	vkGetRenderingAreaGranularity = (PFN_vkGetRenderingAreaGranularity)load(context, "vkGetRenderingAreaGranularity");
+	vkMapMemory2 = (PFN_vkMapMemory2)load(context, "vkMapMemory2");
+	vkTransitionImageLayout = (PFN_vkTransitionImageLayout)load(context, "vkTransitionImageLayout");
+	vkUnmapMemory2 = (PFN_vkUnmapMemory2)load(context, "vkUnmapMemory2");
+#endif /* defined(VK_VERSION_1_4) */
 #if defined(VK_AMDX_shader_enqueue)
 	vkCmdDispatchGraphAMDX = (PFN_vkCmdDispatchGraphAMDX)load(context, "vkCmdDispatchGraphAMDX");
 	vkCmdDispatchGraphIndirectAMDX = (PFN_vkCmdDispatchGraphIndirectAMDX)load(context, "vkCmdDispatchGraphIndirectAMDX");
@@ -1506,6 +1527,27 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkQueueSubmit2 = (PFN_vkQueueSubmit2)load(context, "vkQueueSubmit2");
 	table->vkSetPrivateData = (PFN_vkSetPrivateData)load(context, "vkSetPrivateData");
 #endif /* defined(VK_VERSION_1_3) */
+#if defined(VK_VERSION_1_4)
+	table->vkCmdBindDescriptorSets2 = (PFN_vkCmdBindDescriptorSets2)load(context, "vkCmdBindDescriptorSets2");
+	table->vkCmdBindIndexBuffer2 = (PFN_vkCmdBindIndexBuffer2)load(context, "vkCmdBindIndexBuffer2");
+	table->vkCmdPushConstants2 = (PFN_vkCmdPushConstants2)load(context, "vkCmdPushConstants2");
+	table->vkCmdPushDescriptorSet = (PFN_vkCmdPushDescriptorSet)load(context, "vkCmdPushDescriptorSet");
+	table->vkCmdPushDescriptorSet2 = (PFN_vkCmdPushDescriptorSet2)load(context, "vkCmdPushDescriptorSet2");
+	table->vkCmdPushDescriptorSetWithTemplate = (PFN_vkCmdPushDescriptorSetWithTemplate)load(context, "vkCmdPushDescriptorSetWithTemplate");
+	table->vkCmdPushDescriptorSetWithTemplate2 = (PFN_vkCmdPushDescriptorSetWithTemplate2)load(context, "vkCmdPushDescriptorSetWithTemplate2");
+	table->vkCmdSetLineStipple = (PFN_vkCmdSetLineStipple)load(context, "vkCmdSetLineStipple");
+	table->vkCmdSetRenderingAttachmentLocations = (PFN_vkCmdSetRenderingAttachmentLocations)load(context, "vkCmdSetRenderingAttachmentLocations");
+	table->vkCmdSetRenderingInputAttachmentIndices = (PFN_vkCmdSetRenderingInputAttachmentIndices)load(context, "vkCmdSetRenderingInputAttachmentIndices");
+	table->vkCopyImageToImage = (PFN_vkCopyImageToImage)load(context, "vkCopyImageToImage");
+	table->vkCopyImageToMemory = (PFN_vkCopyImageToMemory)load(context, "vkCopyImageToMemory");
+	table->vkCopyMemoryToImage = (PFN_vkCopyMemoryToImage)load(context, "vkCopyMemoryToImage");
+	table->vkGetDeviceImageSubresourceLayout = (PFN_vkGetDeviceImageSubresourceLayout)load(context, "vkGetDeviceImageSubresourceLayout");
+	table->vkGetImageSubresourceLayout2 = (PFN_vkGetImageSubresourceLayout2)load(context, "vkGetImageSubresourceLayout2");
+	table->vkGetRenderingAreaGranularity = (PFN_vkGetRenderingAreaGranularity)load(context, "vkGetRenderingAreaGranularity");
+	table->vkMapMemory2 = (PFN_vkMapMemory2)load(context, "vkMapMemory2");
+	table->vkTransitionImageLayout = (PFN_vkTransitionImageLayout)load(context, "vkTransitionImageLayout");
+	table->vkUnmapMemory2 = (PFN_vkUnmapMemory2)load(context, "vkUnmapMemory2");
+#endif /* defined(VK_VERSION_1_4) */
 #if defined(VK_AMDX_shader_enqueue)
 	table->vkCmdDispatchGraphAMDX = (PFN_vkCmdDispatchGraphAMDX)load(context, "vkCmdDispatchGraphAMDX");
 	table->vkCmdDispatchGraphIndirectAMDX = (PFN_vkCmdDispatchGraphIndirectAMDX)load(context, "vkCmdDispatchGraphIndirectAMDX");
@@ -2429,6 +2471,27 @@ PFN_vkGetPrivateData vkGetPrivateData;
 PFN_vkQueueSubmit2 vkQueueSubmit2;
 PFN_vkSetPrivateData vkSetPrivateData;
 #endif /* defined(VK_VERSION_1_3) */
+#if defined(VK_VERSION_1_4)
+PFN_vkCmdBindDescriptorSets2 vkCmdBindDescriptorSets2;
+PFN_vkCmdBindIndexBuffer2 vkCmdBindIndexBuffer2;
+PFN_vkCmdPushConstants2 vkCmdPushConstants2;
+PFN_vkCmdPushDescriptorSet vkCmdPushDescriptorSet;
+PFN_vkCmdPushDescriptorSet2 vkCmdPushDescriptorSet2;
+PFN_vkCmdPushDescriptorSetWithTemplate vkCmdPushDescriptorSetWithTemplate;
+PFN_vkCmdPushDescriptorSetWithTemplate2 vkCmdPushDescriptorSetWithTemplate2;
+PFN_vkCmdSetLineStipple vkCmdSetLineStipple;
+PFN_vkCmdSetRenderingAttachmentLocations vkCmdSetRenderingAttachmentLocations;
+PFN_vkCmdSetRenderingInputAttachmentIndices vkCmdSetRenderingInputAttachmentIndices;
+PFN_vkCopyImageToImage vkCopyImageToImage;
+PFN_vkCopyImageToMemory vkCopyImageToMemory;
+PFN_vkCopyMemoryToImage vkCopyMemoryToImage;
+PFN_vkGetDeviceImageSubresourceLayout vkGetDeviceImageSubresourceLayout;
+PFN_vkGetImageSubresourceLayout2 vkGetImageSubresourceLayout2;
+PFN_vkGetRenderingAreaGranularity vkGetRenderingAreaGranularity;
+PFN_vkMapMemory2 vkMapMemory2;
+PFN_vkTransitionImageLayout vkTransitionImageLayout;
+PFN_vkUnmapMemory2 vkUnmapMemory2;
+#endif /* defined(VK_VERSION_1_4) */
 #if defined(VK_AMDX_shader_enqueue)
 PFN_vkCmdDispatchGraphAMDX vkCmdDispatchGraphAMDX;
 PFN_vkCmdDispatchGraphIndirectAMDX vkCmdDispatchGraphIndirectAMDX;
