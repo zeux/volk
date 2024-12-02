@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 302
+#define VOLK_HEADER_VERSION 303
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -323,6 +323,27 @@ struct VolkDeviceTable
 	PFN_vkQueueSubmit2 vkQueueSubmit2;
 	PFN_vkSetPrivateData vkSetPrivateData;
 #endif /* defined(VK_VERSION_1_3) */
+#if defined(VK_VERSION_1_4)
+	PFN_vkCmdBindDescriptorSets2 vkCmdBindDescriptorSets2;
+	PFN_vkCmdBindIndexBuffer2 vkCmdBindIndexBuffer2;
+	PFN_vkCmdPushConstants2 vkCmdPushConstants2;
+	PFN_vkCmdPushDescriptorSet vkCmdPushDescriptorSet;
+	PFN_vkCmdPushDescriptorSet2 vkCmdPushDescriptorSet2;
+	PFN_vkCmdPushDescriptorSetWithTemplate vkCmdPushDescriptorSetWithTemplate;
+	PFN_vkCmdPushDescriptorSetWithTemplate2 vkCmdPushDescriptorSetWithTemplate2;
+	PFN_vkCmdSetLineStipple vkCmdSetLineStipple;
+	PFN_vkCmdSetRenderingAttachmentLocations vkCmdSetRenderingAttachmentLocations;
+	PFN_vkCmdSetRenderingInputAttachmentIndices vkCmdSetRenderingInputAttachmentIndices;
+	PFN_vkCopyImageToImage vkCopyImageToImage;
+	PFN_vkCopyImageToMemory vkCopyImageToMemory;
+	PFN_vkCopyMemoryToImage vkCopyMemoryToImage;
+	PFN_vkGetDeviceImageSubresourceLayout vkGetDeviceImageSubresourceLayout;
+	PFN_vkGetImageSubresourceLayout2 vkGetImageSubresourceLayout2;
+	PFN_vkGetRenderingAreaGranularity vkGetRenderingAreaGranularity;
+	PFN_vkMapMemory2 vkMapMemory2;
+	PFN_vkTransitionImageLayout vkTransitionImageLayout;
+	PFN_vkUnmapMemory2 vkUnmapMemory2;
+#endif /* defined(VK_VERSION_1_4) */
 #if defined(VK_AMDX_shader_enqueue)
 	PFN_vkCmdDispatchGraphAMDX vkCmdDispatchGraphAMDX;
 	PFN_vkCmdDispatchGraphIndirectAMDX vkCmdDispatchGraphIndirectAMDX;
@@ -1238,6 +1259,27 @@ extern PFN_vkGetPrivateData vkGetPrivateData;
 extern PFN_vkQueueSubmit2 vkQueueSubmit2;
 extern PFN_vkSetPrivateData vkSetPrivateData;
 #endif /* defined(VK_VERSION_1_3) */
+#if defined(VK_VERSION_1_4)
+extern PFN_vkCmdBindDescriptorSets2 vkCmdBindDescriptorSets2;
+extern PFN_vkCmdBindIndexBuffer2 vkCmdBindIndexBuffer2;
+extern PFN_vkCmdPushConstants2 vkCmdPushConstants2;
+extern PFN_vkCmdPushDescriptorSet vkCmdPushDescriptorSet;
+extern PFN_vkCmdPushDescriptorSet2 vkCmdPushDescriptorSet2;
+extern PFN_vkCmdPushDescriptorSetWithTemplate vkCmdPushDescriptorSetWithTemplate;
+extern PFN_vkCmdPushDescriptorSetWithTemplate2 vkCmdPushDescriptorSetWithTemplate2;
+extern PFN_vkCmdSetLineStipple vkCmdSetLineStipple;
+extern PFN_vkCmdSetRenderingAttachmentLocations vkCmdSetRenderingAttachmentLocations;
+extern PFN_vkCmdSetRenderingInputAttachmentIndices vkCmdSetRenderingInputAttachmentIndices;
+extern PFN_vkCopyImageToImage vkCopyImageToImage;
+extern PFN_vkCopyImageToMemory vkCopyImageToMemory;
+extern PFN_vkCopyMemoryToImage vkCopyMemoryToImage;
+extern PFN_vkGetDeviceImageSubresourceLayout vkGetDeviceImageSubresourceLayout;
+extern PFN_vkGetImageSubresourceLayout2 vkGetImageSubresourceLayout2;
+extern PFN_vkGetRenderingAreaGranularity vkGetRenderingAreaGranularity;
+extern PFN_vkMapMemory2 vkMapMemory2;
+extern PFN_vkTransitionImageLayout vkTransitionImageLayout;
+extern PFN_vkUnmapMemory2 vkUnmapMemory2;
+#endif /* defined(VK_VERSION_1_4) */
 #if defined(VK_AMDX_shader_enqueue)
 extern PFN_vkCmdDispatchGraphAMDX vkCmdDispatchGraphAMDX;
 extern PFN_vkCmdDispatchGraphIndirectAMDX vkCmdDispatchGraphIndirectAMDX;
