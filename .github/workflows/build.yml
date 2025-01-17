@@ -22,6 +22,9 @@ jobs:
       shell: bash
       run: |
         mv Vulkan-Headers ~/Vulkan-Headers
+    - name: install deps for tests
+      run: sudo apt install -y xorg-dev
+      if: matrix.os == 'ubuntu'
     - name: build main
       shell: bash
       run: |
