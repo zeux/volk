@@ -743,6 +743,10 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 #if defined(VK_EXT_external_memory_host)
 	vkGetMemoryHostPointerPropertiesEXT = (PFN_vkGetMemoryHostPointerPropertiesEXT)load(context, "vkGetMemoryHostPointerPropertiesEXT");
 #endif /* defined(VK_EXT_external_memory_host) */
+#if defined(VK_EXT_external_memory_metal)
+	vkGetMemoryMetalHandleEXT = (PFN_vkGetMemoryMetalHandleEXT)load(context, "vkGetMemoryMetalHandleEXT");
+	vkGetMemoryMetalHandlePropertiesEXT = (PFN_vkGetMemoryMetalHandlePropertiesEXT)load(context, "vkGetMemoryMetalHandlePropertiesEXT");
+#endif /* defined(VK_EXT_external_memory_metal) */
 #if defined(VK_EXT_full_screen_exclusive)
 	vkAcquireFullScreenExclusiveModeEXT = (PFN_vkAcquireFullScreenExclusiveModeEXT)load(context, "vkAcquireFullScreenExclusiveModeEXT");
 	vkReleaseFullScreenExclusiveModeEXT = (PFN_vkReleaseFullScreenExclusiveModeEXT)load(context, "vkReleaseFullScreenExclusiveModeEXT");
@@ -1655,6 +1659,10 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 #if defined(VK_EXT_external_memory_host)
 	table->vkGetMemoryHostPointerPropertiesEXT = (PFN_vkGetMemoryHostPointerPropertiesEXT)load(context, "vkGetMemoryHostPointerPropertiesEXT");
 #endif /* defined(VK_EXT_external_memory_host) */
+#if defined(VK_EXT_external_memory_metal)
+	table->vkGetMemoryMetalHandleEXT = (PFN_vkGetMemoryMetalHandleEXT)load(context, "vkGetMemoryMetalHandleEXT");
+	table->vkGetMemoryMetalHandlePropertiesEXT = (PFN_vkGetMemoryMetalHandlePropertiesEXT)load(context, "vkGetMemoryMetalHandlePropertiesEXT");
+#endif /* defined(VK_EXT_external_memory_metal) */
 #if defined(VK_EXT_full_screen_exclusive)
 	table->vkAcquireFullScreenExclusiveModeEXT = (PFN_vkAcquireFullScreenExclusiveModeEXT)load(context, "vkAcquireFullScreenExclusiveModeEXT");
 	table->vkReleaseFullScreenExclusiveModeEXT = (PFN_vkReleaseFullScreenExclusiveModeEXT)load(context, "vkReleaseFullScreenExclusiveModeEXT");
@@ -2640,6 +2648,10 @@ PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT vkGetPhysicalDeviceSurfaceCapabil
 #if defined(VK_EXT_external_memory_host)
 PFN_vkGetMemoryHostPointerPropertiesEXT vkGetMemoryHostPointerPropertiesEXT;
 #endif /* defined(VK_EXT_external_memory_host) */
+#if defined(VK_EXT_external_memory_metal)
+PFN_vkGetMemoryMetalHandleEXT vkGetMemoryMetalHandleEXT;
+PFN_vkGetMemoryMetalHandlePropertiesEXT vkGetMemoryMetalHandlePropertiesEXT;
+#endif /* defined(VK_EXT_external_memory_metal) */
 #if defined(VK_EXT_full_screen_exclusive)
 PFN_vkAcquireFullScreenExclusiveModeEXT vkAcquireFullScreenExclusiveModeEXT;
 PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT vkGetPhysicalDeviceSurfacePresentModes2EXT;
