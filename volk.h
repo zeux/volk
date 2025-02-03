@@ -10,6 +10,10 @@
 #ifndef VOLK_H_
 #define VOLK_H_
 
+#if defined(VOLK_NAMESPACE) && !defined(__cplusplus)
+#error VOLK_NAMESPACE is only supported in C++
+#endif
+
 #if defined(VULKAN_H_) && !defined(VK_NO_PROTOTYPES)
 #	error To use volk, you need to define VK_NO_PROTOTYPES before including vulkan.h
 #endif
@@ -32,7 +36,11 @@
 #endif
 
 #ifdef __cplusplus
+#ifdef VOLK_NAMESPACE
+namespace volk {
+#else
 extern "C" {
+#endif
 #endif
 
 struct VolkDeviceTable;
@@ -105,7 +113,7 @@ VkDevice volkGetLoadedDevice(void);
 void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device);
 
 #ifdef __cplusplus
-}
+} // extern "C" / namespace volk
 #endif
 
 /* Instead of directly including vulkan.h, we include platform-specific parts of the SDK manually
@@ -1515,7 +1523,11 @@ struct VolkDeviceTable
 };
 
 #ifdef __cplusplus
+#ifdef VOLK_NAMESPACE
+namespace volk {
+#else
 extern "C" {
+#endif
 #endif
 
 /* VOLK_GENERATE_PROTOTYPES_H */
@@ -2689,10 +2701,14 @@ extern PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
 /* VOLK_GENERATE_PROTOTYPES_H */
 
 #ifdef __cplusplus
-}
+} // extern "C" / namespace volk
 #endif
 
+#ifdef VOLK_NAMESPACE
+using namespace volk;
 #endif
+
+#endif // VOLK_H
 
 #ifdef VOLK_IMPLEMENTATION
 #undef VOLK_IMPLEMENTATION

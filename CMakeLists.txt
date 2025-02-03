@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5...3.30)
 
-project(volk VERSION 
+project(volk VERSION
 # VOLK_GENERATE_VERSION
 326
 # VOLK_GENERATE_VERSION
@@ -17,6 +17,9 @@ if(NOT DEFINED VOLK_PULL_IN_VULKAN)
 endif()
 if(NOT DEFINED VOLK_INSTALL)
   option(VOLK_INSTALL "Create installation targets" OFF)
+endif()
+if(NOT DEFINED VOLK_NAMESPACE)
+  option(VOLK_NAMESPACE "Use C++ namespace for vk* functions" OFF)
 endif()
 if(NOT DEFINED VOLK_HEADERS_ONLY)
   option(VOLK_HEADERS_ONLY "Add interface library only" OFF)
@@ -35,6 +38,10 @@ if(NOT VOLK_HEADERS_ONLY OR VOLK_INSTALL)
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
     $<INSTALL_INTERFACE:include>
   )
+  if(VOLK_NAMESPACE)
+    target_compile_definitions(volk PUBLIC VOLK_NAMESPACE)
+    set_source_files_properties(volk.c PROPERTIES LANGUAGE CXX)
+  endif()
   if(VOLK_STATIC_DEFINES)
     target_compile_definitions(volk PUBLIC ${VOLK_STATIC_DEFINES})
   endif()
