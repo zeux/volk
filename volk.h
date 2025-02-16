@@ -25,14 +25,97 @@
 #ifndef VULKAN_H_
 #	ifdef VOLK_VULKAN_H_PATH
 #		include VOLK_VULKAN_H_PATH
-#	else
+#	else /* Platform headers included below */
+#		include <vulkan/vk_platform.h>
+#		include <vulkan/vulkan_core.h>
+#	endif
+#endif
 
-/* Instead of directly including vulkan.h, we include individual parts of the SDK
- * This is necessary to avoid including platform headers (which vulkan.h does unconditionally)
- * and replace them with forward declarations, which makes build times faster and avoids macro conflicts.
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+struct VolkDeviceTable;
+
+/**
+ * Initialize library by loading Vulkan loader; call this function before creating the Vulkan instance.
+ *
+ * Returns VK_SUCCESS on success and VK_ERROR_INITIALIZATION_FAILED otherwise.
  */
-#include <vulkan/vk_platform.h>
-#include <vulkan/vulkan_core.h>
+VkResult volkInitialize(void);
+
+/**
+ * Initialize library by providing a custom handler to load global symbols.
+ *
+ * This function can be used instead of volkInitialize.
+ * The handler function pointer will be asked to load global Vulkan symbols which require no instance
+ * (such as vkCreateInstance, vkEnumerateInstance* and vkEnumerateInstanceVersion if available).
+ */
+void volkInitializeCustom(PFN_vkGetInstanceProcAddr handler);
+
+/**
+ * Finalize library by unloading Vulkan loader and resetting global symbols to NULL.
+ *
+ * This function does not need to be called on process exit (as loader will be unloaded automatically) or if volkInitialize failed.
+ * In general this function is optional to call but may be useful in rare cases eg if volk needs to be reinitialized multiple times.
+ */
+void volkFinalize(void);
+
+/**
+ * Get Vulkan instance version supported by the Vulkan loader, or 0 if Vulkan isn't supported
+ *
+ * Returns 0 if volkInitialize wasn't called or failed.
+ */
+uint32_t volkGetInstanceVersion(void);
+
+/**
+ * Load global function pointers using application-created VkInstance; call this function after creating the Vulkan instance.
+ */
+void volkLoadInstance(VkInstance instance);
+
+/**
+ * Load global function pointers using application-created VkInstance; call this function after creating the Vulkan instance.
+ * Skips loading device-based function pointers, requires usage of volkLoadDevice afterwards.
+ */
+void volkLoadInstanceOnly(VkInstance instance);
+
+/**
+ * Load global function pointers using application-created VkDevice; call this function after creating the Vulkan device.
+ *
+ * Note: this is not suitable for applications that want to use multiple VkDevice objects concurrently.
+ */
+void volkLoadDevice(VkDevice device);
+
+/**
+ * Return last VkInstance for which global function pointers have been loaded via volkLoadInstance(),
+ * or VK_NULL_HANDLE if volkLoadInstance() has not been called.
+ */
+VkInstance volkGetLoadedInstance(void);
+
+/**
+ * Return last VkDevice for which global function pointers have been loaded via volkLoadDevice(),
+ * or VK_NULL_HANDLE if volkLoadDevice() has not been called.
+ */
+VkDevice volkGetLoadedDevice(void);
+
+/**
+ * Load function pointers using application-created VkDevice into a table.
+ * Application should use function pointers from that table instead of using global function pointers.
+ */
+void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device);
+
+#ifdef __cplusplus
+}
+#endif
+
+/* Instead of directly including vulkan.h, we include platform-specific parts of the SDK manually
+ * This is necessary to avoid including platform headers in some cases (which vulkan.h does unconditionally)
+ * and replace them with forward declarations, which makes build times faster and avoids macro conflicts.
+ *
+ * Note that we only replace platform-specific headers when the headers are known to be problematic: very large
+ * or slow to compile (Windows), or introducing unprefixed macros which can cause conflicts (Windows, Xlib).
+ */
+#if !defined(VULKAN_H_) && !defined(VOLK_VULKAN_H_PATH)
 
 #ifdef VK_USE_PLATFORM_ANDROID_KHR
 #include <vulkan/vulkan_android.h>
@@ -117,81 +200,7 @@ typedef unsigned long RROutput;
 #include <vulkan/vulkan_beta.h>
 #endif
 
-#	endif
-#endif /* VULKAN_H_ */
-
-#ifdef __cplusplus
-extern "C" {
 #endif
-
-struct VolkDeviceTable;
-
-/**
- * Initialize library by loading Vulkan loader; call this function before creating the Vulkan instance.
- *
- * Returns VK_SUCCESS on success and VK_ERROR_INITIALIZATION_FAILED otherwise.
- */
-VkResult volkInitialize(void);
-
-/**
- * Initialize library by providing a custom handler to load global symbols.
- *
- * This function can be used instead of volkInitialize.
- * The handler function pointer will be asked to load global Vulkan symbols which require no instance
- * (such as vkCreateInstance, vkEnumerateInstance* and vkEnumerateInstanceVersion if available).
- */
-void volkInitializeCustom(PFN_vkGetInstanceProcAddr handler);
-
-/**
- * Finalize library by unloading Vulkan loader and resetting global symbols to NULL.
- *
- * This function does not need to be called on process exit (as loader will be unloaded automatically) or if volkInitialize failed.
- * In general this function is optional to call but may be useful in rare cases eg if volk needs to be reinitialized multiple times.
- */
-void volkFinalize(void);
-
-/**
- * Get Vulkan instance version supported by the Vulkan loader, or 0 if Vulkan isn't supported
- *
- * Returns 0 if volkInitialize wasn't called or failed.
- */
-uint32_t volkGetInstanceVersion(void);
-
-/**
- * Load global function pointers using application-created VkInstance; call this function after creating the Vulkan instance.
- */
-void volkLoadInstance(VkInstance instance);
-
-/**
- * Load global function pointers using application-created VkInstance; call this function after creating the Vulkan instance.
- * Skips loading device-based function pointers, requires usage of volkLoadDevice afterwards.
- */
-void volkLoadInstanceOnly(VkInstance instance);
-
-/**
- * Load global function pointers using application-created VkDevice; call this function after creating the Vulkan device.
- *
- * Note: this is not suitable for applications that want to use multiple VkDevice objects concurrently.
- */
-void volkLoadDevice(VkDevice device);
-
-/**
- * Return last VkInstance for which global function pointers have been loaded via volkLoadInstance(),
- * or VK_NULL_HANDLE if volkLoadInstance() has not been called.
- */
-VkInstance volkGetLoadedInstance(void);
-
-/**
- * Return last VkDevice for which global function pointers have been loaded via volkLoadDevice(),
- * or VK_NULL_HANDLE if volkLoadDevice() has not been called.
- */
-VkDevice volkGetLoadedDevice(void);
-
-/**
- * Load function pointers using application-created VkDevice into a table.
- * Application should use function pointers from that table instead of using global function pointers.
- */
-void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device);
 
 /**
  * Device-specific function pointer table
@@ -1123,6 +1132,10 @@ struct VolkDeviceTable
 #endif /* (defined(VK_KHR_device_group) && defined(VK_KHR_swapchain)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1)) */
 	/* VOLK_GENERATE_DEVICE_TABLE */
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* VOLK_GENERATE_PROTOTYPES_H */
 #if defined(VK_VERSION_1_0)
