@@ -25,31 +25,100 @@
 #ifndef VULKAN_H_
 #	ifdef VOLK_VULKAN_H_PATH
 #		include VOLK_VULKAN_H_PATH
-#	elif defined(VK_USE_PLATFORM_WIN32_KHR)
-#		include <vulkan/vk_platform.h>
-#		include <vulkan/vulkan_core.h>
-
-		/* When VK_USE_PLATFORM_WIN32_KHR is defined, instead of including vulkan.h directly, we include individual parts of the SDK
-		 * This is necessary to avoid including <windows.h> which is very heavy - it takes 200ms to parse without WIN32_LEAN_AND_MEAN
-		 * and 100ms to parse with it. vulkan_win32.h only needs a few symbols that are easy to redefine ourselves.
-		 */
-		typedef unsigned long DWORD;
-		typedef const wchar_t* LPCWSTR;
-		typedef void* HANDLE;
-		typedef struct HINSTANCE__* HINSTANCE;
-		typedef struct HWND__* HWND;
-		typedef struct HMONITOR__* HMONITOR;
-		typedef struct _SECURITY_ATTRIBUTES SECURITY_ATTRIBUTES;
-
-#		include <vulkan/vulkan_win32.h>
-
-#		ifdef VK_ENABLE_BETA_EXTENSIONS
-#			include <vulkan/vulkan_beta.h>
-#		endif
 #	else
-#		include <vulkan/vulkan.h>
-#	endif
+
+/* Instead of directly including vulkan.h, we include individual parts of the SDK
+ * This is necessary to avoid including platform headers (which vulkan.h does unconditionally)
+ * and replace them with forward declarations, which makes build times faster and avoids macro conflicts.
+ */
+#include <vulkan/vk_platform.h>
+#include <vulkan/vulkan_core.h>
+
+#ifdef VK_USE_PLATFORM_ANDROID_KHR
+#include <vulkan/vulkan_android.h>
 #endif
+
+#ifdef VK_USE_PLATFORM_FUCHSIA
+#include <zircon/types.h>
+#include <vulkan/vulkan_fuchsia.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_IOS_MVK
+#include <vulkan/vulkan_ios.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_MACOS_MVK
+#include <vulkan/vulkan_macos.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_METAL_EXT
+#include <vulkan/vulkan_metal.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_VI_NN
+#include <vulkan/vulkan_vi.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_WAYLAND_KHR
+#include <vulkan/vulkan_wayland.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_WIN32_KHR
+typedef unsigned long DWORD;
+typedef const wchar_t* LPCWSTR;
+typedef void* HANDLE;
+typedef struct HINSTANCE__* HINSTANCE;
+typedef struct HWND__* HWND;
+typedef struct HMONITOR__* HMONITOR;
+typedef struct _SECURITY_ATTRIBUTES SECURITY_ATTRIBUTES;
+#include <vulkan/vulkan_win32.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_XCB_KHR
+#include <xcb/xcb.h>
+#include <vulkan/vulkan_xcb.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_XLIB_KHR
+typedef struct _XDisplay Display;
+typedef unsigned long Window;
+typedef unsigned long VisualID;
+#include <vulkan/vulkan_xlib.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_DIRECTFB_EXT
+#include <directfb.h>
+#include <vulkan/vulkan_directfb.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
+typedef struct _XDisplay Display;
+typedef unsigned long RROutput;
+#include <vulkan/vulkan_xlib_xrandr.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_GGP
+#include <ggp_c/vulkan_types.h>
+#include <vulkan/vulkan_ggp.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_SCREEN_QNX
+#include <screen/screen.h>
+#include <vulkan/vulkan_screen.h>
+#endif
+
+#ifdef VK_USE_PLATFORM_SCI
+#include <nvscisync.h>
+#include <nvscibuf.h>
+#include <vulkan/vulkan_sci.h>
+#endif
+
+#ifdef VK_ENABLE_BETA_EXTENSIONS
+#include <vulkan/vulkan_beta.h>
+#endif
+
+#	endif
+#endif /* VULKAN_H_ */
 
 #ifdef __cplusplus
 extern "C" {
