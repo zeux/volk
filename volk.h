@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 310
+#define VOLK_HEADER_VERSION 311
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -529,6 +529,9 @@ struct VolkDeviceTable
 	PFN_vkGetMemoryMetalHandleEXT vkGetMemoryMetalHandleEXT;
 	PFN_vkGetMemoryMetalHandlePropertiesEXT vkGetMemoryMetalHandlePropertiesEXT;
 #endif /* defined(VK_EXT_external_memory_metal) */
+#if defined(VK_EXT_fragment_density_map_offset)
+	PFN_vkCmdEndRendering2EXT vkCmdEndRendering2EXT;
+#endif /* defined(VK_EXT_fragment_density_map_offset) */
 #if defined(VK_EXT_full_screen_exclusive)
 	PFN_vkAcquireFullScreenExclusiveModeEXT vkAcquireFullScreenExclusiveModeEXT;
 	PFN_vkReleaseFullScreenExclusiveModeEXT vkReleaseFullScreenExclusiveModeEXT;
@@ -1526,6 +1529,9 @@ extern PFN_vkGetMemoryHostPointerPropertiesEXT vkGetMemoryHostPointerPropertiesE
 extern PFN_vkGetMemoryMetalHandleEXT vkGetMemoryMetalHandleEXT;
 extern PFN_vkGetMemoryMetalHandlePropertiesEXT vkGetMemoryMetalHandlePropertiesEXT;
 #endif /* defined(VK_EXT_external_memory_metal) */
+#if defined(VK_EXT_fragment_density_map_offset)
+extern PFN_vkCmdEndRendering2EXT vkCmdEndRendering2EXT;
+#endif /* defined(VK_EXT_fragment_density_map_offset) */
 #if defined(VK_EXT_full_screen_exclusive)
 extern PFN_vkAcquireFullScreenExclusiveModeEXT vkAcquireFullScreenExclusiveModeEXT;
 extern PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT vkGetPhysicalDeviceSurfacePresentModes2EXT;
