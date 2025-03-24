@@ -21,6 +21,8 @@
 #	include <stdlib.h>
 #endif
 
+#include <string.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -188,6 +190,7 @@ VkDevice volkGetLoadedDevice(void)
 
 void volkLoadDeviceTable(struct VolkDeviceTable* table, VkDevice device)
 {
+	memset(table, 0, sizeof(*table));
 	volkGenLoadDeviceTable(table, device, vkGetDeviceProcAddrStub);
 }
 
