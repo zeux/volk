@@ -157,8 +157,11 @@ if __name__ == "__main__":
 	for key in block_keys:
 		blocks[key] = ''
 
+	devi = 0
+
 	for (group, cmdnames) in command_groups.items():
 		ifdef = '#if ' + group + '\n'
+		devt = 0
 
 		for key in block_keys:
 			blocks[key] += ifdef
@@ -176,6 +179,7 @@ if __name__ == "__main__":
 				blocks['LOAD_DEVICE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 				blocks['DEVICE_TABLE'] += '\tPFN_' + name + ' ' + name + ';\n'
 				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				devt += 1
 			elif is_descendant_type(types, type, 'VkInstance'):
 				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 			elif type != '':
@@ -187,6 +191,11 @@ if __name__ == "__main__":
 		for key in block_keys:
 			if blocks[key].endswith(ifdef):
 				blocks[key] = blocks[key][:-len(ifdef)]
+			elif key == 'DEVICE_TABLE':
+				devi += 1
+				blocks[key] += '#else\n'
+				blocks[key] += '\tPFN_vkVoidFunction padding' + str(devi) + '[' + str(devt) + '];\n'
+				blocks[key] += '#endif /* ' + group + ' */\n'
 			else:
 				blocks[key] += '#endif /* ' + group + ' */\n'
 
