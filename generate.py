@@ -7,6 +7,7 @@ import sys
 import urllib
 import xml.etree.ElementTree as etree
 import urllib.request
+import zlib
 
 cmdversions = {
 	"vkCmdSetDiscardRectangleEnableEXT": 2,
@@ -157,14 +158,16 @@ if __name__ == "__main__":
 	for key in block_keys:
 		blocks[key] = ''
 
-	devi = 0
+	devp = {}
 
 	for (group, cmdnames) in command_groups.items():
 		ifdef = '#if ' + group + '\n'
-		devt = 0
 
 		for key in block_keys:
 			blocks[key] += ifdef
+
+		devt = 0
+		devo = len(blocks['DEVICE_TABLE'])
 
 		for name in sorted(cmdnames):
 			cmd = commands[name]
@@ -192,9 +195,12 @@ if __name__ == "__main__":
 			if blocks[key].endswith(ifdef):
 				blocks[key] = blocks[key][:-len(ifdef)]
 			elif key == 'DEVICE_TABLE':
-				devi += 1
+				devh = zlib.crc32(blocks[key][devo:].encode())
+				assert(devh not in devp)
+				devp[devh] = True
+
 				blocks[key] += '#else\n'
-				blocks[key] += '\tPFN_vkVoidFunction padding' + str(devi) + '[' + str(devt) + '];\n'
+				blocks[key] += f'\tPFN_vkVoidFunction padding_{devh:x}[{devt}];\n'
 				blocks[key] += '#endif /* ' + group + ' */\n'
 			else:
 				blocks[key] += '#endif /* ' + group + ' */\n'
