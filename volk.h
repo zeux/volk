@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 311
+#define VOLK_HEADER_VERSION 312
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -1191,6 +1191,13 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_5195094c[3];
 #endif /* defined(VK_NV_device_generated_commands_compute) */
+#if defined(VK_NV_external_compute_queue)
+	PFN_vkCreateExternalComputeQueueNV vkCreateExternalComputeQueueNV;
+	PFN_vkDestroyExternalComputeQueueNV vkDestroyExternalComputeQueueNV;
+	PFN_vkGetExternalComputeQueueDataNV vkGetExternalComputeQueueDataNV;
+#else
+	PFN_vkVoidFunction padding_4f947e0b[3];
+#endif /* defined(VK_NV_external_compute_queue) */
 #if defined(VK_NV_external_memory_rdma)
 	PFN_vkGetMemoryRemoteAddressNV vkGetMemoryRemoteAddressNV;
 #else
@@ -1285,6 +1292,13 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_be12e32[2];
 #endif /* defined(VK_QCOM_tile_properties) */
+#if defined(VK_QCOM_tile_shading)
+	PFN_vkCmdBeginPerTileExecutionQCOM vkCmdBeginPerTileExecutionQCOM;
+	PFN_vkCmdDispatchTileQCOM vkCmdDispatchTileQCOM;
+	PFN_vkCmdEndPerTileExecutionQCOM vkCmdEndPerTileExecutionQCOM;
+#else
+	PFN_vkVoidFunction padding_fcd9e1df[3];
+#endif /* defined(VK_QCOM_tile_shading) */
 #if defined(VK_QNX_external_memory_screen_buffer)
 	PFN_vkGetScreenBufferPropertiesQNX vkGetScreenBufferPropertiesQNX;
 #else
@@ -2389,6 +2403,11 @@ extern PFN_vkCmdUpdatePipelineIndirectBufferNV vkCmdUpdatePipelineIndirectBuffer
 extern PFN_vkGetPipelineIndirectDeviceAddressNV vkGetPipelineIndirectDeviceAddressNV;
 extern PFN_vkGetPipelineIndirectMemoryRequirementsNV vkGetPipelineIndirectMemoryRequirementsNV;
 #endif /* defined(VK_NV_device_generated_commands_compute) */
+#if defined(VK_NV_external_compute_queue)
+extern PFN_vkCreateExternalComputeQueueNV vkCreateExternalComputeQueueNV;
+extern PFN_vkDestroyExternalComputeQueueNV vkDestroyExternalComputeQueueNV;
+extern PFN_vkGetExternalComputeQueueDataNV vkGetExternalComputeQueueDataNV;
+#endif /* defined(VK_NV_external_compute_queue) */
 #if defined(VK_NV_external_memory_capabilities)
 extern PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV vkGetPhysicalDeviceExternalImageFormatPropertiesNV;
 #endif /* defined(VK_NV_external_memory_capabilities) */
@@ -2459,6 +2478,11 @@ extern PFN_vkCmdSetViewportShadingRatePaletteNV vkCmdSetViewportShadingRatePalet
 extern PFN_vkGetDynamicRenderingTilePropertiesQCOM vkGetDynamicRenderingTilePropertiesQCOM;
 extern PFN_vkGetFramebufferTilePropertiesQCOM vkGetFramebufferTilePropertiesQCOM;
 #endif /* defined(VK_QCOM_tile_properties) */
+#if defined(VK_QCOM_tile_shading)
+extern PFN_vkCmdBeginPerTileExecutionQCOM vkCmdBeginPerTileExecutionQCOM;
+extern PFN_vkCmdDispatchTileQCOM vkCmdDispatchTileQCOM;
+extern PFN_vkCmdEndPerTileExecutionQCOM vkCmdEndPerTileExecutionQCOM;
+#endif /* defined(VK_QCOM_tile_shading) */
 #if defined(VK_QNX_external_memory_screen_buffer)
 extern PFN_vkGetScreenBufferPropertiesQNX vkGetScreenBufferPropertiesQNX;
 #endif /* defined(VK_QNX_external_memory_screen_buffer) */
