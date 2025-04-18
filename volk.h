@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 312
+#define VOLK_HEADER_VERSION 313
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -1286,6 +1286,11 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_92a0767f[3];
 #endif /* defined(VK_NV_shading_rate_image) */
+#if defined(VK_QCOM_tile_memory_heap)
+	PFN_vkCmdBindTileMemoryQCOM vkCmdBindTileMemoryQCOM;
+#else
+	PFN_vkVoidFunction padding_e2d55d04[1];
+#endif /* defined(VK_QCOM_tile_memory_heap) */
 #if defined(VK_QCOM_tile_properties)
 	PFN_vkGetDynamicRenderingTilePropertiesQCOM vkGetDynamicRenderingTilePropertiesQCOM;
 	PFN_vkGetFramebufferTilePropertiesQCOM vkGetFramebufferTilePropertiesQCOM;
@@ -2474,6 +2479,9 @@ extern PFN_vkCmdBindShadingRateImageNV vkCmdBindShadingRateImageNV;
 extern PFN_vkCmdSetCoarseSampleOrderNV vkCmdSetCoarseSampleOrderNV;
 extern PFN_vkCmdSetViewportShadingRatePaletteNV vkCmdSetViewportShadingRatePaletteNV;
 #endif /* defined(VK_NV_shading_rate_image) */
+#if defined(VK_QCOM_tile_memory_heap)
+extern PFN_vkCmdBindTileMemoryQCOM vkCmdBindTileMemoryQCOM;
+#endif /* defined(VK_QCOM_tile_memory_heap) */
 #if defined(VK_QCOM_tile_properties)
 extern PFN_vkGetDynamicRenderingTilePropertiesQCOM vkGetDynamicRenderingTilePropertiesQCOM;
 extern PFN_vkGetFramebufferTilePropertiesQCOM vkGetFramebufferTilePropertiesQCOM;
