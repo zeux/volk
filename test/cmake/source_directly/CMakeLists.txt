@@ -11,10 +11,10 @@
 cmake_minimum_required(VERSION 3.5)
 project(volk_test LANGUAGES C)
 
-add_executable(volk_test main.c ../../volk.c)
+add_executable(volk_test main.c ../../../volk.c)
 
 # Set include path for volk.h
-target_include_directories(volk_test PRIVATE ../..)
+target_include_directories(volk_test PRIVATE ../../..)
 
 # Set suitable platform defines
 if(CMAKE_SYSTEM_NAME STREQUAL Windows)

@@ -13,8 +13,8 @@ volk is written in C89 and supports Windows, Linux, Android and macOS (via Molte
 There are multiple ways to use volk in your project:
 
 1. You can add `volk.c` to your build system. Note that the usual preprocessor defines that enable Vulkan's platform-specific functions (VK_USE_PLATFORM_WIN32_KHR, VK_USE_PLATFORM_XLIB_KHR, VK_USE_PLATFORM_MACOS_MVK, etc) must be passed as desired to the compiler when building `volk.c`.
-2. You can use provided CMake files, with the usage detailed below.
-3. You can use volk in header-only fashion. Include `volk.h` wherever you want to use Vulkan functions. In exactly one source file, define `VOLK_IMPLEMENTATION` before including `volk.h`. Do not build `volk.c` at all in this case - however, `volk.c` must still be in the same directory as `volk.h`. This method of integrating volk makes it possible to set the platform defines mentioned above with arbitrary (preprocessor) logic in your code.
+2. You can use volk in header-only fashion. Include `volk.h` wherever you want to use Vulkan functions. In exactly one source file, define `VOLK_IMPLEMENTATION` before including `volk.h`. Do not build `volk.c` at all in this case - however, `volk.c` must still be in the same directory as `volk.h`. This method of integrating volk makes it possible to set the platform defines mentioned above with arbitrary (preprocessor) logic in your code.
+3. Volk supports two build systems: CMake and Zig. See the "CMake support" and "Zig support" sections below for more details on using these build systems.
 
 ## Basic usage
 
@@ -93,6 +93,65 @@ and in the code:
 The above example use `add_subdirectory` to include volk into CMake's build tree. This is a good choice if you copy the volk files into your project tree or as a git submodule.
 
 Volk also supports installation and config-file packages. Installation is disabled by default (so as to not pollute user projects with install rules), and can be enabled by passing `-DVOLK_INSTALL=ON` to CMake. Once installed, do something like `find_package(volk CONFIG REQUIRED)` in your project's CMakeLists.txt. The imported volk targets are called `volk::volk` and `volk::volk_headers`.
+
+## Zig support
+
+Volk provides a `build.zig` file for integration with Zig build system. It supports building both as a static library and in headers-only mode.
+
+### Adding volk to your project
+
+Add volk as a dependency in your `build.zig.zon`:
+
+```zig
+.dependencies = .{
+    .volk = .{
+        .url = "https://github.com/zeux/volk/archive/<tag-or-commit>.tar.gz",
+        .hash = "<hash>",
+    },
+},
+```
+
+### Building with volk
+
+In your `build.zig`, reference volk as a dependency:
+
+```zig
+const volk_dep = b.dependency("volk", .{
+    .pull_in_vulkan = true,
+    .headers_only = false,
+});
+
+// Link with the static library
+exe.linkLibrary(volk_dep.artifact("volk"));
+
+// Add include paths for both volk.h and Vulkan headers
+exe.addIncludePath(volk_dep.path("."));
+exe.addIncludePath(volk_dep.namedLazyPath("vulkan_include_dir"));
+```
+
+### Build options
+
+- `pull_in_vulkan`: Automatically locates Vulkan headers using `VULKAN_SDK` environment variable (default: true)
+- `vulkan_headers_dir`: Explicitly specify Vulkan headers directory (optional)
+- `headers_only`: Build as header-only library without separate compilation (default: false)
+- `static_defines`: Additional preprocessor definitions for static library build
+- `install`: Create installation targets (default: false)
+
+### Usage from Zig
+
+```zig
+const c = @cImport({
+    @cInclude("volk.h");
+});
+
+// Initialize volk
+if (c.volkInitialize() != c.VK_SUCCESS) {
+    return error.VolkInitializationFailed;
+}
+
+// Create VkInstance... then load instance functions
+c.volkLoadInstance(instance);
+```
 
 ## License
 
