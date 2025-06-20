@@ -242,6 +242,10 @@ static void volkGenLoadInstance(void* context, PFN_vkVoidFunction (*load)(void*,
 #if defined(VK_VERSION_1_3)
 	vkGetPhysicalDeviceToolProperties = (PFN_vkGetPhysicalDeviceToolProperties)load(context, "vkGetPhysicalDeviceToolProperties");
 #endif /* defined(VK_VERSION_1_3) */
+#if defined(VK_ARM_data_graph)
+	vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = (PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM)load(context, "vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM");
+	vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = (PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM)load(context, "vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM");
+#endif /* defined(VK_ARM_data_graph) */
 #if defined(VK_ARM_tensors)
 	vkGetPhysicalDeviceExternalTensorPropertiesARM = (PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM)load(context, "vkGetPhysicalDeviceExternalTensorPropertiesARM");
 #endif /* defined(VK_ARM_tensors) */
@@ -684,6 +688,17 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkGetAndroidHardwareBufferPropertiesANDROID = (PFN_vkGetAndroidHardwareBufferPropertiesANDROID)load(context, "vkGetAndroidHardwareBufferPropertiesANDROID");
 	vkGetMemoryAndroidHardwareBufferANDROID = (PFN_vkGetMemoryAndroidHardwareBufferANDROID)load(context, "vkGetMemoryAndroidHardwareBufferANDROID");
 #endif /* defined(VK_ANDROID_external_memory_android_hardware_buffer) */
+#if defined(VK_ARM_data_graph)
+	vkBindDataGraphPipelineSessionMemoryARM = (PFN_vkBindDataGraphPipelineSessionMemoryARM)load(context, "vkBindDataGraphPipelineSessionMemoryARM");
+	vkCmdDispatchDataGraphARM = (PFN_vkCmdDispatchDataGraphARM)load(context, "vkCmdDispatchDataGraphARM");
+	vkCreateDataGraphPipelineSessionARM = (PFN_vkCreateDataGraphPipelineSessionARM)load(context, "vkCreateDataGraphPipelineSessionARM");
+	vkCreateDataGraphPipelinesARM = (PFN_vkCreateDataGraphPipelinesARM)load(context, "vkCreateDataGraphPipelinesARM");
+	vkDestroyDataGraphPipelineSessionARM = (PFN_vkDestroyDataGraphPipelineSessionARM)load(context, "vkDestroyDataGraphPipelineSessionARM");
+	vkGetDataGraphPipelineAvailablePropertiesARM = (PFN_vkGetDataGraphPipelineAvailablePropertiesARM)load(context, "vkGetDataGraphPipelineAvailablePropertiesARM");
+	vkGetDataGraphPipelinePropertiesARM = (PFN_vkGetDataGraphPipelinePropertiesARM)load(context, "vkGetDataGraphPipelinePropertiesARM");
+	vkGetDataGraphPipelineSessionBindPointRequirementsARM = (PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM)load(context, "vkGetDataGraphPipelineSessionBindPointRequirementsARM");
+	vkGetDataGraphPipelineSessionMemoryRequirementsARM = (PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM)load(context, "vkGetDataGraphPipelineSessionMemoryRequirementsARM");
+#endif /* defined(VK_ARM_data_graph) */
 #if defined(VK_ARM_tensors)
 	vkBindTensorMemoryARM = (PFN_vkBindTensorMemoryARM)load(context, "vkBindTensorMemoryARM");
 	vkCmdCopyTensorARM = (PFN_vkCmdCopyTensorARM)load(context, "vkCmdCopyTensorARM");
@@ -1645,6 +1660,17 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkGetAndroidHardwareBufferPropertiesANDROID = (PFN_vkGetAndroidHardwareBufferPropertiesANDROID)load(context, "vkGetAndroidHardwareBufferPropertiesANDROID");
 	table->vkGetMemoryAndroidHardwareBufferANDROID = (PFN_vkGetMemoryAndroidHardwareBufferANDROID)load(context, "vkGetMemoryAndroidHardwareBufferANDROID");
 #endif /* defined(VK_ANDROID_external_memory_android_hardware_buffer) */
+#if defined(VK_ARM_data_graph)
+	table->vkBindDataGraphPipelineSessionMemoryARM = (PFN_vkBindDataGraphPipelineSessionMemoryARM)load(context, "vkBindDataGraphPipelineSessionMemoryARM");
+	table->vkCmdDispatchDataGraphARM = (PFN_vkCmdDispatchDataGraphARM)load(context, "vkCmdDispatchDataGraphARM");
+	table->vkCreateDataGraphPipelineSessionARM = (PFN_vkCreateDataGraphPipelineSessionARM)load(context, "vkCreateDataGraphPipelineSessionARM");
+	table->vkCreateDataGraphPipelinesARM = (PFN_vkCreateDataGraphPipelinesARM)load(context, "vkCreateDataGraphPipelinesARM");
+	table->vkDestroyDataGraphPipelineSessionARM = (PFN_vkDestroyDataGraphPipelineSessionARM)load(context, "vkDestroyDataGraphPipelineSessionARM");
+	table->vkGetDataGraphPipelineAvailablePropertiesARM = (PFN_vkGetDataGraphPipelineAvailablePropertiesARM)load(context, "vkGetDataGraphPipelineAvailablePropertiesARM");
+	table->vkGetDataGraphPipelinePropertiesARM = (PFN_vkGetDataGraphPipelinePropertiesARM)load(context, "vkGetDataGraphPipelinePropertiesARM");
+	table->vkGetDataGraphPipelineSessionBindPointRequirementsARM = (PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM)load(context, "vkGetDataGraphPipelineSessionBindPointRequirementsARM");
+	table->vkGetDataGraphPipelineSessionMemoryRequirementsARM = (PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM)load(context, "vkGetDataGraphPipelineSessionMemoryRequirementsARM");
+#endif /* defined(VK_ARM_data_graph) */
 #if defined(VK_ARM_tensors)
 	table->vkBindTensorMemoryARM = (PFN_vkBindTensorMemoryARM)load(context, "vkBindTensorMemoryARM");
 	table->vkCmdCopyTensorARM = (PFN_vkCmdCopyTensorARM)load(context, "vkCmdCopyTensorARM");
@@ -2642,6 +2668,19 @@ PFN_vkGetShaderInfoAMD vkGetShaderInfoAMD;
 PFN_vkGetAndroidHardwareBufferPropertiesANDROID vkGetAndroidHardwareBufferPropertiesANDROID;
 PFN_vkGetMemoryAndroidHardwareBufferANDROID vkGetMemoryAndroidHardwareBufferANDROID;
 #endif /* defined(VK_ANDROID_external_memory_android_hardware_buffer) */
+#if defined(VK_ARM_data_graph)
+PFN_vkBindDataGraphPipelineSessionMemoryARM vkBindDataGraphPipelineSessionMemoryARM;
+PFN_vkCmdDispatchDataGraphARM vkCmdDispatchDataGraphARM;
+PFN_vkCreateDataGraphPipelineSessionARM vkCreateDataGraphPipelineSessionARM;
+PFN_vkCreateDataGraphPipelinesARM vkCreateDataGraphPipelinesARM;
+PFN_vkDestroyDataGraphPipelineSessionARM vkDestroyDataGraphPipelineSessionARM;
+PFN_vkGetDataGraphPipelineAvailablePropertiesARM vkGetDataGraphPipelineAvailablePropertiesARM;
+PFN_vkGetDataGraphPipelinePropertiesARM vkGetDataGraphPipelinePropertiesARM;
+PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM vkGetDataGraphPipelineSessionBindPointRequirementsARM;
+PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM vkGetDataGraphPipelineSessionMemoryRequirementsARM;
+PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM;
+PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM;
+#endif /* defined(VK_ARM_data_graph) */
 #if defined(VK_ARM_tensors)
 PFN_vkBindTensorMemoryARM vkBindTensorMemoryARM;
 PFN_vkCmdCopyTensorARM vkCmdCopyTensorARM;
