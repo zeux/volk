@@ -24,7 +24,11 @@
 #include <string.h>
 
 #ifdef __cplusplus
+#ifdef VOLK_NAMESPACE
+namespace volk {
+#else
 extern "C" {
+#endif
 #endif
 
 #ifdef _WIN32
@@ -3563,6 +3567,6 @@ PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
 #endif
 
 #ifdef __cplusplus
-}
+} // extern "C" / namespace volk
 #endif
 /* clang-format on */
