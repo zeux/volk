@@ -15,7 +15,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 320
+#define VOLK_HEADER_VERSION 321
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -1100,6 +1100,11 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_a1de893b[5];
 #endif /* defined(VK_KHR_swapchain) */
+#if defined(VK_KHR_swapchain_maintenance1)
+	PFN_vkReleaseSwapchainImagesKHR vkReleaseSwapchainImagesKHR;
+#else
+	PFN_vkVoidFunction padding_e032d5c4[1];
+#endif /* defined(VK_KHR_swapchain_maintenance1) */
 #if defined(VK_KHR_synchronization2)
 	PFN_vkCmdPipelineBarrier2KHR vkCmdPipelineBarrier2KHR;
 	PFN_vkCmdResetEvent2KHR vkCmdResetEvent2KHR;
@@ -2342,6 +2347,9 @@ extern PFN_vkDestroySwapchainKHR vkDestroySwapchainKHR;
 extern PFN_vkGetSwapchainImagesKHR vkGetSwapchainImagesKHR;
 extern PFN_vkQueuePresentKHR vkQueuePresentKHR;
 #endif /* defined(VK_KHR_swapchain) */
+#if defined(VK_KHR_swapchain_maintenance1)
+extern PFN_vkReleaseSwapchainImagesKHR vkReleaseSwapchainImagesKHR;
+#endif /* defined(VK_KHR_swapchain_maintenance1) */
 #if defined(VK_KHR_synchronization2)
 extern PFN_vkCmdPipelineBarrier2KHR vkCmdPipelineBarrier2KHR;
 extern PFN_vkCmdResetEvent2KHR vkCmdResetEvent2KHR;
