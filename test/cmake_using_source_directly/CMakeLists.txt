@@ -8,7 +8,7 @@
 # For these reasons it's recommended to use one of
 # the other ways to include volk (see the other examples).
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.5...3.30)
 project(volk_test LANGUAGES C)
 
 add_executable(volk_test main.c ../../volk.c)
