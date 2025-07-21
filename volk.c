@@ -83,6 +83,10 @@ VkResult volkInitialize(void)
 	void* module = dlopen("libvulkan.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
 		module = dlopen("libvulkan.1.dylib", RTLD_NOW | RTLD_LOCAL);
+	// modern versions of macOS don't search /usr/local/lib automatically contrary to what man dlopen says
+	// Vulkan SDK uses this as the system-wide installation location, so we're going to fallback to this if all else fails
+	if (!module && getenv("DYLD_FALLBACK_LIBRARY_PATH") == NULL)
+		module = dlopen("/usr/local/lib/libvulkan.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
 		module = dlopen("libMoltenVK.dylib", RTLD_NOW | RTLD_LOCAL);
 	// Add support for using Vulkan and MoltenVK in a Framework. App store rules for iOS
@@ -91,10 +95,6 @@ VkResult volkInitialize(void)
 		module = dlopen("vulkan.framework/vulkan", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
 		module = dlopen("MoltenVK.framework/MoltenVK", RTLD_NOW | RTLD_LOCAL);
-	// modern versions of macOS don't search /usr/local/lib automatically contrary to what man dlopen says
-	// Vulkan SDK uses this as the system-wide installation location, so we're going to fallback to this if all else fails
-	if (!module && getenv("DYLD_FALLBACK_LIBRARY_PATH") == NULL)
-		module = dlopen("/usr/local/lib/libvulkan.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)
 		return VK_ERROR_INITIALIZATION_FAILED;
 
