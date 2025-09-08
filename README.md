@@ -94,6 +94,10 @@ The above example use `add_subdirectory` to include volk into CMake's build tree
 
 Volk also supports installation and config-file packages. Installation is disabled by default (so as to not pollute user projects with install rules), and can be enabled by passing `-DVOLK_INSTALL=ON` to CMake. Once installed, do something like `find_package(volk CONFIG REQUIRED)` in your project's CMakeLists.txt. The imported volk targets are called `volk::volk` and `volk::volk_headers`.
 
+## No device prototypes
+
+Device level functions can be hidden by defineing `VOLK_NO_DEVICE_PROTOTYPES`. When using `volkLoadInstaceOnly` and `volkLoadDeviceTable` the device level functions are never loaded and when not used correctly would trigger a runtime error. By hiding the device prototypes mistakes can alreayd be checked by the compiler.
+
 ## License
 
 This library is available to anybody free of charge, under the terms of MIT License (see LICENSE.md).
