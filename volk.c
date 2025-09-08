@@ -23,18 +23,18 @@
 
 #include <string.h>
 
+#ifdef _WIN32
+__declspec(dllimport) HMODULE __stdcall LoadLibraryA(LPCSTR);
+__declspec(dllimport) FARPROC __stdcall GetProcAddress(HMODULE, LPCSTR);
+__declspec(dllimport) int __stdcall FreeLibrary(HMODULE);
+#endif
+
 #ifdef __cplusplus
 #ifdef VOLK_NAMESPACE
 namespace volk {
 #else
 extern "C" {
 #endif
-#endif
-
-#ifdef _WIN32
-__declspec(dllimport) HMODULE __stdcall LoadLibraryA(LPCSTR);
-__declspec(dllimport) FARPROC __stdcall GetProcAddress(HMODULE, LPCSTR);
-__declspec(dllimport) int __stdcall FreeLibrary(HMODULE);
 #endif
 
 #if defined(__GNUC__)

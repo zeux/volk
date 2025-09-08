@@ -210,6 +210,14 @@ typedef unsigned long RROutput;
 
 #endif
 
+#ifdef __cplusplus
+#ifdef VOLK_NAMESPACE
+namespace volk {
+#else
+extern "C" {
+#endif
+#endif
+
 /**
  * Device-specific function pointer table
  */
@@ -1521,14 +1529,6 @@ struct VolkDeviceTable
 #endif /* (defined(VK_KHR_device_group) && defined(VK_KHR_swapchain)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1)) */
 	/* VOLK_GENERATE_DEVICE_TABLE */
 };
-
-#ifdef __cplusplus
-#ifdef VOLK_NAMESPACE
-namespace volk {
-#else
-extern "C" {
-#endif
-#endif
 
 /* VOLK_GENERATE_PROTOTYPES_H */
 #if defined(VK_VERSION_1_0)
