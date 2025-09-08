@@ -24,9 +24,15 @@
 #include <string.h>
 
 #ifdef _WIN32
+#ifdef __cplusplus
+extern "C" {
+#endif
 __declspec(dllimport) HMODULE __stdcall LoadLibraryA(LPCSTR);
 __declspec(dllimport) FARPROC __stdcall GetProcAddress(HMODULE, LPCSTR);
 __declspec(dllimport) int __stdcall FreeLibrary(HMODULE);
+#ifdef __cplusplus
+}
+#endif
 #endif
 
 #ifdef __cplusplus
