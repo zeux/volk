@@ -92,11 +92,13 @@ and in the code:
 
 The above example use `add_subdirectory` to include volk into CMake's build tree. This is a good choice if you copy the volk files into your project tree or as a git submodule.
 
-Volk also supports installation and config-file packages. Installation is disabled by default (so as to not pollute user projects with install rules), and can be enabled by passing `-DVOLK_INSTALL=ON` to CMake. Once installed, do something like `find_package(volk CONFIG REQUIRED)` in your project's CMakeLists.txt. The imported volk targets are called `volk::volk` and `volk::volk_headers`.
+volk also supports installation and config-file packages. Installation is disabled by default (so as to not pollute user projects with install rules), and can be enabled by passing `-DVOLK_INSTALL=ON` to CMake. Once installed, do something like `find_package(volk CONFIG REQUIRED)` in your project's CMakeLists.txt. The imported volk targets are called `volk::volk` and `volk::volk_headers`.
 
-## No device prototypes
+## Configuration
 
-Device level functions can be hidden by defineing `VOLK_NO_DEVICE_PROTOTYPES`. When using `volkLoadInstaceOnly` and `volkLoadDeviceTable` the device level functions are never loaded and when not used correctly would trigger a runtime error. By hiding the device prototypes mistakes can alreayd be checked by the compiler.
+By default, volk is compiled as a C library and exposes all Vulkan function pointers as globals. This can result in symbol conflicts if some libraries in the application are still linking to Vulkan libraries directly. While generally speaking it's desirable to not mix & match volk with direct usage of Vulkan - for example, mixed usage means the application still links directly to Vulkan libraries and will fail to launch if Vulkan is not available on the user's system - it's possible to enable `VOLK_NAMESPACE` CMake option (or `VOLK_NAMESPACE` define when building volk manually), which places all volk symbols into `volk::` namespace. This requires compiling `volk.c` in C++ mode, which happens automatically when using CMake, but doesn'trequire any other changes.
+
+Device level functions can be hidden by defining `VOLK_NO_DEVICE_PROTOTYPES`. When using `volkLoadInstaceOnly` and `volkLoadDeviceTable` the device level functions are never loaded and when not used correctly would trigger a runtime error. By hiding the device prototypes mistakes can be checked by the compiler.
 
 ## License
 
