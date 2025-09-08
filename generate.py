@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
 	spec = parse_xml(specpath)
 
-	block_keys = ('DEVICE_TABLE', 'PROTOTYPES_H', 'PROTOTYPES_C', 'LOAD_LOADER', 'LOAD_INSTANCE', 'LOAD_DEVICE', 'LOAD_DEVICE_TABLE')
+	block_keys = ('DEVICE_TABLE', 'PROTOTYPES_H', 'PROTOTYPES_H_DEVICE', 'PROTOTYPES_C', 'LOAD_LOADER', 'LOAD_INSTANCE', 'LOAD_DEVICE', 'LOAD_DEVICE_TABLE')
 
 	blocks = {}
 
@@ -182,13 +182,17 @@ if __name__ == "__main__":
 				blocks['LOAD_DEVICE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 				blocks['DEVICE_TABLE'] += '\tPFN_' + name + ' ' + name + ';\n'
 				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['PROTOTYPES_H_DEVICE'] += 'extern PFN_' + name + ' ' + name + ';\n'
 				devt += 1
 			elif is_descendant_type(types, type, 'VkInstance'):
 				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
 			elif type != '':
 				blocks['LOAD_LOADER'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
+			else:
+				blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
 
-			blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
 			blocks['PROTOTYPES_C'] += 'PFN_' + name + ' ' + name + ';\n'
 
 		for key in block_keys:
