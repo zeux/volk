@@ -32,7 +32,11 @@
 #endif
 
 #ifdef __cplusplus
+#    ifdef VOLK_CPP_NAMESPACE
+namespace VOLK_CPP_NAMESPACE {
+#    else
 extern "C" {
+#    endif
 #endif
 
 struct VolkDeviceTable;
@@ -1515,7 +1519,11 @@ struct VolkDeviceTable
 };
 
 #ifdef __cplusplus
+#    ifdef VOLK_CPP_NAMESPACE
+namespace VOLK_CPP_NAMESPACE {
+#    else
 extern "C" {
+#    endif
 #endif
 
 /* VOLK_GENERATE_PROTOTYPES_H */

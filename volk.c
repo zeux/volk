@@ -33,6 +33,18 @@ __declspec(dllimport) FARPROC __stdcall GetProcAddress(HMODULE, LPCSTR);
 __declspec(dllimport) int __stdcall FreeLibrary(HMODULE);
 #endif
 
+#ifdef __cplusplus
+}
+#endif
+
+#ifdef __cplusplus
+#    ifdef VOLK_CPP_NAMESPACE
+namespace VOLK_CPP_NAMESPACE {
+#    else
+extern "C" {
+#    endif
+#endif
+
 #if defined(__GNUC__)
 #    define VOLK_DISABLE_GCC_PEDANTIC_WARNINGS \
 		_Pragma("GCC diagnostic push") \

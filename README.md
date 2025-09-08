@@ -94,6 +94,16 @@ The above example use `add_subdirectory` to include volk into CMake's build tree
 
 Volk also supports installation and config-file packages. Installation is disabled by default (so as to not pollute user projects with install rules), and can be enabled by passing `-DVOLK_INSTALL=ON` to CMake. Once installed, do something like `find_package(volk CONFIG REQUIRED)` in your project's CMakeLists.txt. The imported volk targets are called `volk::volk` and `volk::volk_headers`.
 
+## CPP namespace
+
+Use `VOLK_CPP_NAMESPACE` to place all symbols in the given namespace. Define needs to be set before including volk header. This can be used in setups where the vulkan loader symbols are loaded via an library that you don't have full control over. Linking can fail as as the signatures don't match. When `VOLK_CPP_NAMESPACE` isn't defined (default) all symbols will be in the C namespace.
+
+```c
+#define VOLK_CPP_NAMESPACE volk
+#define VOLK_IMPLEMENTATION
+#include "volk.h"
+```
+
 ## License
 
 This library is available to anybody free of charge, under the terms of MIT License (see LICENSE.md).
