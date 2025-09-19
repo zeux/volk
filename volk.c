@@ -830,9 +830,9 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkCmdDrawMeshTasksEXT = (PFN_vkCmdDrawMeshTasksEXT)load(context, "vkCmdDrawMeshTasksEXT");
 	vkCmdDrawMeshTasksIndirectEXT = (PFN_vkCmdDrawMeshTasksIndirectEXT)load(context, "vkCmdDrawMeshTasksIndirectEXT");
 #endif /* defined(VK_EXT_mesh_shader) */
-#if defined(VK_EXT_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+#if defined(VK_EXT_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count))
 	vkCmdDrawMeshTasksIndirectCountEXT = (PFN_vkCmdDrawMeshTasksIndirectCountEXT)load(context, "vkCmdDrawMeshTasksIndirectCountEXT");
-#endif /* defined(VK_EXT_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#endif /* defined(VK_EXT_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count)) */
 #if defined(VK_EXT_metal_objects)
 	vkExportMetalObjectsEXT = (PFN_vkExportMetalObjectsEXT)load(context, "vkExportMetalObjectsEXT");
 #endif /* defined(VK_EXT_metal_objects) */
@@ -1259,9 +1259,9 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkCmdDrawMeshTasksIndirectNV = (PFN_vkCmdDrawMeshTasksIndirectNV)load(context, "vkCmdDrawMeshTasksIndirectNV");
 	vkCmdDrawMeshTasksNV = (PFN_vkCmdDrawMeshTasksNV)load(context, "vkCmdDrawMeshTasksNV");
 #endif /* defined(VK_NV_mesh_shader) */
-#if defined(VK_NV_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+#if defined(VK_NV_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count))
 	vkCmdDrawMeshTasksIndirectCountNV = (PFN_vkCmdDrawMeshTasksIndirectCountNV)load(context, "vkCmdDrawMeshTasksIndirectCountNV");
-#endif /* defined(VK_NV_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#endif /* defined(VK_NV_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count)) */
 #if defined(VK_NV_optical_flow)
 	vkBindOpticalFlowSessionImageNV = (PFN_vkBindOpticalFlowSessionImageNV)load(context, "vkBindOpticalFlowSessionImageNV");
 	vkCmdOpticalFlowExecuteNV = (PFN_vkCmdOpticalFlowExecuteNV)load(context, "vkCmdOpticalFlowExecuteNV");
@@ -1805,9 +1805,9 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkCmdDrawMeshTasksEXT = (PFN_vkCmdDrawMeshTasksEXT)load(context, "vkCmdDrawMeshTasksEXT");
 	table->vkCmdDrawMeshTasksIndirectEXT = (PFN_vkCmdDrawMeshTasksIndirectEXT)load(context, "vkCmdDrawMeshTasksIndirectEXT");
 #endif /* defined(VK_EXT_mesh_shader) */
-#if defined(VK_EXT_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+#if defined(VK_EXT_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count))
 	table->vkCmdDrawMeshTasksIndirectCountEXT = (PFN_vkCmdDrawMeshTasksIndirectCountEXT)load(context, "vkCmdDrawMeshTasksIndirectCountEXT");
-#endif /* defined(VK_EXT_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#endif /* defined(VK_EXT_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count)) */
 #if defined(VK_EXT_metal_objects)
 	table->vkExportMetalObjectsEXT = (PFN_vkExportMetalObjectsEXT)load(context, "vkExportMetalObjectsEXT");
 #endif /* defined(VK_EXT_metal_objects) */
@@ -2234,9 +2234,9 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkCmdDrawMeshTasksIndirectNV = (PFN_vkCmdDrawMeshTasksIndirectNV)load(context, "vkCmdDrawMeshTasksIndirectNV");
 	table->vkCmdDrawMeshTasksNV = (PFN_vkCmdDrawMeshTasksNV)load(context, "vkCmdDrawMeshTasksNV");
 #endif /* defined(VK_NV_mesh_shader) */
-#if defined(VK_NV_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+#if defined(VK_NV_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count))
 	table->vkCmdDrawMeshTasksIndirectCountNV = (PFN_vkCmdDrawMeshTasksIndirectCountNV)load(context, "vkCmdDrawMeshTasksIndirectCountNV");
-#endif /* defined(VK_NV_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#endif /* defined(VK_NV_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count)) */
 #if defined(VK_NV_optical_flow)
 	table->vkBindOpticalFlowSessionImageNV = (PFN_vkBindOpticalFlowSessionImageNV)load(context, "vkBindOpticalFlowSessionImageNV");
 	table->vkCmdOpticalFlowExecuteNV = (PFN_vkCmdOpticalFlowExecuteNV)load(context, "vkCmdOpticalFlowExecuteNV");
@@ -2860,9 +2860,9 @@ PFN_vkCmdSetLineStippleEXT vkCmdSetLineStippleEXT;
 PFN_vkCmdDrawMeshTasksEXT vkCmdDrawMeshTasksEXT;
 PFN_vkCmdDrawMeshTasksIndirectEXT vkCmdDrawMeshTasksIndirectEXT;
 #endif /* defined(VK_EXT_mesh_shader) */
-#if defined(VK_EXT_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+#if defined(VK_EXT_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count))
 PFN_vkCmdDrawMeshTasksIndirectCountEXT vkCmdDrawMeshTasksIndirectCountEXT;
-#endif /* defined(VK_EXT_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#endif /* defined(VK_EXT_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count)) */
 #if defined(VK_EXT_metal_objects)
 PFN_vkExportMetalObjectsEXT vkExportMetalObjectsEXT;
 #endif /* defined(VK_EXT_metal_objects) */
@@ -3404,9 +3404,9 @@ PFN_vkCmdDecompressMemoryNV vkCmdDecompressMemoryNV;
 PFN_vkCmdDrawMeshTasksIndirectNV vkCmdDrawMeshTasksIndirectNV;
 PFN_vkCmdDrawMeshTasksNV vkCmdDrawMeshTasksNV;
 #endif /* defined(VK_NV_mesh_shader) */
-#if defined(VK_NV_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+#if defined(VK_NV_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count))
 PFN_vkCmdDrawMeshTasksIndirectCountNV vkCmdDrawMeshTasksIndirectCountNV;
-#endif /* defined(VK_NV_mesh_shader) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#endif /* defined(VK_NV_mesh_shader) && (defined(VK_VERSION_1_2) || defined(VK_KHR_draw_indirect_count) || defined(VK_AMD_draw_indirect_count)) */
 #if defined(VK_NV_optical_flow)
 PFN_vkBindOpticalFlowSessionImageNV vkBindOpticalFlowSessionImageNV;
 PFN_vkCmdOpticalFlowExecuteNV vkCmdOpticalFlowExecuteNV;
