@@ -19,7 +19,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 327
+#define VOLK_HEADER_VERSION 328
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -887,6 +887,12 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_4c841ff2[6];
 #endif /* defined(VK_KHR_copy_commands2) */
+#if defined(VK_KHR_copy_memory_indirect)
+	PFN_vkCmdCopyMemoryIndirectKHR vkCmdCopyMemoryIndirectKHR;
+	PFN_vkCmdCopyMemoryToImageIndirectKHR vkCmdCopyMemoryToImageIndirectKHR;
+#else
+	PFN_vkVoidFunction padding_95995957[2];
+#endif /* defined(VK_KHR_copy_memory_indirect) */
 #if defined(VK_KHR_create_renderpass2)
 	PFN_vkCmdBeginRenderPass2KHR vkCmdBeginRenderPass2KHR;
 	PFN_vkCmdEndRenderPass2KHR vkCmdEndRenderPass2KHR;
@@ -2292,6 +2298,10 @@ extern PFN_vkCmdCopyImage2KHR vkCmdCopyImage2KHR;
 extern PFN_vkCmdCopyImageToBuffer2KHR vkCmdCopyImageToBuffer2KHR;
 extern PFN_vkCmdResolveImage2KHR vkCmdResolveImage2KHR;
 #endif /* defined(VK_KHR_copy_commands2) */
+#if defined(VK_KHR_copy_memory_indirect)
+extern PFN_vkCmdCopyMemoryIndirectKHR vkCmdCopyMemoryIndirectKHR;
+extern PFN_vkCmdCopyMemoryToImageIndirectKHR vkCmdCopyMemoryToImageIndirectKHR;
+#endif /* defined(VK_KHR_copy_memory_indirect) */
 #if defined(VK_KHR_create_renderpass2)
 extern PFN_vkCmdBeginRenderPass2KHR vkCmdBeginRenderPass2KHR;
 extern PFN_vkCmdEndRenderPass2KHR vkCmdEndRenderPass2KHR;
