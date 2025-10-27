@@ -161,6 +161,7 @@ if __name__ == "__main__":
 		blocks[key] = ''
 
 	devp = {}
+	instp = {}
 
 	for (group, cmdnames) in command_groups.items():
 		ifdef = '#if ' + group + '\n'
@@ -170,6 +171,8 @@ if __name__ == "__main__":
 
 		devt = 0
 		devo = len(blocks['DEVICE_TABLE'])
+		instt = 0
+		insto = len(blocks['INSTANCE_TABLE'])
 
 		for name in sorted(cmdnames):
 			cmd = commands[name]
@@ -180,26 +183,28 @@ if __name__ == "__main__":
 			if name == 'vkGetDeviceProcAddr':
 				type = 'VkInstance'
 
+			extern_fn = 'extern PFN_' + name + ' ' + name + ';\n'
 			load_fn = '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 			def_table = '\tPFN_' + name + ' ' + name + ';\n'
 			load_table = '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 
 			if is_descendant_type(types, type, 'VkDevice') and name not in instance_commands:
-				blocks['LOAD_DEVICE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
-				blocks['DEVICE_TABLE'] += '\tPFN_' + name + ' ' + name + ';\n'
-				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
-				blocks['PROTOTYPES_H_DEVICE'] += 'extern PFN_' + name + ' ' + name + ';\n'
+				blocks['LOAD_DEVICE'] += load_fn
+				blocks['DEVICE_TABLE'] += def_table
+				blocks['LOAD_DEVICE_TABLE'] += load_table
+				blocks['PROTOTYPES_H_DEVICE'] += extern_fn
 				devt += 1
 			elif is_descendant_type(types, type, 'VkInstance'):
-				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
-				blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
+				blocks['LOAD_INSTANCE'] += load_fn
+				blocks['PROTOTYPES_H'] += extern_fn
 				blocks['INSTANCE_TABLE'] += def_table
 				blocks['LOAD_INSTANCE_TABLE'] += load_table
+				instt += 1
 			elif type != '':
-				blocks['LOAD_LOADER'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
-				blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
+				blocks['LOAD_LOADER'] += load_fn
+				blocks['PROTOTYPES_H'] += extern_fn
 			else:
-				blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
+				blocks['PROTOTYPES_H'] += extern_fn
 
 			blocks['PROTOTYPES_C'] += 'PFN_' + name + ' ' + name + ';\n'
 
@@ -213,6 +218,14 @@ if __name__ == "__main__":
 
 				blocks[key] += '#else\n'
 				blocks[key] += f'\tPFN_vkVoidFunction padding_{devh:x}[{devt}];\n'
+				blocks[key] += '#endif /* ' + group + ' */\n'
+			elif key == 'INSTANCE_TABLE':
+				insth = zlib.crc32(blocks[key][insto:].encode())
+				assert(insth not in instp)
+				instp[insth] = True
+
+				blocks[key] += '#else\n'
+				blocks[key] += f'\tPFN_vkVoidFunction padding_{insth:x}[{instt}];\n'
 				blocks[key] += '#endif /* ' + group + ' */\n'
 			else:
 				blocks[key] += '#endif /* ' + group + ' */\n'

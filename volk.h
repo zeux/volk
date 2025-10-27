@@ -245,6 +245,8 @@ struct VolkInstanceTable
 	PFN_vkGetPhysicalDeviceProperties vkGetPhysicalDeviceProperties;
 	PFN_vkGetPhysicalDeviceQueueFamilyProperties vkGetPhysicalDeviceQueueFamilyProperties;
 	PFN_vkGetPhysicalDeviceSparseImageFormatProperties vkGetPhysicalDeviceSparseImageFormatProperties;
+#else
+	PFN_vkVoidFunction padding_f34b07f4[13];
 #endif /* defined(VK_VERSION_1_0) */
 #if defined(VK_VERSION_1_1)
 	PFN_vkEnumeratePhysicalDeviceGroups vkEnumeratePhysicalDeviceGroups;
@@ -258,32 +260,48 @@ struct VolkInstanceTable
 	PFN_vkGetPhysicalDeviceProperties2 vkGetPhysicalDeviceProperties2;
 	PFN_vkGetPhysicalDeviceQueueFamilyProperties2 vkGetPhysicalDeviceQueueFamilyProperties2;
 	PFN_vkGetPhysicalDeviceSparseImageFormatProperties2 vkGetPhysicalDeviceSparseImageFormatProperties2;
+#else
+	PFN_vkVoidFunction padding_73de037b[11];
 #endif /* defined(VK_VERSION_1_1) */
 #if defined(VK_VERSION_1_3)
 	PFN_vkGetPhysicalDeviceToolProperties vkGetPhysicalDeviceToolProperties;
+#else
+	PFN_vkVoidFunction padding_60958868[1];
 #endif /* defined(VK_VERSION_1_3) */
 #if defined(VK_ARM_data_graph)
 	PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM;
 	PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM;
+#else
+	PFN_vkVoidFunction padding_15920a35[2];
 #endif /* defined(VK_ARM_data_graph) */
 #if defined(VK_ARM_tensors)
 	PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM vkGetPhysicalDeviceExternalTensorPropertiesARM;
+#else
+	PFN_vkVoidFunction padding_4622403f[1];
 #endif /* defined(VK_ARM_tensors) */
 #if defined(VK_EXT_acquire_drm_display)
 	PFN_vkAcquireDrmDisplayEXT vkAcquireDrmDisplayEXT;
 	PFN_vkGetDrmDisplayEXT vkGetDrmDisplayEXT;
+#else
+	PFN_vkVoidFunction padding_8e427d62[2];
 #endif /* defined(VK_EXT_acquire_drm_display) */
 #if defined(VK_EXT_acquire_xlib_display)
 	PFN_vkAcquireXlibDisplayEXT vkAcquireXlibDisplayEXT;
 	PFN_vkGetRandROutputDisplayEXT vkGetRandROutputDisplayEXT;
+#else
+	PFN_vkVoidFunction padding_6e6f0a05[2];
 #endif /* defined(VK_EXT_acquire_xlib_display) */
 #if defined(VK_EXT_calibrated_timestamps)
 	PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT vkGetPhysicalDeviceCalibrateableTimeDomainsEXT;
+#else
+	PFN_vkVoidFunction padding_61710136[1];
 #endif /* defined(VK_EXT_calibrated_timestamps) */
 #if defined(VK_EXT_debug_report)
 	PFN_vkCreateDebugReportCallbackEXT vkCreateDebugReportCallbackEXT;
 	PFN_vkDebugReportMessageEXT vkDebugReportMessageEXT;
 	PFN_vkDestroyDebugReportCallbackEXT vkDestroyDebugReportCallbackEXT;
+#else
+	PFN_vkVoidFunction padding_250c28de[3];
 #endif /* defined(VK_EXT_debug_report) */
 #if defined(VK_EXT_debug_utils)
 	PFN_vkCmdBeginDebugUtilsLabelEXT vkCmdBeginDebugUtilsLabelEXT;
@@ -297,49 +315,79 @@ struct VolkInstanceTable
 	PFN_vkSetDebugUtilsObjectNameEXT vkSetDebugUtilsObjectNameEXT;
 	PFN_vkSetDebugUtilsObjectTagEXT vkSetDebugUtilsObjectTagEXT;
 	PFN_vkSubmitDebugUtilsMessageEXT vkSubmitDebugUtilsMessageEXT;
+#else
+	PFN_vkVoidFunction padding_3e2e81f7[11];
 #endif /* defined(VK_EXT_debug_utils) */
 #if defined(VK_EXT_direct_mode_display)
 	PFN_vkReleaseDisplayEXT vkReleaseDisplayEXT;
+#else
+	PFN_vkVoidFunction padding_899830c3[1];
 #endif /* defined(VK_EXT_direct_mode_display) */
 #if defined(VK_EXT_directfb_surface)
 	PFN_vkCreateDirectFBSurfaceEXT vkCreateDirectFBSurfaceEXT;
 	PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT vkGetPhysicalDeviceDirectFBPresentationSupportEXT;
+#else
+	PFN_vkVoidFunction padding_f7e0f7b1[2];
 #endif /* defined(VK_EXT_directfb_surface) */
 #if defined(VK_EXT_display_surface_counter)
 	PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT vkGetPhysicalDeviceSurfaceCapabilities2EXT;
+#else
+	PFN_vkVoidFunction padding_8bff43f7[1];
 #endif /* defined(VK_EXT_display_surface_counter) */
 #if defined(VK_EXT_full_screen_exclusive)
 	PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT vkGetPhysicalDeviceSurfacePresentModes2EXT;
+#else
+	PFN_vkVoidFunction padding_ff6b086[1];
 #endif /* defined(VK_EXT_full_screen_exclusive) */
 #if defined(VK_EXT_headless_surface)
 	PFN_vkCreateHeadlessSurfaceEXT vkCreateHeadlessSurfaceEXT;
+#else
+	PFN_vkVoidFunction padding_f8cab9e0[1];
 #endif /* defined(VK_EXT_headless_surface) */
 #if defined(VK_EXT_metal_surface)
 	PFN_vkCreateMetalSurfaceEXT vkCreateMetalSurfaceEXT;
+#else
+	PFN_vkVoidFunction padding_1c6d079a[1];
 #endif /* defined(VK_EXT_metal_surface) */
 #if defined(VK_EXT_sample_locations)
 	PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT vkGetPhysicalDeviceMultisamplePropertiesEXT;
+#else
+	PFN_vkVoidFunction padding_fd7ffce7[1];
 #endif /* defined(VK_EXT_sample_locations) */
 #if defined(VK_EXT_tooling_info)
 	PFN_vkGetPhysicalDeviceToolPropertiesEXT vkGetPhysicalDeviceToolPropertiesEXT;
+#else
+	PFN_vkVoidFunction padding_99aa5ee9[1];
 #endif /* defined(VK_EXT_tooling_info) */
 #if defined(VK_FUCHSIA_imagepipe_surface)
 	PFN_vkCreateImagePipeSurfaceFUCHSIA vkCreateImagePipeSurfaceFUCHSIA;
+#else
+	PFN_vkVoidFunction padding_6db35e8f[1];
 #endif /* defined(VK_FUCHSIA_imagepipe_surface) */
 #if defined(VK_GGP_stream_descriptor_surface)
 	PFN_vkCreateStreamDescriptorSurfaceGGP vkCreateStreamDescriptorSurfaceGGP;
+#else
+	PFN_vkVoidFunction padding_cc96d0ec[1];
 #endif /* defined(VK_GGP_stream_descriptor_surface) */
 #if defined(VK_KHR_android_surface)
 	PFN_vkCreateAndroidSurfaceKHR vkCreateAndroidSurfaceKHR;
+#else
+	PFN_vkVoidFunction padding_ab4fe82c[1];
 #endif /* defined(VK_KHR_android_surface) */
 #if defined(VK_KHR_calibrated_timestamps)
 	PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;
+#else
+	PFN_vkVoidFunction padding_663b2fa0[1];
 #endif /* defined(VK_KHR_calibrated_timestamps) */
 #if defined(VK_KHR_cooperative_matrix)
 	PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR;
+#else
+	PFN_vkVoidFunction padding_59e376cc[1];
 #endif /* defined(VK_KHR_cooperative_matrix) */
 #if defined(VK_KHR_device_group_creation)
 	PFN_vkEnumeratePhysicalDeviceGroupsKHR vkEnumeratePhysicalDeviceGroupsKHR;
+#else
+	PFN_vkVoidFunction padding_6db81211[1];
 #endif /* defined(VK_KHR_device_group_creation) */
 #if defined(VK_KHR_display)
 	PFN_vkCreateDisplayModeKHR vkCreateDisplayModeKHR;
@@ -349,24 +397,36 @@ struct VolkInstanceTable
 	PFN_vkGetDisplayPlaneSupportedDisplaysKHR vkGetDisplayPlaneSupportedDisplaysKHR;
 	PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR vkGetPhysicalDeviceDisplayPlanePropertiesKHR;
 	PFN_vkGetPhysicalDeviceDisplayPropertiesKHR vkGetPhysicalDeviceDisplayPropertiesKHR;
+#else
+	PFN_vkVoidFunction padding_cce37eaf[7];
 #endif /* defined(VK_KHR_display) */
 #if defined(VK_KHR_external_fence_capabilities)
 	PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR vkGetPhysicalDeviceExternalFencePropertiesKHR;
+#else
+	PFN_vkVoidFunction padding_b2076412[1];
 #endif /* defined(VK_KHR_external_fence_capabilities) */
 #if defined(VK_KHR_external_memory_capabilities)
 	PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR vkGetPhysicalDeviceExternalBufferPropertiesKHR;
+#else
+	PFN_vkVoidFunction padding_f167e378[1];
 #endif /* defined(VK_KHR_external_memory_capabilities) */
 #if defined(VK_KHR_external_semaphore_capabilities)
 	PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR vkGetPhysicalDeviceExternalSemaphorePropertiesKHR;
+#else
+	PFN_vkVoidFunction padding_acdaf099[1];
 #endif /* defined(VK_KHR_external_semaphore_capabilities) */
 #if defined(VK_KHR_fragment_shading_rate)
 	PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR vkGetPhysicalDeviceFragmentShadingRatesKHR;
+#else
+	PFN_vkVoidFunction padding_d59cae82[1];
 #endif /* defined(VK_KHR_fragment_shading_rate) */
 #if defined(VK_KHR_get_display_properties2)
 	PFN_vkGetDisplayModeProperties2KHR vkGetDisplayModeProperties2KHR;
 	PFN_vkGetDisplayPlaneCapabilities2KHR vkGetDisplayPlaneCapabilities2KHR;
 	PFN_vkGetPhysicalDeviceDisplayPlaneProperties2KHR vkGetPhysicalDeviceDisplayPlaneProperties2KHR;
 	PFN_vkGetPhysicalDeviceDisplayProperties2KHR vkGetPhysicalDeviceDisplayProperties2KHR;
+#else
+	PFN_vkVoidFunction padding_46c0938b[4];
 #endif /* defined(VK_KHR_get_display_properties2) */
 #if defined(VK_KHR_get_physical_device_properties2)
 	PFN_vkGetPhysicalDeviceFeatures2KHR vkGetPhysicalDeviceFeatures2KHR;
@@ -376,14 +436,20 @@ struct VolkInstanceTable
 	PFN_vkGetPhysicalDeviceProperties2KHR vkGetPhysicalDeviceProperties2KHR;
 	PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR vkGetPhysicalDeviceQueueFamilyProperties2KHR;
 	PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR vkGetPhysicalDeviceSparseImageFormatProperties2KHR;
+#else
+	PFN_vkVoidFunction padding_5fac460e[7];
 #endif /* defined(VK_KHR_get_physical_device_properties2) */
 #if defined(VK_KHR_get_surface_capabilities2)
 	PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR vkGetPhysicalDeviceSurfaceCapabilities2KHR;
 	PFN_vkGetPhysicalDeviceSurfaceFormats2KHR vkGetPhysicalDeviceSurfaceFormats2KHR;
+#else
+	PFN_vkVoidFunction padding_3baff606[2];
 #endif /* defined(VK_KHR_get_surface_capabilities2) */
 #if defined(VK_KHR_performance_query)
 	PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR;
 	PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR;
+#else
+	PFN_vkVoidFunction padding_1b45ef8f[2];
 #endif /* defined(VK_KHR_performance_query) */
 #if defined(VK_KHR_surface)
 	PFN_vkDestroySurfaceKHR vkDestroySurfaceKHR;
@@ -391,70 +457,110 @@ struct VolkInstanceTable
 	PFN_vkGetPhysicalDeviceSurfaceFormatsKHR vkGetPhysicalDeviceSurfaceFormatsKHR;
 	PFN_vkGetPhysicalDeviceSurfacePresentModesKHR vkGetPhysicalDeviceSurfacePresentModesKHR;
 	PFN_vkGetPhysicalDeviceSurfaceSupportKHR vkGetPhysicalDeviceSurfaceSupportKHR;
+#else
+	PFN_vkVoidFunction padding_8f1ea665[5];
 #endif /* defined(VK_KHR_surface) */
 #if defined(VK_KHR_video_encode_queue)
 	PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR;
+#else
+	PFN_vkVoidFunction padding_f0a3114[1];
 #endif /* defined(VK_KHR_video_encode_queue) */
 #if defined(VK_KHR_video_queue)
 	PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR vkGetPhysicalDeviceVideoCapabilitiesKHR;
 	PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR vkGetPhysicalDeviceVideoFormatPropertiesKHR;
+#else
+	PFN_vkVoidFunction padding_12d937aa[2];
 #endif /* defined(VK_KHR_video_queue) */
 #if defined(VK_KHR_wayland_surface)
 	PFN_vkCreateWaylandSurfaceKHR vkCreateWaylandSurfaceKHR;
 	PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR vkGetPhysicalDeviceWaylandPresentationSupportKHR;
+#else
+	PFN_vkVoidFunction padding_92436324[2];
 #endif /* defined(VK_KHR_wayland_surface) */
 #if defined(VK_KHR_win32_surface)
 	PFN_vkCreateWin32SurfaceKHR vkCreateWin32SurfaceKHR;
 	PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR vkGetPhysicalDeviceWin32PresentationSupportKHR;
+#else
+	PFN_vkVoidFunction padding_b8dcaf56[2];
 #endif /* defined(VK_KHR_win32_surface) */
 #if defined(VK_KHR_xcb_surface)
 	PFN_vkCreateXcbSurfaceKHR vkCreateXcbSurfaceKHR;
 	PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR vkGetPhysicalDeviceXcbPresentationSupportKHR;
+#else
+	PFN_vkVoidFunction padding_b6b79326[2];
 #endif /* defined(VK_KHR_xcb_surface) */
 #if defined(VK_KHR_xlib_surface)
 	PFN_vkCreateXlibSurfaceKHR vkCreateXlibSurfaceKHR;
 	PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR vkGetPhysicalDeviceXlibPresentationSupportKHR;
+#else
+	PFN_vkVoidFunction padding_c5e2b5db[2];
 #endif /* defined(VK_KHR_xlib_surface) */
 #if defined(VK_MVK_ios_surface)
 	PFN_vkCreateIOSSurfaceMVK vkCreateIOSSurfaceMVK;
+#else
+	PFN_vkVoidFunction padding_52f99096[1];
 #endif /* defined(VK_MVK_ios_surface) */
 #if defined(VK_MVK_macos_surface)
 	PFN_vkCreateMacOSSurfaceMVK vkCreateMacOSSurfaceMVK;
+#else
+	PFN_vkVoidFunction padding_1d7ced9a[1];
 #endif /* defined(VK_MVK_macos_surface) */
 #if defined(VK_NN_vi_surface)
 	PFN_vkCreateViSurfaceNN vkCreateViSurfaceNN;
+#else
+	PFN_vkVoidFunction padding_d9ec3901[1];
 #endif /* defined(VK_NN_vi_surface) */
 #if defined(VK_NV_acquire_winrt_display)
 	PFN_vkAcquireWinrtDisplayNV vkAcquireWinrtDisplayNV;
 	PFN_vkGetWinrtDisplayNV vkGetWinrtDisplayNV;
+#else
+	PFN_vkVoidFunction padding_41c66e6[2];
 #endif /* defined(VK_NV_acquire_winrt_display) */
 #if defined(VK_NV_cooperative_matrix)
 	PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV vkGetPhysicalDeviceCooperativeMatrixPropertiesNV;
+#else
+	PFN_vkVoidFunction padding_ee7fcfc8[1];
 #endif /* defined(VK_NV_cooperative_matrix) */
 #if defined(VK_NV_cooperative_matrix2)
 	PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV;
+#else
+	PFN_vkVoidFunction padding_2ec091f4[1];
 #endif /* defined(VK_NV_cooperative_matrix2) */
 #if defined(VK_NV_cooperative_vector)
 	PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV vkGetPhysicalDeviceCooperativeVectorPropertiesNV;
+#else
+	PFN_vkVoidFunction padding_50d51145[1];
 #endif /* defined(VK_NV_cooperative_vector) */
 #if defined(VK_NV_coverage_reduction_mode)
 	PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV;
+#else
+	PFN_vkVoidFunction padding_9a9f15ac[1];
 #endif /* defined(VK_NV_coverage_reduction_mode) */
 #if defined(VK_NV_external_memory_capabilities)
 	PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV vkGetPhysicalDeviceExternalImageFormatPropertiesNV;
+#else
+	PFN_vkVoidFunction padding_988145[1];
 #endif /* defined(VK_NV_external_memory_capabilities) */
 #if defined(VK_NV_optical_flow)
 	PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV vkGetPhysicalDeviceOpticalFlowImageFormatsNV;
+#else
+	PFN_vkVoidFunction padding_46a4b95[1];
 #endif /* defined(VK_NV_optical_flow) */
 #if defined(VK_OHOS_surface)
 	PFN_vkCreateSurfaceOHOS vkCreateSurfaceOHOS;
+#else
+	PFN_vkVoidFunction padding_b94570ee[1];
 #endif /* defined(VK_OHOS_surface) */
 #if defined(VK_QNX_screen_surface)
 	PFN_vkCreateScreenSurfaceQNX vkCreateScreenSurfaceQNX;
 	PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX vkGetPhysicalDeviceScreenPresentationSupportQNX;
+#else
+	PFN_vkVoidFunction padding_9b43b57c[2];
 #endif /* defined(VK_QNX_screen_surface) */
 #if (defined(VK_KHR_device_group) && defined(VK_KHR_surface)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1))
 	PFN_vkGetPhysicalDevicePresentRectanglesKHR vkGetPhysicalDevicePresentRectanglesKHR;
+#else
+	PFN_vkVoidFunction padding_a8092b55[1];
 #endif /* (defined(VK_KHR_device_group) && defined(VK_KHR_surface)) || (defined(VK_KHR_swapchain) && defined(VK_VERSION_1_1)) */
 	/* VOLK_GENERATE_INSTANCE_TABLE */
 };
