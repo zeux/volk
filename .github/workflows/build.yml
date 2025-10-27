@@ -10,16 +10,21 @@ jobs:
     name: ${{matrix.os}}
     runs-on: ${{matrix.os}}-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
       with:
         repository: KhronosGroup/Vulkan-Headers
         ref: main
         path: Vulkan-Headers
+        fetch-depth: 0
+        fetch-tags: true
     - name: move sdk
       shell: bash
       run: |
-        mv ../Vulkan-Headers ~/Vulkan-Headers
+        mv Vulkan-Headers ~/Vulkan-Headers
+    - name: install deps for tests
+      run: sudo apt update && sudo apt install -y xorg-dev
+      if: matrix.os == 'ubuntu'
     - name: build main
       shell: bash
       run: |
@@ -55,4 +60,16 @@ jobs:
       run: |
         export VULKAN_SDK=~/Vulkan-Headers
         git -C ~/Vulkan-Headers checkout sdk-1.3.239
+        test/run_tests.sh
+    - name: build 1.3.268
+      shell: bash
+      run: |
+        export VULKAN_SDK=~/Vulkan-Headers
+        git -C ~/Vulkan-Headers checkout vulkan-sdk-1.3.268
+        test/run_tests.sh
+    - name: build 1.3.296
+      shell: bash
+      run: |
+        export VULKAN_SDK=~/Vulkan-Headers
+        git -C ~/Vulkan-Headers checkout vulkan-sdk-1.3.296
         test/run_tests.sh

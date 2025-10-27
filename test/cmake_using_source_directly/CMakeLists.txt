@@ -8,7 +8,7 @@
 # For these reasons it's recommended to use one of
 # the other ways to include volk (see the other examples).
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.5...3.30)
 project(volk_test LANGUAGES C)
 
 add_executable(volk_test main.c ../../volk.c)
@@ -33,7 +33,8 @@ endif()
 # Get Vulkan dependency
 find_package(Vulkan QUIET)
 if(TARGET Vulkan::Vulkan)
-  target_link_libraries(volk_test PRIVATE Vulkan::Vulkan)
+  # Note: We don't use target_link_libraries for Vulkan::Vulkan to avoid a static dependency on libvulkan1
+  target_include_directories(volk_test PRIVATE ${Vulkan_INCLUDE_DIRS})
 elseif(DEFINED ENV{VULKAN_SDK})
   target_include_directories(volk_test PRIVATE "$ENV{VULKAN_SDK}/include")
 endif()

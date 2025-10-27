@@ -83,5 +83,18 @@ run_volk_test
 popd
 popd
 
+echo
+echo "cmake_cpp_namespace =================================================>"
+echo 
+
+pushd test/cmake_cpp_namespace
+reset_build
+pushd _build
+cmake .. || exit 1
+cmake --build . || exit 1
+run_volk_test
+popd
+popd
+
 popd
 

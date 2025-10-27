@@ -7,11 +7,15 @@ import sys
 import urllib
 import xml.etree.ElementTree as etree
 import urllib.request
+import zlib
 
 cmdversions = {
 	"vkCmdSetDiscardRectangleEnableEXT": 2,
 	"vkCmdSetDiscardRectangleModeEXT": 2,
-	"vkCmdSetExclusiveScissorEnableNV": 2
+	"vkCmdSetExclusiveScissorEnableNV": 2,
+	"vkGetImageViewAddressNVX": 2,
+	"vkGetImageViewHandle64NVX": 3,
+	"vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI": 2,
 }
 
 def parse_xml(path):
@@ -49,7 +53,7 @@ def is_descendant_type(types, name, base):
 	if name == base:
 		return True
 	type = types.get(name)
-	if not type:
+	if type is None:
 		return False
 	parents = type.get('parent')
 	if not parents:
@@ -70,7 +74,7 @@ if __name__ == "__main__":
 
 	spec = parse_xml(specpath)
 
-	block_keys = ('INSTANCE_TABLE', 'DEVICE_TABLE', 'PROTOTYPES_H', 'PROTOTYPES_C', 'LOAD_LOADER', 'LOAD_INSTANCE', 'LOAD_INSTANCE_TABLE', 'LOAD_DEVICE', 'LOAD_DEVICE_TABLE')
+	block_keys = ('INSTANCE_TABLE', 'DEVICE_TABLE', 'PROTOTYPES_H', 'PROTOTYPES_H_DEVICE', 'PROTOTYPES_C', 'LOAD_LOADER', 'LOAD_INSTANCE', 'LOAD_INSTANCE_TABLE', 'LOAD_DEVICE', 'LOAD_DEVICE_TABLE')
 
 	blocks = {}
 
@@ -85,9 +89,11 @@ if __name__ == "__main__":
 		api = feature.get('api')
 		if 'vulkan' not in api.split(','):
 			continue
-		key = defined(feature.get('name'))
+		name = feature.get('name')
+		name = re.sub(r'VK_(BASE|COMPUTE|GRAPHICS)_VERSION_', 'VK_VERSION_', name) # strip Vulkan Base prefixes for compatibility
+		key = defined(name)
 		cmdrefs = feature.findall('require/command')
-		command_groups[key] = [cmdref.get('name') for cmdref in cmdrefs]
+		command_groups.setdefault(key, []).extend([cmdref.get('name') for cmdref in cmdrefs])
 
 	for ext in sorted(spec.findall('extensions/extension'), key=lambda ext: ext.get('name')):
 		supported = ext.get('supported')
@@ -154,11 +160,16 @@ if __name__ == "__main__":
 	for key in block_keys:
 		blocks[key] = ''
 
+	devp = {}
+
 	for (group, cmdnames) in command_groups.items():
 		ifdef = '#if ' + group + '\n'
 
 		for key in block_keys:
 			blocks[key] += ifdef
+
+		devt = 0
+		devo = len(blocks['DEVICE_TABLE'])
 
 		for name in sorted(cmdnames):
 			cmd = commands[name]
@@ -174,22 +185,35 @@ if __name__ == "__main__":
 			load_table = '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 
 			if is_descendant_type(types, type, 'VkDevice') and name not in instance_commands:
-				blocks['LOAD_DEVICE'] += load_fn
-				blocks['DEVICE_TABLE'] += def_table
-				blocks['LOAD_DEVICE_TABLE'] += load_table
+				blocks['LOAD_DEVICE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['DEVICE_TABLE'] += '\tPFN_' + name + ' ' + name + ';\n'
+				blocks['LOAD_DEVICE_TABLE'] += '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['PROTOTYPES_H_DEVICE'] += 'extern PFN_' + name + ' ' + name + ';\n'
+				devt += 1
 			elif is_descendant_type(types, type, 'VkInstance'):
-				blocks['LOAD_INSTANCE'] += load_fn
+				blocks['LOAD_INSTANCE'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
 				blocks['INSTANCE_TABLE'] += def_table
 				blocks['LOAD_INSTANCE_TABLE'] += load_table
 			elif type != '':
-				blocks['LOAD_LOADER'] += load_fn
+				blocks['LOAD_LOADER'] += '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
+				blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
+			else:
+				blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
 
-			blocks['PROTOTYPES_H'] += 'extern PFN_' + name + ' ' + name + ';\n'
 			blocks['PROTOTYPES_C'] += 'PFN_' + name + ' ' + name + ';\n'
 
 		for key in block_keys:
 			if blocks[key].endswith(ifdef):
 				blocks[key] = blocks[key][:-len(ifdef)]
+			elif key == 'DEVICE_TABLE':
+				devh = zlib.crc32(blocks[key][devo:].encode())
+				assert(devh not in devp)
+				devp[devh] = True
+
+				blocks[key] += '#else\n'
+				blocks[key] += f'\tPFN_vkVoidFunction padding_{devh:x}[{devt}];\n'
+				blocks[key] += '#endif /* ' + group + ' */\n'
 			else:
 				blocks[key] += '#endif /* ' + group + ' */\n'
 

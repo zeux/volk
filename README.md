@@ -12,9 +12,9 @@ volk is written in C89 and supports Windows, Linux, Android and macOS (via Molte
 
 There are multiple ways to use volk in your project:
 
-1. You can just add `volk.c` to your build system. Note that the usual preprocessor defines that enable Vulkan's platform-specific functions (VK_USE_PLATFORM_WIN32_KHR, VK_USE_PLATFORM_XLIB_KHR, VK_USE_PLATFORM_MACOS_MVK, etc) must be passed as desired to the compiler when building `volk.c`.
-2. You can use volk in header-only fashion. Include `volk.h` wherever you want to use Vulkan functions. In exactly one source file, define `VOLK_IMPLEMENTATION` before including `volk.h`. Do not build `volk.c` at all in this case. This method of integrating volk makes it possible to set the platform defines mentioned above with arbitrary (preprocessor) logic in your code.
-3. You can use provided CMake files, with the usage detailed below.
+1. You can add `volk.c` to your build system. Note that the usual preprocessor defines that enable Vulkan's platform-specific functions (VK_USE_PLATFORM_WIN32_KHR, VK_USE_PLATFORM_XLIB_KHR, VK_USE_PLATFORM_MACOS_MVK, etc) must be passed as desired to the compiler when building `volk.c`.
+2. You can use provided CMake files, with the usage detailed below.
+3. You can use volk in header-only fashion. Include `volk.h` wherever you want to use Vulkan functions. In exactly one source file, define `VOLK_IMPLEMENTATION` before including `volk.h`. Do not build `volk.c` at all in this case - however, `volk.c` must still be in the same directory as `volk.h`. This method of integrating volk makes it possible to set the platform defines mentioned above with arbitrary (preprocessor) logic in your code.
 
 ## Basic usage
 
@@ -92,7 +92,13 @@ and in the code:
 
 The above example use `add_subdirectory` to include volk into CMake's build tree. This is a good choice if you copy the volk files into your project tree or as a git submodule.
 
-Volk also supports installation and config-file packages. Installation is disabled by default (so as to not pollute user projects with install rules), and can be enabled by passing `-DVOLK_INSTALL=ON` to CMake. Once installed, do something like `find_package(volk CONFIG REQUIRED)` in your project's CMakeLists.txt. The imported volk targets are called `volk::volk` and `volk::volk_headers`.
+volk also supports installation and config-file packages. Installation is disabled by default (so as to not pollute user projects with install rules), and can be enabled by passing `-DVOLK_INSTALL=ON` to CMake. Once installed, do something like `find_package(volk CONFIG REQUIRED)` in your project's CMakeLists.txt. The imported volk targets are called `volk::volk` and `volk::volk_headers`.
+
+## Configuration
+
+By default, volk is compiled as a C library and exposes all Vulkan function pointers as globals. This can result in symbol conflicts if some libraries in the application are still linking to Vulkan libraries directly. While generally speaking it's desirable to not mix & match volk with direct usage of Vulkan - for example, mixed usage means the application still links directly to Vulkan libraries and will fail to launch if Vulkan is not available on the user's system - it's possible to enable `VOLK_NAMESPACE` CMake option (or `VOLK_NAMESPACE` define when building volk manually), which places all volk symbols into `volk::` namespace. This requires compiling `volk.c` in C++ mode, which happens automatically when using CMake, but doesn'trequire any other changes.
+
+Device level functions can be hidden by defining `VOLK_NO_DEVICE_PROTOTYPES`. When using `volkLoadInstaceOnly` and `volkLoadDeviceTable` the device level functions are never loaded and when not used correctly would trigger a runtime error. By hiding the device prototypes mistakes can be checked by the compiler.
 
 ## License
 
