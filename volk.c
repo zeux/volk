@@ -268,6 +268,9 @@ static void volkGenLoadInstance(void* context, PFN_vkVoidFunction (*load)(void*,
 	vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = (PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM)load(context, "vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM");
 	vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = (PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM)load(context, "vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM");
 #endif /* defined(VK_ARM_data_graph) */
+#if defined(VK_ARM_performance_counters_by_region)
+	vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM = (PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM)load(context, "vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM");
+#endif /* defined(VK_ARM_performance_counters_by_region) */
 #if defined(VK_ARM_tensors)
 	vkGetPhysicalDeviceExternalTensorPropertiesARM = (PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM)load(context, "vkGetPhysicalDeviceExternalTensorPropertiesARM");
 #endif /* defined(VK_ARM_tensors) */
@@ -1320,6 +1323,10 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkCmdSetCoarseSampleOrderNV = (PFN_vkCmdSetCoarseSampleOrderNV)load(context, "vkCmdSetCoarseSampleOrderNV");
 	vkCmdSetViewportShadingRatePaletteNV = (PFN_vkCmdSetViewportShadingRatePaletteNV)load(context, "vkCmdSetViewportShadingRatePaletteNV");
 #endif /* defined(VK_NV_shading_rate_image) */
+#if defined(VK_OHOS_external_memory)
+	vkGetMemoryNativeBufferOHOS = (PFN_vkGetMemoryNativeBufferOHOS)load(context, "vkGetMemoryNativeBufferOHOS");
+	vkGetNativeBufferPropertiesOHOS = (PFN_vkGetNativeBufferPropertiesOHOS)load(context, "vkGetNativeBufferPropertiesOHOS");
+#endif /* defined(VK_OHOS_external_memory) */
 #if defined(VK_OHOS_native_buffer)
 	vkAcquireImageOHOS = (PFN_vkAcquireImageOHOS)load(context, "vkAcquireImageOHOS");
 	vkGetSwapchainGrallocUsageOHOS = (PFN_vkGetSwapchainGrallocUsageOHOS)load(context, "vkGetSwapchainGrallocUsageOHOS");
@@ -1490,6 +1497,9 @@ static void volkGenLoadInstanceTable(struct VolkInstanceTable* table, void* cont
 	table->vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = (PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM)load(context, "vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM");
 	table->vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = (PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM)load(context, "vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM");
 #endif /* defined(VK_ARM_data_graph) */
+#if defined(VK_ARM_performance_counters_by_region)
+	table->vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM = (PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM)load(context, "vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM");
+#endif /* defined(VK_ARM_performance_counters_by_region) */
 #if defined(VK_ARM_tensors)
 	table->vkGetPhysicalDeviceExternalTensorPropertiesARM = (PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM)load(context, "vkGetPhysicalDeviceExternalTensorPropertiesARM");
 #endif /* defined(VK_ARM_tensors) */
@@ -2542,6 +2552,10 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkCmdSetCoarseSampleOrderNV = (PFN_vkCmdSetCoarseSampleOrderNV)load(context, "vkCmdSetCoarseSampleOrderNV");
 	table->vkCmdSetViewportShadingRatePaletteNV = (PFN_vkCmdSetViewportShadingRatePaletteNV)load(context, "vkCmdSetViewportShadingRatePaletteNV");
 #endif /* defined(VK_NV_shading_rate_image) */
+#if defined(VK_OHOS_external_memory)
+	table->vkGetMemoryNativeBufferOHOS = (PFN_vkGetMemoryNativeBufferOHOS)load(context, "vkGetMemoryNativeBufferOHOS");
+	table->vkGetNativeBufferPropertiesOHOS = (PFN_vkGetNativeBufferPropertiesOHOS)load(context, "vkGetNativeBufferPropertiesOHOS");
+#endif /* defined(VK_OHOS_external_memory) */
 #if defined(VK_OHOS_native_buffer)
 	table->vkAcquireImageOHOS = (PFN_vkAcquireImageOHOS)load(context, "vkAcquireImageOHOS");
 	table->vkGetSwapchainGrallocUsageOHOS = (PFN_vkGetSwapchainGrallocUsageOHOS)load(context, "vkGetSwapchainGrallocUsageOHOS");
@@ -2972,6 +2986,9 @@ PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM vkGetDataGraphPipelineSes
 PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM;
 PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM;
 #endif /* defined(VK_ARM_data_graph) */
+#if defined(VK_ARM_performance_counters_by_region)
+PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM;
+#endif /* defined(VK_ARM_performance_counters_by_region) */
 #if defined(VK_ARM_tensors)
 PFN_vkBindTensorMemoryARM vkBindTensorMemoryARM;
 PFN_vkCmdCopyTensorARM vkCmdCopyTensorARM;
@@ -3729,6 +3746,10 @@ PFN_vkCmdBindShadingRateImageNV vkCmdBindShadingRateImageNV;
 PFN_vkCmdSetCoarseSampleOrderNV vkCmdSetCoarseSampleOrderNV;
 PFN_vkCmdSetViewportShadingRatePaletteNV vkCmdSetViewportShadingRatePaletteNV;
 #endif /* defined(VK_NV_shading_rate_image) */
+#if defined(VK_OHOS_external_memory)
+PFN_vkGetMemoryNativeBufferOHOS vkGetMemoryNativeBufferOHOS;
+PFN_vkGetNativeBufferPropertiesOHOS vkGetNativeBufferPropertiesOHOS;
+#endif /* defined(VK_OHOS_external_memory) */
 #if defined(VK_OHOS_native_buffer)
 PFN_vkAcquireImageOHOS vkAcquireImageOHOS;
 PFN_vkGetSwapchainGrallocUsageOHOS vkGetSwapchainGrallocUsageOHOS;
