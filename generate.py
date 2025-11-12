@@ -183,7 +183,7 @@ if __name__ == "__main__":
 			if name == 'vkGetDeviceProcAddr':
 				type = 'VkInstance'
 
-			extern_fn = 'extern PFN_' + name + ' ' + name + ';\n'
+			extern_fn = 'extern VOLK_API PFN_' + name + ' ' + name + ';\n'
 			load_fn = '\t' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
 			def_table = '\tPFN_' + name + ' ' + name + ';\n'
 			load_table = '\ttable->' + name + ' = (PFN_' + name + ')load(context, "' + name + '");\n'
