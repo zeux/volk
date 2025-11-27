@@ -1091,6 +1091,14 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_11313020[1];
 #endif /* defined(VK_EXT_pipeline_properties) */
+#if defined(VK_EXT_present_timing)
+	PFN_vkGetPastPresentationTimingEXT vkGetPastPresentationTimingEXT;
+	PFN_vkGetSwapchainTimeDomainPropertiesEXT vkGetSwapchainTimeDomainPropertiesEXT;
+	PFN_vkGetSwapchainTimingPropertiesEXT vkGetSwapchainTimingPropertiesEXT;
+	PFN_vkSetSwapchainPresentTimingQueueSizeEXT vkSetSwapchainPresentTimingQueueSizeEXT;
+#else
+	PFN_vkVoidFunction padding_8751feb5[4];
+#endif /* defined(VK_EXT_present_timing) */
 #if defined(VK_EXT_private_data)
 	PFN_vkCreatePrivateDataSlotEXT vkCreatePrivateDataSlotEXT;
 	PFN_vkDestroyPrivateDataSlotEXT vkDestroyPrivateDataSlotEXT;
@@ -2572,6 +2580,12 @@ extern PFN_vkSetDeviceMemoryPriorityEXT vkSetDeviceMemoryPriorityEXT;
 #if defined(VK_EXT_pipeline_properties)
 extern PFN_vkGetPipelinePropertiesEXT vkGetPipelinePropertiesEXT;
 #endif /* defined(VK_EXT_pipeline_properties) */
+#if defined(VK_EXT_present_timing)
+extern PFN_vkGetPastPresentationTimingEXT vkGetPastPresentationTimingEXT;
+extern PFN_vkGetSwapchainTimeDomainPropertiesEXT vkGetSwapchainTimeDomainPropertiesEXT;
+extern PFN_vkGetSwapchainTimingPropertiesEXT vkGetSwapchainTimingPropertiesEXT;
+extern PFN_vkSetSwapchainPresentTimingQueueSizeEXT vkSetSwapchainPresentTimingQueueSizeEXT;
+#endif /* defined(VK_EXT_present_timing) */
 #if defined(VK_EXT_private_data)
 extern PFN_vkCreatePrivateDataSlotEXT vkCreatePrivateDataSlotEXT;
 extern PFN_vkDestroyPrivateDataSlotEXT vkDestroyPrivateDataSlotEXT;
