@@ -1337,11 +1337,6 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkGetMemoryNativeBufferOHOS = (PFN_vkGetMemoryNativeBufferOHOS)load(context, "vkGetMemoryNativeBufferOHOS");
 	vkGetNativeBufferPropertiesOHOS = (PFN_vkGetNativeBufferPropertiesOHOS)load(context, "vkGetNativeBufferPropertiesOHOS");
 #endif /* defined(VK_OHOS_external_memory) */
-#if defined(VK_OHOS_native_buffer)
-	vkAcquireImageOHOS = (PFN_vkAcquireImageOHOS)load(context, "vkAcquireImageOHOS");
-	vkGetSwapchainGrallocUsageOHOS = (PFN_vkGetSwapchainGrallocUsageOHOS)load(context, "vkGetSwapchainGrallocUsageOHOS");
-	vkQueueSignalReleaseImageOHOS = (PFN_vkQueueSignalReleaseImageOHOS)load(context, "vkQueueSignalReleaseImageOHOS");
-#endif /* defined(VK_OHOS_native_buffer) */
 #if defined(VK_QCOM_tile_memory_heap)
 	vkCmdBindTileMemoryQCOM = (PFN_vkCmdBindTileMemoryQCOM)load(context, "vkCmdBindTileMemoryQCOM");
 #endif /* defined(VK_QCOM_tile_memory_heap) */
@@ -2578,11 +2573,6 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkGetMemoryNativeBufferOHOS = (PFN_vkGetMemoryNativeBufferOHOS)load(context, "vkGetMemoryNativeBufferOHOS");
 	table->vkGetNativeBufferPropertiesOHOS = (PFN_vkGetNativeBufferPropertiesOHOS)load(context, "vkGetNativeBufferPropertiesOHOS");
 #endif /* defined(VK_OHOS_external_memory) */
-#if defined(VK_OHOS_native_buffer)
-	table->vkAcquireImageOHOS = (PFN_vkAcquireImageOHOS)load(context, "vkAcquireImageOHOS");
-	table->vkGetSwapchainGrallocUsageOHOS = (PFN_vkGetSwapchainGrallocUsageOHOS)load(context, "vkGetSwapchainGrallocUsageOHOS");
-	table->vkQueueSignalReleaseImageOHOS = (PFN_vkQueueSignalReleaseImageOHOS)load(context, "vkQueueSignalReleaseImageOHOS");
-#endif /* defined(VK_OHOS_native_buffer) */
 #if defined(VK_QCOM_tile_memory_heap)
 	table->vkCmdBindTileMemoryQCOM = (PFN_vkCmdBindTileMemoryQCOM)load(context, "vkCmdBindTileMemoryQCOM");
 #endif /* defined(VK_QCOM_tile_memory_heap) */
@@ -3784,11 +3774,6 @@ PFN_vkCmdSetViewportShadingRatePaletteNV vkCmdSetViewportShadingRatePaletteNV;
 PFN_vkGetMemoryNativeBufferOHOS vkGetMemoryNativeBufferOHOS;
 PFN_vkGetNativeBufferPropertiesOHOS vkGetNativeBufferPropertiesOHOS;
 #endif /* defined(VK_OHOS_external_memory) */
-#if defined(VK_OHOS_native_buffer)
-PFN_vkAcquireImageOHOS vkAcquireImageOHOS;
-PFN_vkGetSwapchainGrallocUsageOHOS vkGetSwapchainGrallocUsageOHOS;
-PFN_vkQueueSignalReleaseImageOHOS vkQueueSignalReleaseImageOHOS;
-#endif /* defined(VK_OHOS_native_buffer) */
 #if defined(VK_OHOS_surface)
 PFN_vkCreateSurfaceOHOS vkCreateSurfaceOHOS;
 #endif /* defined(VK_OHOS_surface) */

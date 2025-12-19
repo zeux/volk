@@ -19,7 +19,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 336
+#define VOLK_HEADER_VERSION 337
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -1736,13 +1736,6 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_9c703846[2];
 #endif /* defined(VK_OHOS_external_memory) */
-#if defined(VK_OHOS_native_buffer)
-	PFN_vkAcquireImageOHOS vkAcquireImageOHOS;
-	PFN_vkGetSwapchainGrallocUsageOHOS vkGetSwapchainGrallocUsageOHOS;
-	PFN_vkQueueSignalReleaseImageOHOS vkQueueSignalReleaseImageOHOS;
-#else
-	PFN_vkVoidFunction padding_a26c9a3d[3];
-#endif /* defined(VK_OHOS_native_buffer) */
 #if defined(VK_QCOM_tile_memory_heap)
 	PFN_vkCmdBindTileMemoryQCOM vkCmdBindTileMemoryQCOM;
 #else
@@ -3040,11 +3033,6 @@ extern PFN_vkCmdSetViewportShadingRatePaletteNV vkCmdSetViewportShadingRatePalet
 extern PFN_vkGetMemoryNativeBufferOHOS vkGetMemoryNativeBufferOHOS;
 extern PFN_vkGetNativeBufferPropertiesOHOS vkGetNativeBufferPropertiesOHOS;
 #endif /* defined(VK_OHOS_external_memory) */
-#if defined(VK_OHOS_native_buffer)
-extern PFN_vkAcquireImageOHOS vkAcquireImageOHOS;
-extern PFN_vkGetSwapchainGrallocUsageOHOS vkGetSwapchainGrallocUsageOHOS;
-extern PFN_vkQueueSignalReleaseImageOHOS vkQueueSignalReleaseImageOHOS;
-#endif /* defined(VK_OHOS_native_buffer) */
 #if defined(VK_QCOM_tile_memory_heap)
 extern PFN_vkCmdBindTileMemoryQCOM vkCmdBindTileMemoryQCOM;
 #endif /* defined(VK_QCOM_tile_memory_heap) */
