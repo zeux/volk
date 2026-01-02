@@ -1,7 +1,7 @@
 /**
  * volk
  *
- * Copyright (C) 2018-2025, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
+ * Copyright (C) 2018-2026, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
  * Report bugs and download new versions at https://github.com/zeux/volk
  *
  * This library is distributed under the MIT License. See notice at the end of this file.
@@ -3178,7 +3178,7 @@ using namespace volk;
 #endif
 
 /**
- * Copyright (c) 2018-2025 Arseny Kapoulkine
+ * Copyright (c) 2018-2026 Arseny Kapoulkine
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
