@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5...3.30)
 
 project(volk VERSION
 # VOLK_GENERATE_VERSION
-337
+338
 # VOLK_GENERATE_VERSION
   LANGUAGES C
 )
