@@ -19,7 +19,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 339
+#define VOLK_HEADER_VERSION 341
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -323,6 +323,11 @@ struct VolkInstanceTable
 #else
 	PFN_vkVoidFunction padding_3e2e81f7[11];
 #endif /* defined(VK_EXT_debug_utils) */
+#if defined(VK_EXT_descriptor_heap)
+	PFN_vkGetPhysicalDeviceDescriptorSizeEXT vkGetPhysicalDeviceDescriptorSizeEXT;
+#else
+	PFN_vkVoidFunction padding_ce9bfed[1];
+#endif /* defined(VK_EXT_descriptor_heap) */
 #if defined(VK_EXT_direct_mode_display)
 	PFN_vkReleaseDisplayEXT vkReleaseDisplayEXT;
 #else
@@ -943,6 +948,27 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_98d0fb33[1];
 #endif /* defined(VK_EXT_descriptor_buffer) && (defined(VK_KHR_acceleration_structure) || defined(VK_NV_ray_tracing)) */
+#if defined(VK_EXT_descriptor_heap)
+	PFN_vkCmdBindResourceHeapEXT vkCmdBindResourceHeapEXT;
+	PFN_vkCmdBindSamplerHeapEXT vkCmdBindSamplerHeapEXT;
+	PFN_vkCmdPushDataEXT vkCmdPushDataEXT;
+	PFN_vkGetImageOpaqueCaptureDataEXT vkGetImageOpaqueCaptureDataEXT;
+	PFN_vkWriteResourceDescriptorsEXT vkWriteResourceDescriptorsEXT;
+	PFN_vkWriteSamplerDescriptorsEXT vkWriteSamplerDescriptorsEXT;
+#else
+	PFN_vkVoidFunction padding_a061cda9[6];
+#endif /* defined(VK_EXT_descriptor_heap) */
+#if defined(VK_EXT_descriptor_heap) && defined(VK_EXT_custom_border_color)
+	PFN_vkRegisterCustomBorderColorEXT vkRegisterCustomBorderColorEXT;
+	PFN_vkUnregisterCustomBorderColorEXT vkUnregisterCustomBorderColorEXT;
+#else
+	PFN_vkVoidFunction padding_7b7ddcfe[2];
+#endif /* defined(VK_EXT_descriptor_heap) && defined(VK_EXT_custom_border_color) */
+#if defined(VK_EXT_descriptor_heap) && defined(VK_ARM_tensors)
+	PFN_vkGetTensorOpaqueCaptureDataARM vkGetTensorOpaqueCaptureDataARM;
+#else
+	PFN_vkVoidFunction padding_533712c5[1];
+#endif /* defined(VK_EXT_descriptor_heap) && defined(VK_ARM_tensors) */
 #if defined(VK_EXT_device_fault)
 	PFN_vkGetDeviceFaultInfoEXT vkGetDeviceFaultInfoEXT;
 #else
@@ -1555,9 +1581,10 @@ struct VolkDeviceTable
 	PFN_vkVoidFunction padding_eb54309b[5];
 #endif /* defined(VK_NVX_binary_import) */
 #if defined(VK_NVX_image_view_handle)
+	PFN_vkGetDeviceCombinedImageSamplerIndexNVX vkGetDeviceCombinedImageSamplerIndexNVX;
 	PFN_vkGetImageViewHandleNVX vkGetImageViewHandleNVX;
 #else
-	PFN_vkVoidFunction padding_887f6736[1];
+	PFN_vkVoidFunction padding_ef09c5c[2];
 #endif /* defined(VK_NVX_image_view_handle) */
 #if defined(VK_NVX_image_view_handle) && VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION >= 3
 	PFN_vkGetImageViewHandle64NVX vkGetImageViewHandle64NVX;
@@ -1999,6 +2026,9 @@ extern PFN_vkSetDebugUtilsObjectNameEXT vkSetDebugUtilsObjectNameEXT;
 extern PFN_vkSetDebugUtilsObjectTagEXT vkSetDebugUtilsObjectTagEXT;
 extern PFN_vkSubmitDebugUtilsMessageEXT vkSubmitDebugUtilsMessageEXT;
 #endif /* defined(VK_EXT_debug_utils) */
+#if defined(VK_EXT_descriptor_heap)
+extern PFN_vkGetPhysicalDeviceDescriptorSizeEXT vkGetPhysicalDeviceDescriptorSizeEXT;
+#endif /* defined(VK_EXT_descriptor_heap) */
 #if defined(VK_EXT_direct_mode_display)
 extern PFN_vkReleaseDisplayEXT vkReleaseDisplayEXT;
 #endif /* defined(VK_EXT_direct_mode_display) */
@@ -2476,6 +2506,21 @@ extern PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT vkGetSamplerOpaqueCaptureD
 #if defined(VK_EXT_descriptor_buffer) && (defined(VK_KHR_acceleration_structure) || defined(VK_NV_ray_tracing))
 extern PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT;
 #endif /* defined(VK_EXT_descriptor_buffer) && (defined(VK_KHR_acceleration_structure) || defined(VK_NV_ray_tracing)) */
+#if defined(VK_EXT_descriptor_heap)
+extern PFN_vkCmdBindResourceHeapEXT vkCmdBindResourceHeapEXT;
+extern PFN_vkCmdBindSamplerHeapEXT vkCmdBindSamplerHeapEXT;
+extern PFN_vkCmdPushDataEXT vkCmdPushDataEXT;
+extern PFN_vkGetImageOpaqueCaptureDataEXT vkGetImageOpaqueCaptureDataEXT;
+extern PFN_vkWriteResourceDescriptorsEXT vkWriteResourceDescriptorsEXT;
+extern PFN_vkWriteSamplerDescriptorsEXT vkWriteSamplerDescriptorsEXT;
+#endif /* defined(VK_EXT_descriptor_heap) */
+#if defined(VK_EXT_descriptor_heap) && defined(VK_EXT_custom_border_color)
+extern PFN_vkRegisterCustomBorderColorEXT vkRegisterCustomBorderColorEXT;
+extern PFN_vkUnregisterCustomBorderColorEXT vkUnregisterCustomBorderColorEXT;
+#endif /* defined(VK_EXT_descriptor_heap) && defined(VK_EXT_custom_border_color) */
+#if defined(VK_EXT_descriptor_heap) && defined(VK_ARM_tensors)
+extern PFN_vkGetTensorOpaqueCaptureDataARM vkGetTensorOpaqueCaptureDataARM;
+#endif /* defined(VK_EXT_descriptor_heap) && defined(VK_ARM_tensors) */
 #if defined(VK_EXT_device_fault)
 extern PFN_vkGetDeviceFaultInfoEXT vkGetDeviceFaultInfoEXT;
 #endif /* defined(VK_EXT_device_fault) */
@@ -2908,6 +2953,7 @@ extern PFN_vkDestroyCuFunctionNVX vkDestroyCuFunctionNVX;
 extern PFN_vkDestroyCuModuleNVX vkDestroyCuModuleNVX;
 #endif /* defined(VK_NVX_binary_import) */
 #if defined(VK_NVX_image_view_handle)
+extern PFN_vkGetDeviceCombinedImageSamplerIndexNVX vkGetDeviceCombinedImageSamplerIndexNVX;
 extern PFN_vkGetImageViewHandleNVX vkGetImageViewHandleNVX;
 #endif /* defined(VK_NVX_image_view_handle) */
 #if defined(VK_NVX_image_view_handle) && VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION >= 3
