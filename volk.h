@@ -215,6 +215,10 @@ typedef unsigned long RROutput;
 #include <vulkan/vulkan_beta.h>
 #endif
 
+#ifdef VK_USE_PLATFORM_OHOS
+#include "vulkan_ohos.h"
+#endif
+
 #endif
 
 #ifdef __cplusplus
