@@ -216,7 +216,7 @@ typedef unsigned long RROutput;
 #endif
 
 #ifdef VK_USE_PLATFORM_OHOS
-#include "vulkan_ohos.h"
+#include <vulkan/vulkan_ohos.h>
 #endif
 
 #endif
