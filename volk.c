@@ -120,9 +120,13 @@ VkResult volkInitialize(void)
 	vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)dlsym(module, "vkGetInstanceProcAddr");
 	VOLK_RESTORE_GCC_PEDANTIC_WARNINGS
 #else
-	void* module = dlopen("libvulkan.so.1", RTLD_NOW | RTLD_LOCAL | RTLD_DEEPBIND);
+	int flags = RTLD_NOW | RTLD_LOCAL;
+#ifdef VOLK_USE_DEEPBIND
+	flags |= RTLD_DEEPBIND; // Prevent libvulkan.so from resolving Vulkan symbols via volk's own exports
+#endif
+	void* module = dlopen("libvulkan.so.1", flags);
 	if (!module)
-		module = dlopen("libvulkan.so", RTLD_NOW | RTLD_LOCAL | RTLD_DEEPBIND);
+		module = dlopen("libvulkan.so", flags);
 	if (!module)
 		return VK_ERROR_INITIALIZATION_FAILED;
 	VOLK_DISABLE_GCC_PEDANTIC_WARNINGS
