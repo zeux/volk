@@ -26,6 +26,7 @@ jobs:
         commit-message: Update to 1.4.${{env.VOLK_VERSION}}
         title: Update to 1.4.${{env.VOLK_VERSION}}
         author: GitHub <noreply@github.com>
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}  
     - name: enable pr automerge
       run: |
         sleep 60
