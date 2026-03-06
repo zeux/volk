@@ -19,7 +19,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 344
+#define VOLK_HEADER_VERSION 345
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -283,6 +283,11 @@ struct VolkInstanceTable
 #else
 	PFN_vkVoidFunction padding_4fd09193[1];
 #endif /* defined(VK_ARM_performance_counters_by_region) */
+#if defined(VK_ARM_shader_instrumentation)
+	PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM;
+#else
+	PFN_vkVoidFunction padding_faae0311[1];
+#endif /* defined(VK_ARM_shader_instrumentation) */
 #if defined(VK_ARM_tensors)
 	PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM vkGetPhysicalDeviceExternalTensorPropertiesARM;
 #else
@@ -876,6 +881,16 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_894d85d8[9];
 #endif /* defined(VK_ARM_data_graph) */
+#if defined(VK_ARM_shader_instrumentation)
+	PFN_vkClearShaderInstrumentationMetricsARM vkClearShaderInstrumentationMetricsARM;
+	PFN_vkCmdBeginShaderInstrumentationARM vkCmdBeginShaderInstrumentationARM;
+	PFN_vkCmdEndShaderInstrumentationARM vkCmdEndShaderInstrumentationARM;
+	PFN_vkCreateShaderInstrumentationARM vkCreateShaderInstrumentationARM;
+	PFN_vkDestroyShaderInstrumentationARM vkDestroyShaderInstrumentationARM;
+	PFN_vkGetShaderInstrumentationValuesARM vkGetShaderInstrumentationValuesARM;
+#else
+	PFN_vkVoidFunction padding_dcecc311[6];
+#endif /* defined(VK_ARM_shader_instrumentation) */
 #if defined(VK_ARM_tensors)
 	PFN_vkBindTensorMemoryARM vkBindTensorMemoryARM;
 	PFN_vkCmdCopyTensorARM vkCmdCopyTensorARM;
@@ -2008,6 +2023,9 @@ extern PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM vkGetPhysicalDev
 #if defined(VK_ARM_performance_counters_by_region)
 extern PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM;
 #endif /* defined(VK_ARM_performance_counters_by_region) */
+#if defined(VK_ARM_shader_instrumentation)
+extern PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM;
+#endif /* defined(VK_ARM_shader_instrumentation) */
 #if defined(VK_ARM_tensors)
 extern PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM vkGetPhysicalDeviceExternalTensorPropertiesARM;
 #endif /* defined(VK_ARM_tensors) */
@@ -2466,6 +2484,14 @@ extern PFN_vkGetDataGraphPipelinePropertiesARM vkGetDataGraphPipelinePropertiesA
 extern PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM vkGetDataGraphPipelineSessionBindPointRequirementsARM;
 extern PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM vkGetDataGraphPipelineSessionMemoryRequirementsARM;
 #endif /* defined(VK_ARM_data_graph) */
+#if defined(VK_ARM_shader_instrumentation)
+extern PFN_vkClearShaderInstrumentationMetricsARM vkClearShaderInstrumentationMetricsARM;
+extern PFN_vkCmdBeginShaderInstrumentationARM vkCmdBeginShaderInstrumentationARM;
+extern PFN_vkCmdEndShaderInstrumentationARM vkCmdEndShaderInstrumentationARM;
+extern PFN_vkCreateShaderInstrumentationARM vkCreateShaderInstrumentationARM;
+extern PFN_vkDestroyShaderInstrumentationARM vkDestroyShaderInstrumentationARM;
+extern PFN_vkGetShaderInstrumentationValuesARM vkGetShaderInstrumentationValuesARM;
+#endif /* defined(VK_ARM_shader_instrumentation) */
 #if defined(VK_ARM_tensors)
 extern PFN_vkBindTensorMemoryARM vkBindTensorMemoryARM;
 extern PFN_vkCmdCopyTensorARM vkCmdCopyTensorARM;
