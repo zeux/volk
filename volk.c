@@ -1073,6 +1073,44 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkDestroyDescriptorUpdateTemplateKHR = (PFN_vkDestroyDescriptorUpdateTemplateKHR)load(context, "vkDestroyDescriptorUpdateTemplateKHR");
 	vkUpdateDescriptorSetWithTemplateKHR = (PFN_vkUpdateDescriptorSetWithTemplateKHR)load(context, "vkUpdateDescriptorSetWithTemplateKHR");
 #endif /* defined(VK_KHR_descriptor_update_template) */
+#if defined(VK_KHR_device_address_commands)
+	vkCmdBindIndexBuffer3KHR = (PFN_vkCmdBindIndexBuffer3KHR)load(context, "vkCmdBindIndexBuffer3KHR");
+	vkCmdBindVertexBuffers3KHR = (PFN_vkCmdBindVertexBuffers3KHR)load(context, "vkCmdBindVertexBuffers3KHR");
+	vkCmdCopyImageToMemoryKHR = (PFN_vkCmdCopyImageToMemoryKHR)load(context, "vkCmdCopyImageToMemoryKHR");
+	vkCmdCopyMemoryKHR = (PFN_vkCmdCopyMemoryKHR)load(context, "vkCmdCopyMemoryKHR");
+	vkCmdCopyMemoryToImageKHR = (PFN_vkCmdCopyMemoryToImageKHR)load(context, "vkCmdCopyMemoryToImageKHR");
+	vkCmdCopyQueryPoolResultsToMemoryKHR = (PFN_vkCmdCopyQueryPoolResultsToMemoryKHR)load(context, "vkCmdCopyQueryPoolResultsToMemoryKHR");
+	vkCmdDispatchIndirect2KHR = (PFN_vkCmdDispatchIndirect2KHR)load(context, "vkCmdDispatchIndirect2KHR");
+	vkCmdDrawIndexedIndirect2KHR = (PFN_vkCmdDrawIndexedIndirect2KHR)load(context, "vkCmdDrawIndexedIndirect2KHR");
+	vkCmdDrawIndirect2KHR = (PFN_vkCmdDrawIndirect2KHR)load(context, "vkCmdDrawIndirect2KHR");
+	vkCmdFillMemoryKHR = (PFN_vkCmdFillMemoryKHR)load(context, "vkCmdFillMemoryKHR");
+	vkCmdUpdateMemoryKHR = (PFN_vkCmdUpdateMemoryKHR)load(context, "vkCmdUpdateMemoryKHR");
+#endif /* defined(VK_KHR_device_address_commands) */
+#if defined(VK_KHR_device_address_commands) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+	vkCmdDrawIndexedIndirectCount2KHR = (PFN_vkCmdDrawIndexedIndirectCount2KHR)load(context, "vkCmdDrawIndexedIndirectCount2KHR");
+	vkCmdDrawIndirectCount2KHR = (PFN_vkCmdDrawIndirectCount2KHR)load(context, "vkCmdDrawIndirectCount2KHR");
+#endif /* defined(VK_KHR_device_address_commands) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_conditional_rendering)
+	vkCmdBeginConditionalRendering2EXT = (PFN_vkCmdBeginConditionalRendering2EXT)load(context, "vkCmdBeginConditionalRendering2EXT");
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_conditional_rendering) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_transform_feedback)
+	vkCmdBeginTransformFeedback2EXT = (PFN_vkCmdBeginTransformFeedback2EXT)load(context, "vkCmdBeginTransformFeedback2EXT");
+	vkCmdBindTransformFeedbackBuffers2EXT = (PFN_vkCmdBindTransformFeedbackBuffers2EXT)load(context, "vkCmdBindTransformFeedbackBuffers2EXT");
+	vkCmdDrawIndirectByteCount2EXT = (PFN_vkCmdDrawIndirectByteCount2EXT)load(context, "vkCmdDrawIndirectByteCount2EXT");
+	vkCmdEndTransformFeedback2EXT = (PFN_vkCmdEndTransformFeedback2EXT)load(context, "vkCmdEndTransformFeedback2EXT");
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_transform_feedback) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_mesh_shader)
+	vkCmdDrawMeshTasksIndirect2EXT = (PFN_vkCmdDrawMeshTasksIndirect2EXT)load(context, "vkCmdDrawMeshTasksIndirect2EXT");
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_mesh_shader) */
+#if defined(VK_KHR_device_address_commands) && ((defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) && defined(VK_EXT_mesh_shader))
+	vkCmdDrawMeshTasksIndirectCount2EXT = (PFN_vkCmdDrawMeshTasksIndirectCount2EXT)load(context, "vkCmdDrawMeshTasksIndirectCount2EXT");
+#endif /* defined(VK_KHR_device_address_commands) && ((defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) && defined(VK_EXT_mesh_shader)) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_AMD_buffer_marker)
+	vkCmdWriteMarkerToMemoryAMD = (PFN_vkCmdWriteMarkerToMemoryAMD)load(context, "vkCmdWriteMarkerToMemoryAMD");
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_AMD_buffer_marker) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure)
+	vkCreateAccelerationStructure2KHR = (PFN_vkCreateAccelerationStructure2KHR)load(context, "vkCreateAccelerationStructure2KHR");
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure) */
 #if defined(VK_KHR_device_group)
 	vkCmdDispatchBaseKHR = (PFN_vkCmdDispatchBaseKHR)load(context, "vkCmdDispatchBaseKHR");
 	vkCmdSetDeviceMaskKHR = (PFN_vkCmdSetDeviceMaskKHR)load(context, "vkCmdSetDeviceMaskKHR");
@@ -2345,6 +2383,44 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkDestroyDescriptorUpdateTemplateKHR = (PFN_vkDestroyDescriptorUpdateTemplateKHR)load(context, "vkDestroyDescriptorUpdateTemplateKHR");
 	table->vkUpdateDescriptorSetWithTemplateKHR = (PFN_vkUpdateDescriptorSetWithTemplateKHR)load(context, "vkUpdateDescriptorSetWithTemplateKHR");
 #endif /* defined(VK_KHR_descriptor_update_template) */
+#if defined(VK_KHR_device_address_commands)
+	table->vkCmdBindIndexBuffer3KHR = (PFN_vkCmdBindIndexBuffer3KHR)load(context, "vkCmdBindIndexBuffer3KHR");
+	table->vkCmdBindVertexBuffers3KHR = (PFN_vkCmdBindVertexBuffers3KHR)load(context, "vkCmdBindVertexBuffers3KHR");
+	table->vkCmdCopyImageToMemoryKHR = (PFN_vkCmdCopyImageToMemoryKHR)load(context, "vkCmdCopyImageToMemoryKHR");
+	table->vkCmdCopyMemoryKHR = (PFN_vkCmdCopyMemoryKHR)load(context, "vkCmdCopyMemoryKHR");
+	table->vkCmdCopyMemoryToImageKHR = (PFN_vkCmdCopyMemoryToImageKHR)load(context, "vkCmdCopyMemoryToImageKHR");
+	table->vkCmdCopyQueryPoolResultsToMemoryKHR = (PFN_vkCmdCopyQueryPoolResultsToMemoryKHR)load(context, "vkCmdCopyQueryPoolResultsToMemoryKHR");
+	table->vkCmdDispatchIndirect2KHR = (PFN_vkCmdDispatchIndirect2KHR)load(context, "vkCmdDispatchIndirect2KHR");
+	table->vkCmdDrawIndexedIndirect2KHR = (PFN_vkCmdDrawIndexedIndirect2KHR)load(context, "vkCmdDrawIndexedIndirect2KHR");
+	table->vkCmdDrawIndirect2KHR = (PFN_vkCmdDrawIndirect2KHR)load(context, "vkCmdDrawIndirect2KHR");
+	table->vkCmdFillMemoryKHR = (PFN_vkCmdFillMemoryKHR)load(context, "vkCmdFillMemoryKHR");
+	table->vkCmdUpdateMemoryKHR = (PFN_vkCmdUpdateMemoryKHR)load(context, "vkCmdUpdateMemoryKHR");
+#endif /* defined(VK_KHR_device_address_commands) */
+#if defined(VK_KHR_device_address_commands) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+	table->vkCmdDrawIndexedIndirectCount2KHR = (PFN_vkCmdDrawIndexedIndirectCount2KHR)load(context, "vkCmdDrawIndexedIndirectCount2KHR");
+	table->vkCmdDrawIndirectCount2KHR = (PFN_vkCmdDrawIndirectCount2KHR)load(context, "vkCmdDrawIndirectCount2KHR");
+#endif /* defined(VK_KHR_device_address_commands) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_conditional_rendering)
+	table->vkCmdBeginConditionalRendering2EXT = (PFN_vkCmdBeginConditionalRendering2EXT)load(context, "vkCmdBeginConditionalRendering2EXT");
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_conditional_rendering) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_transform_feedback)
+	table->vkCmdBeginTransformFeedback2EXT = (PFN_vkCmdBeginTransformFeedback2EXT)load(context, "vkCmdBeginTransformFeedback2EXT");
+	table->vkCmdBindTransformFeedbackBuffers2EXT = (PFN_vkCmdBindTransformFeedbackBuffers2EXT)load(context, "vkCmdBindTransformFeedbackBuffers2EXT");
+	table->vkCmdDrawIndirectByteCount2EXT = (PFN_vkCmdDrawIndirectByteCount2EXT)load(context, "vkCmdDrawIndirectByteCount2EXT");
+	table->vkCmdEndTransformFeedback2EXT = (PFN_vkCmdEndTransformFeedback2EXT)load(context, "vkCmdEndTransformFeedback2EXT");
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_transform_feedback) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_mesh_shader)
+	table->vkCmdDrawMeshTasksIndirect2EXT = (PFN_vkCmdDrawMeshTasksIndirect2EXT)load(context, "vkCmdDrawMeshTasksIndirect2EXT");
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_mesh_shader) */
+#if defined(VK_KHR_device_address_commands) && ((defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) && defined(VK_EXT_mesh_shader))
+	table->vkCmdDrawMeshTasksIndirectCount2EXT = (PFN_vkCmdDrawMeshTasksIndirectCount2EXT)load(context, "vkCmdDrawMeshTasksIndirectCount2EXT");
+#endif /* defined(VK_KHR_device_address_commands) && ((defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) && defined(VK_EXT_mesh_shader)) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_AMD_buffer_marker)
+	table->vkCmdWriteMarkerToMemoryAMD = (PFN_vkCmdWriteMarkerToMemoryAMD)load(context, "vkCmdWriteMarkerToMemoryAMD");
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_AMD_buffer_marker) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure)
+	table->vkCreateAccelerationStructure2KHR = (PFN_vkCreateAccelerationStructure2KHR)load(context, "vkCreateAccelerationStructure2KHR");
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure) */
 #if defined(VK_KHR_device_group)
 	table->vkCmdDispatchBaseKHR = (PFN_vkCmdDispatchBaseKHR)load(context, "vkCmdDispatchBaseKHR");
 	table->vkCmdSetDeviceMaskKHR = (PFN_vkCmdSetDeviceMaskKHR)load(context, "vkCmdSetDeviceMaskKHR");
@@ -3478,6 +3554,44 @@ PFN_vkCreateDescriptorUpdateTemplateKHR vkCreateDescriptorUpdateTemplateKHR;
 PFN_vkDestroyDescriptorUpdateTemplateKHR vkDestroyDescriptorUpdateTemplateKHR;
 PFN_vkUpdateDescriptorSetWithTemplateKHR vkUpdateDescriptorSetWithTemplateKHR;
 #endif /* defined(VK_KHR_descriptor_update_template) */
+#if defined(VK_KHR_device_address_commands)
+PFN_vkCmdBindIndexBuffer3KHR vkCmdBindIndexBuffer3KHR;
+PFN_vkCmdBindVertexBuffers3KHR vkCmdBindVertexBuffers3KHR;
+PFN_vkCmdCopyImageToMemoryKHR vkCmdCopyImageToMemoryKHR;
+PFN_vkCmdCopyMemoryKHR vkCmdCopyMemoryKHR;
+PFN_vkCmdCopyMemoryToImageKHR vkCmdCopyMemoryToImageKHR;
+PFN_vkCmdCopyQueryPoolResultsToMemoryKHR vkCmdCopyQueryPoolResultsToMemoryKHR;
+PFN_vkCmdDispatchIndirect2KHR vkCmdDispatchIndirect2KHR;
+PFN_vkCmdDrawIndexedIndirect2KHR vkCmdDrawIndexedIndirect2KHR;
+PFN_vkCmdDrawIndirect2KHR vkCmdDrawIndirect2KHR;
+PFN_vkCmdFillMemoryKHR vkCmdFillMemoryKHR;
+PFN_vkCmdUpdateMemoryKHR vkCmdUpdateMemoryKHR;
+#endif /* defined(VK_KHR_device_address_commands) */
+#if defined(VK_KHR_device_address_commands) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+PFN_vkCmdDrawIndexedIndirectCount2KHR vkCmdDrawIndexedIndirectCount2KHR;
+PFN_vkCmdDrawIndirectCount2KHR vkCmdDrawIndirectCount2KHR;
+#endif /* defined(VK_KHR_device_address_commands) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_conditional_rendering)
+PFN_vkCmdBeginConditionalRendering2EXT vkCmdBeginConditionalRendering2EXT;
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_conditional_rendering) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_transform_feedback)
+PFN_vkCmdBeginTransformFeedback2EXT vkCmdBeginTransformFeedback2EXT;
+PFN_vkCmdBindTransformFeedbackBuffers2EXT vkCmdBindTransformFeedbackBuffers2EXT;
+PFN_vkCmdDrawIndirectByteCount2EXT vkCmdDrawIndirectByteCount2EXT;
+PFN_vkCmdEndTransformFeedback2EXT vkCmdEndTransformFeedback2EXT;
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_transform_feedback) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_mesh_shader)
+PFN_vkCmdDrawMeshTasksIndirect2EXT vkCmdDrawMeshTasksIndirect2EXT;
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_mesh_shader) */
+#if defined(VK_KHR_device_address_commands) && ((defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) && defined(VK_EXT_mesh_shader))
+PFN_vkCmdDrawMeshTasksIndirectCount2EXT vkCmdDrawMeshTasksIndirectCount2EXT;
+#endif /* defined(VK_KHR_device_address_commands) && ((defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) && defined(VK_EXT_mesh_shader)) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_AMD_buffer_marker)
+PFN_vkCmdWriteMarkerToMemoryAMD vkCmdWriteMarkerToMemoryAMD;
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_AMD_buffer_marker) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure)
+PFN_vkCreateAccelerationStructure2KHR vkCreateAccelerationStructure2KHR;
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure) */
 #if defined(VK_KHR_device_group)
 PFN_vkCmdDispatchBaseKHR vkCmdDispatchBaseKHR;
 PFN_vkCmdSetDeviceMaskKHR vkCmdSetDeviceMaskKHR;
