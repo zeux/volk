@@ -19,7 +19,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 345
+#define VOLK_HEADER_VERSION 346
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -1339,6 +1339,60 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_3d63aec0[3];
 #endif /* defined(VK_KHR_descriptor_update_template) */
+#if defined(VK_KHR_device_address_commands)
+	PFN_vkCmdBindIndexBuffer3KHR vkCmdBindIndexBuffer3KHR;
+	PFN_vkCmdBindVertexBuffers3KHR vkCmdBindVertexBuffers3KHR;
+	PFN_vkCmdCopyImageToMemoryKHR vkCmdCopyImageToMemoryKHR;
+	PFN_vkCmdCopyMemoryKHR vkCmdCopyMemoryKHR;
+	PFN_vkCmdCopyMemoryToImageKHR vkCmdCopyMemoryToImageKHR;
+	PFN_vkCmdCopyQueryPoolResultsToMemoryKHR vkCmdCopyQueryPoolResultsToMemoryKHR;
+	PFN_vkCmdDispatchIndirect2KHR vkCmdDispatchIndirect2KHR;
+	PFN_vkCmdDrawIndexedIndirect2KHR vkCmdDrawIndexedIndirect2KHR;
+	PFN_vkCmdDrawIndirect2KHR vkCmdDrawIndirect2KHR;
+	PFN_vkCmdFillMemoryKHR vkCmdFillMemoryKHR;
+	PFN_vkCmdUpdateMemoryKHR vkCmdUpdateMemoryKHR;
+#else
+	PFN_vkVoidFunction padding_2b90e4ce[11];
+#endif /* defined(VK_KHR_device_address_commands) */
+#if defined(VK_KHR_device_address_commands) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+	PFN_vkCmdDrawIndexedIndirectCount2KHR vkCmdDrawIndexedIndirectCount2KHR;
+	PFN_vkCmdDrawIndirectCount2KHR vkCmdDrawIndirectCount2KHR;
+#else
+	PFN_vkVoidFunction padding_7a492754[2];
+#endif /* defined(VK_KHR_device_address_commands) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_conditional_rendering)
+	PFN_vkCmdBeginConditionalRendering2EXT vkCmdBeginConditionalRendering2EXT;
+#else
+	PFN_vkVoidFunction padding_f9bf440[1];
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_conditional_rendering) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_transform_feedback)
+	PFN_vkCmdBeginTransformFeedback2EXT vkCmdBeginTransformFeedback2EXT;
+	PFN_vkCmdBindTransformFeedbackBuffers2EXT vkCmdBindTransformFeedbackBuffers2EXT;
+	PFN_vkCmdDrawIndirectByteCount2EXT vkCmdDrawIndirectByteCount2EXT;
+	PFN_vkCmdEndTransformFeedback2EXT vkCmdEndTransformFeedback2EXT;
+#else
+	PFN_vkVoidFunction padding_2d72d440[4];
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_transform_feedback) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_mesh_shader)
+	PFN_vkCmdDrawMeshTasksIndirect2EXT vkCmdDrawMeshTasksIndirect2EXT;
+#else
+	PFN_vkVoidFunction padding_4e6fc3d1[1];
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_mesh_shader) */
+#if defined(VK_KHR_device_address_commands) && ((defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) && defined(VK_EXT_mesh_shader))
+	PFN_vkCmdDrawMeshTasksIndirectCount2EXT vkCmdDrawMeshTasksIndirectCount2EXT;
+#else
+	PFN_vkVoidFunction padding_5dc290cb[1];
+#endif /* defined(VK_KHR_device_address_commands) && ((defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) && defined(VK_EXT_mesh_shader)) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_AMD_buffer_marker)
+	PFN_vkCmdWriteMarkerToMemoryAMD vkCmdWriteMarkerToMemoryAMD;
+#else
+	PFN_vkVoidFunction padding_140dbb45[1];
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_AMD_buffer_marker) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure)
+	PFN_vkCreateAccelerationStructure2KHR vkCreateAccelerationStructure2KHR;
+#else
+	PFN_vkVoidFunction padding_2564889a[1];
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure) */
 #if defined(VK_KHR_device_group)
 	PFN_vkCmdDispatchBaseKHR vkCmdDispatchBaseKHR;
 	PFN_vkCmdSetDeviceMaskKHR vkCmdSetDeviceMaskKHR;
@@ -2812,6 +2866,44 @@ extern PFN_vkCreateDescriptorUpdateTemplateKHR vkCreateDescriptorUpdateTemplateK
 extern PFN_vkDestroyDescriptorUpdateTemplateKHR vkDestroyDescriptorUpdateTemplateKHR;
 extern PFN_vkUpdateDescriptorSetWithTemplateKHR vkUpdateDescriptorSetWithTemplateKHR;
 #endif /* defined(VK_KHR_descriptor_update_template) */
+#if defined(VK_KHR_device_address_commands)
+extern PFN_vkCmdBindIndexBuffer3KHR vkCmdBindIndexBuffer3KHR;
+extern PFN_vkCmdBindVertexBuffers3KHR vkCmdBindVertexBuffers3KHR;
+extern PFN_vkCmdCopyImageToMemoryKHR vkCmdCopyImageToMemoryKHR;
+extern PFN_vkCmdCopyMemoryKHR vkCmdCopyMemoryKHR;
+extern PFN_vkCmdCopyMemoryToImageKHR vkCmdCopyMemoryToImageKHR;
+extern PFN_vkCmdCopyQueryPoolResultsToMemoryKHR vkCmdCopyQueryPoolResultsToMemoryKHR;
+extern PFN_vkCmdDispatchIndirect2KHR vkCmdDispatchIndirect2KHR;
+extern PFN_vkCmdDrawIndexedIndirect2KHR vkCmdDrawIndexedIndirect2KHR;
+extern PFN_vkCmdDrawIndirect2KHR vkCmdDrawIndirect2KHR;
+extern PFN_vkCmdFillMemoryKHR vkCmdFillMemoryKHR;
+extern PFN_vkCmdUpdateMemoryKHR vkCmdUpdateMemoryKHR;
+#endif /* defined(VK_KHR_device_address_commands) */
+#if defined(VK_KHR_device_address_commands) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2))
+extern PFN_vkCmdDrawIndexedIndirectCount2KHR vkCmdDrawIndexedIndirectCount2KHR;
+extern PFN_vkCmdDrawIndirectCount2KHR vkCmdDrawIndirectCount2KHR;
+#endif /* defined(VK_KHR_device_address_commands) && (defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_conditional_rendering)
+extern PFN_vkCmdBeginConditionalRendering2EXT vkCmdBeginConditionalRendering2EXT;
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_conditional_rendering) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_transform_feedback)
+extern PFN_vkCmdBeginTransformFeedback2EXT vkCmdBeginTransformFeedback2EXT;
+extern PFN_vkCmdBindTransformFeedbackBuffers2EXT vkCmdBindTransformFeedbackBuffers2EXT;
+extern PFN_vkCmdDrawIndirectByteCount2EXT vkCmdDrawIndirectByteCount2EXT;
+extern PFN_vkCmdEndTransformFeedback2EXT vkCmdEndTransformFeedback2EXT;
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_transform_feedback) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_EXT_mesh_shader)
+extern PFN_vkCmdDrawMeshTasksIndirect2EXT vkCmdDrawMeshTasksIndirect2EXT;
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_EXT_mesh_shader) */
+#if defined(VK_KHR_device_address_commands) && ((defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) && defined(VK_EXT_mesh_shader))
+extern PFN_vkCmdDrawMeshTasksIndirectCount2EXT vkCmdDrawMeshTasksIndirectCount2EXT;
+#endif /* defined(VK_KHR_device_address_commands) && ((defined(VK_KHR_draw_indirect_count) || defined(VK_VERSION_1_2)) && defined(VK_EXT_mesh_shader)) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_AMD_buffer_marker)
+extern PFN_vkCmdWriteMarkerToMemoryAMD vkCmdWriteMarkerToMemoryAMD;
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_AMD_buffer_marker) */
+#if defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure)
+extern PFN_vkCreateAccelerationStructure2KHR vkCreateAccelerationStructure2KHR;
+#endif /* defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure) */
 #if defined(VK_KHR_device_group)
 extern PFN_vkCmdDispatchBaseKHR vkCmdDispatchBaseKHR;
 extern PFN_vkCmdSetDeviceMaskKHR vkCmdSetDeviceMaskKHR;
