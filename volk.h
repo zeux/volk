@@ -19,7 +19,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 346
+#define VOLK_HEADER_VERSION 347
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -1393,6 +1393,12 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_2564889a[1];
 #endif /* defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure) */
+#if defined(VK_KHR_device_fault)
+	PFN_vkGetDeviceFaultDebugInfoKHR vkGetDeviceFaultDebugInfoKHR;
+	PFN_vkGetDeviceFaultReportsKHR vkGetDeviceFaultReportsKHR;
+#else
+	PFN_vkVoidFunction padding_d83e9289[2];
+#endif /* defined(VK_KHR_device_fault) */
 #if defined(VK_KHR_device_group)
 	PFN_vkCmdDispatchBaseKHR vkCmdDispatchBaseKHR;
 	PFN_vkCmdSetDeviceMaskKHR vkCmdSetDeviceMaskKHR;
@@ -2904,6 +2910,10 @@ extern PFN_vkCmdWriteMarkerToMemoryAMD vkCmdWriteMarkerToMemoryAMD;
 #if defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure)
 extern PFN_vkCreateAccelerationStructure2KHR vkCreateAccelerationStructure2KHR;
 #endif /* defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure) */
+#if defined(VK_KHR_device_fault)
+extern PFN_vkGetDeviceFaultDebugInfoKHR vkGetDeviceFaultDebugInfoKHR;
+extern PFN_vkGetDeviceFaultReportsKHR vkGetDeviceFaultReportsKHR;
+#endif /* defined(VK_KHR_device_fault) */
 #if defined(VK_KHR_device_group)
 extern PFN_vkCmdDispatchBaseKHR vkCmdDispatchBaseKHR;
 extern PFN_vkCmdSetDeviceMaskKHR vkCmdSetDeviceMaskKHR;

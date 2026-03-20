@@ -1111,6 +1111,10 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 #if defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure)
 	vkCreateAccelerationStructure2KHR = (PFN_vkCreateAccelerationStructure2KHR)load(context, "vkCreateAccelerationStructure2KHR");
 #endif /* defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure) */
+#if defined(VK_KHR_device_fault)
+	vkGetDeviceFaultDebugInfoKHR = (PFN_vkGetDeviceFaultDebugInfoKHR)load(context, "vkGetDeviceFaultDebugInfoKHR");
+	vkGetDeviceFaultReportsKHR = (PFN_vkGetDeviceFaultReportsKHR)load(context, "vkGetDeviceFaultReportsKHR");
+#endif /* defined(VK_KHR_device_fault) */
 #if defined(VK_KHR_device_group)
 	vkCmdDispatchBaseKHR = (PFN_vkCmdDispatchBaseKHR)load(context, "vkCmdDispatchBaseKHR");
 	vkCmdSetDeviceMaskKHR = (PFN_vkCmdSetDeviceMaskKHR)load(context, "vkCmdSetDeviceMaskKHR");
@@ -2421,6 +2425,10 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 #if defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure)
 	table->vkCreateAccelerationStructure2KHR = (PFN_vkCreateAccelerationStructure2KHR)load(context, "vkCreateAccelerationStructure2KHR");
 #endif /* defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure) */
+#if defined(VK_KHR_device_fault)
+	table->vkGetDeviceFaultDebugInfoKHR = (PFN_vkGetDeviceFaultDebugInfoKHR)load(context, "vkGetDeviceFaultDebugInfoKHR");
+	table->vkGetDeviceFaultReportsKHR = (PFN_vkGetDeviceFaultReportsKHR)load(context, "vkGetDeviceFaultReportsKHR");
+#endif /* defined(VK_KHR_device_fault) */
 #if defined(VK_KHR_device_group)
 	table->vkCmdDispatchBaseKHR = (PFN_vkCmdDispatchBaseKHR)load(context, "vkCmdDispatchBaseKHR");
 	table->vkCmdSetDeviceMaskKHR = (PFN_vkCmdSetDeviceMaskKHR)load(context, "vkCmdSetDeviceMaskKHR");
@@ -3592,6 +3600,10 @@ PFN_vkCmdWriteMarkerToMemoryAMD vkCmdWriteMarkerToMemoryAMD;
 #if defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure)
 PFN_vkCreateAccelerationStructure2KHR vkCreateAccelerationStructure2KHR;
 #endif /* defined(VK_KHR_device_address_commands) && defined(VK_KHR_acceleration_structure) */
+#if defined(VK_KHR_device_fault)
+PFN_vkGetDeviceFaultDebugInfoKHR vkGetDeviceFaultDebugInfoKHR;
+PFN_vkGetDeviceFaultReportsKHR vkGetDeviceFaultReportsKHR;
+#endif /* defined(VK_KHR_device_fault) */
 #if defined(VK_KHR_device_group)
 PFN_vkCmdDispatchBaseKHR vkCmdDispatchBaseKHR;
 PFN_vkCmdSetDeviceMaskKHR vkCmdSetDeviceMaskKHR;
