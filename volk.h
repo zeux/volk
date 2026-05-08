@@ -19,7 +19,7 @@
 #endif
 
 /* VOLK_GENERATE_VERSION_DEFINE */
-#define VOLK_HEADER_VERSION 350
+#define VOLK_HEADER_VERSION 351
 /* VOLK_GENERATE_VERSION_DEFINE */
 
 #ifndef VK_NO_PROTOTYPES
@@ -867,6 +867,22 @@ struct VolkDeviceTable
 #else
 	PFN_vkVoidFunction padding_fbfa9964[2];
 #endif /* defined(VK_AMD_draw_indirect_count) */
+#if defined(VK_AMD_gpa_interface)
+	PFN_vkCmdBeginGpaSampleAMD vkCmdBeginGpaSampleAMD;
+	PFN_vkCmdBeginGpaSessionAMD vkCmdBeginGpaSessionAMD;
+	PFN_vkCmdCopyGpaSessionResultsAMD vkCmdCopyGpaSessionResultsAMD;
+	PFN_vkCmdEndGpaSampleAMD vkCmdEndGpaSampleAMD;
+	PFN_vkCmdEndGpaSessionAMD vkCmdEndGpaSessionAMD;
+	PFN_vkCreateGpaSessionAMD vkCreateGpaSessionAMD;
+	PFN_vkDestroyGpaSessionAMD vkDestroyGpaSessionAMD;
+	PFN_vkGetGpaDeviceClockInfoAMD vkGetGpaDeviceClockInfoAMD;
+	PFN_vkGetGpaSessionResultsAMD vkGetGpaSessionResultsAMD;
+	PFN_vkGetGpaSessionStatusAMD vkGetGpaSessionStatusAMD;
+	PFN_vkResetGpaSessionAMD vkResetGpaSessionAMD;
+	PFN_vkSetGpaDeviceClockModeAMD vkSetGpaDeviceClockModeAMD;
+#else
+	PFN_vkVoidFunction padding_56ca082d[12];
+#endif /* defined(VK_AMD_gpa_interface) */
 #if defined(VK_AMD_shader_info)
 	PFN_vkGetShaderInfoAMD vkGetShaderInfoAMD;
 #else
@@ -2557,6 +2573,20 @@ extern PFN_vkSetLocalDimmingAMD vkSetLocalDimmingAMD;
 extern PFN_vkCmdDrawIndexedIndirectCountAMD vkCmdDrawIndexedIndirectCountAMD;
 extern PFN_vkCmdDrawIndirectCountAMD vkCmdDrawIndirectCountAMD;
 #endif /* defined(VK_AMD_draw_indirect_count) */
+#if defined(VK_AMD_gpa_interface)
+extern PFN_vkCmdBeginGpaSampleAMD vkCmdBeginGpaSampleAMD;
+extern PFN_vkCmdBeginGpaSessionAMD vkCmdBeginGpaSessionAMD;
+extern PFN_vkCmdCopyGpaSessionResultsAMD vkCmdCopyGpaSessionResultsAMD;
+extern PFN_vkCmdEndGpaSampleAMD vkCmdEndGpaSampleAMD;
+extern PFN_vkCmdEndGpaSessionAMD vkCmdEndGpaSessionAMD;
+extern PFN_vkCreateGpaSessionAMD vkCreateGpaSessionAMD;
+extern PFN_vkDestroyGpaSessionAMD vkDestroyGpaSessionAMD;
+extern PFN_vkGetGpaDeviceClockInfoAMD vkGetGpaDeviceClockInfoAMD;
+extern PFN_vkGetGpaSessionResultsAMD vkGetGpaSessionResultsAMD;
+extern PFN_vkGetGpaSessionStatusAMD vkGetGpaSessionStatusAMD;
+extern PFN_vkResetGpaSessionAMD vkResetGpaSessionAMD;
+extern PFN_vkSetGpaDeviceClockModeAMD vkSetGpaDeviceClockModeAMD;
+#endif /* defined(VK_AMD_gpa_interface) */
 #if defined(VK_AMD_shader_info)
 extern PFN_vkGetShaderInfoAMD vkGetShaderInfoAMD;
 #endif /* defined(VK_AMD_shader_info) */

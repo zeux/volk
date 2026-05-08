@@ -733,6 +733,20 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 	vkCmdDrawIndexedIndirectCountAMD = (PFN_vkCmdDrawIndexedIndirectCountAMD)load(context, "vkCmdDrawIndexedIndirectCountAMD");
 	vkCmdDrawIndirectCountAMD = (PFN_vkCmdDrawIndirectCountAMD)load(context, "vkCmdDrawIndirectCountAMD");
 #endif /* defined(VK_AMD_draw_indirect_count) */
+#if defined(VK_AMD_gpa_interface)
+	vkCmdBeginGpaSampleAMD = (PFN_vkCmdBeginGpaSampleAMD)load(context, "vkCmdBeginGpaSampleAMD");
+	vkCmdBeginGpaSessionAMD = (PFN_vkCmdBeginGpaSessionAMD)load(context, "vkCmdBeginGpaSessionAMD");
+	vkCmdCopyGpaSessionResultsAMD = (PFN_vkCmdCopyGpaSessionResultsAMD)load(context, "vkCmdCopyGpaSessionResultsAMD");
+	vkCmdEndGpaSampleAMD = (PFN_vkCmdEndGpaSampleAMD)load(context, "vkCmdEndGpaSampleAMD");
+	vkCmdEndGpaSessionAMD = (PFN_vkCmdEndGpaSessionAMD)load(context, "vkCmdEndGpaSessionAMD");
+	vkCreateGpaSessionAMD = (PFN_vkCreateGpaSessionAMD)load(context, "vkCreateGpaSessionAMD");
+	vkDestroyGpaSessionAMD = (PFN_vkDestroyGpaSessionAMD)load(context, "vkDestroyGpaSessionAMD");
+	vkGetGpaDeviceClockInfoAMD = (PFN_vkGetGpaDeviceClockInfoAMD)load(context, "vkGetGpaDeviceClockInfoAMD");
+	vkGetGpaSessionResultsAMD = (PFN_vkGetGpaSessionResultsAMD)load(context, "vkGetGpaSessionResultsAMD");
+	vkGetGpaSessionStatusAMD = (PFN_vkGetGpaSessionStatusAMD)load(context, "vkGetGpaSessionStatusAMD");
+	vkResetGpaSessionAMD = (PFN_vkResetGpaSessionAMD)load(context, "vkResetGpaSessionAMD");
+	vkSetGpaDeviceClockModeAMD = (PFN_vkSetGpaDeviceClockModeAMD)load(context, "vkSetGpaDeviceClockModeAMD");
+#endif /* defined(VK_AMD_gpa_interface) */
 #if defined(VK_AMD_shader_info)
 	vkGetShaderInfoAMD = (PFN_vkGetShaderInfoAMD)load(context, "vkGetShaderInfoAMD");
 #endif /* defined(VK_AMD_shader_info) */
@@ -2062,6 +2076,20 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 	table->vkCmdDrawIndexedIndirectCountAMD = (PFN_vkCmdDrawIndexedIndirectCountAMD)load(context, "vkCmdDrawIndexedIndirectCountAMD");
 	table->vkCmdDrawIndirectCountAMD = (PFN_vkCmdDrawIndirectCountAMD)load(context, "vkCmdDrawIndirectCountAMD");
 #endif /* defined(VK_AMD_draw_indirect_count) */
+#if defined(VK_AMD_gpa_interface)
+	table->vkCmdBeginGpaSampleAMD = (PFN_vkCmdBeginGpaSampleAMD)load(context, "vkCmdBeginGpaSampleAMD");
+	table->vkCmdBeginGpaSessionAMD = (PFN_vkCmdBeginGpaSessionAMD)load(context, "vkCmdBeginGpaSessionAMD");
+	table->vkCmdCopyGpaSessionResultsAMD = (PFN_vkCmdCopyGpaSessionResultsAMD)load(context, "vkCmdCopyGpaSessionResultsAMD");
+	table->vkCmdEndGpaSampleAMD = (PFN_vkCmdEndGpaSampleAMD)load(context, "vkCmdEndGpaSampleAMD");
+	table->vkCmdEndGpaSessionAMD = (PFN_vkCmdEndGpaSessionAMD)load(context, "vkCmdEndGpaSessionAMD");
+	table->vkCreateGpaSessionAMD = (PFN_vkCreateGpaSessionAMD)load(context, "vkCreateGpaSessionAMD");
+	table->vkDestroyGpaSessionAMD = (PFN_vkDestroyGpaSessionAMD)load(context, "vkDestroyGpaSessionAMD");
+	table->vkGetGpaDeviceClockInfoAMD = (PFN_vkGetGpaDeviceClockInfoAMD)load(context, "vkGetGpaDeviceClockInfoAMD");
+	table->vkGetGpaSessionResultsAMD = (PFN_vkGetGpaSessionResultsAMD)load(context, "vkGetGpaSessionResultsAMD");
+	table->vkGetGpaSessionStatusAMD = (PFN_vkGetGpaSessionStatusAMD)load(context, "vkGetGpaSessionStatusAMD");
+	table->vkResetGpaSessionAMD = (PFN_vkResetGpaSessionAMD)load(context, "vkResetGpaSessionAMD");
+	table->vkSetGpaDeviceClockModeAMD = (PFN_vkSetGpaDeviceClockModeAMD)load(context, "vkSetGpaDeviceClockModeAMD");
+#endif /* defined(VK_AMD_gpa_interface) */
 #if defined(VK_AMD_shader_info)
 	table->vkGetShaderInfoAMD = (PFN_vkGetShaderInfoAMD)load(context, "vkGetShaderInfoAMD");
 #endif /* defined(VK_AMD_shader_info) */
@@ -3177,6 +3205,20 @@ PFN_vkSetLocalDimmingAMD vkSetLocalDimmingAMD;
 PFN_vkCmdDrawIndexedIndirectCountAMD vkCmdDrawIndexedIndirectCountAMD;
 PFN_vkCmdDrawIndirectCountAMD vkCmdDrawIndirectCountAMD;
 #endif /* defined(VK_AMD_draw_indirect_count) */
+#if defined(VK_AMD_gpa_interface)
+PFN_vkCmdBeginGpaSampleAMD vkCmdBeginGpaSampleAMD;
+PFN_vkCmdBeginGpaSessionAMD vkCmdBeginGpaSessionAMD;
+PFN_vkCmdCopyGpaSessionResultsAMD vkCmdCopyGpaSessionResultsAMD;
+PFN_vkCmdEndGpaSampleAMD vkCmdEndGpaSampleAMD;
+PFN_vkCmdEndGpaSessionAMD vkCmdEndGpaSessionAMD;
+PFN_vkCreateGpaSessionAMD vkCreateGpaSessionAMD;
+PFN_vkDestroyGpaSessionAMD vkDestroyGpaSessionAMD;
+PFN_vkGetGpaDeviceClockInfoAMD vkGetGpaDeviceClockInfoAMD;
+PFN_vkGetGpaSessionResultsAMD vkGetGpaSessionResultsAMD;
+PFN_vkGetGpaSessionStatusAMD vkGetGpaSessionStatusAMD;
+PFN_vkResetGpaSessionAMD vkResetGpaSessionAMD;
+PFN_vkSetGpaDeviceClockModeAMD vkSetGpaDeviceClockModeAMD;
+#endif /* defined(VK_AMD_gpa_interface) */
 #if defined(VK_AMD_shader_info)
 PFN_vkGetShaderInfoAMD vkGetShaderInfoAMD;
 #endif /* defined(VK_AMD_shader_info) */
