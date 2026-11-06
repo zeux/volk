@@ -471,6 +471,9 @@ static void volkGenLoadInstance(void* context, PFN_vkVoidFunction (*load)(void*,
 #if defined(VK_NV_external_memory_capabilities)
 	vkGetPhysicalDeviceExternalImageFormatPropertiesNV = (PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV)load(context, "vkGetPhysicalDeviceExternalImageFormatPropertiesNV");
 #endif /* defined(VK_NV_external_memory_capabilities) */
+#if defined(VK_NV_internal_handle)
+	vkGetPhysicalDeviceInternalHandleNV = (PFN_vkGetPhysicalDeviceInternalHandleNV)load(context, "vkGetPhysicalDeviceInternalHandleNV");
+#endif /* defined(VK_NV_internal_handle) */
 #if defined(VK_NV_optical_flow)
 	vkGetPhysicalDeviceOpticalFlowImageFormatsNV = (PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV)load(context, "vkGetPhysicalDeviceOpticalFlowImageFormatsNV");
 #endif /* defined(VK_NV_optical_flow) */
@@ -1400,6 +1403,11 @@ static void volkGenLoadDevice(void* context, PFN_vkVoidFunction (*load)(void*, c
 #if defined(VK_NV_fragment_shading_rate_enums)
 	vkCmdSetFragmentShadingRateEnumNV = (PFN_vkCmdSetFragmentShadingRateEnumNV)load(context, "vkCmdSetFragmentShadingRateEnumNV");
 #endif /* defined(VK_NV_fragment_shading_rate_enums) */
+#if defined(VK_NV_internal_handle)
+	vkGetCommandBufferInternalHandleNV = (PFN_vkGetCommandBufferInternalHandleNV)load(context, "vkGetCommandBufferInternalHandleNV");
+	vkGetDeviceInternalHandleNV = (PFN_vkGetDeviceInternalHandleNV)load(context, "vkGetDeviceInternalHandleNV");
+	vkGetQueueInternalHandleNV = (PFN_vkGetQueueInternalHandleNV)load(context, "vkGetQueueInternalHandleNV");
+#endif /* defined(VK_NV_internal_handle) */
 #if defined(VK_NV_low_latency) && VK_NV_LOW_LATENCY_SPEC_VERSION >= 2
 	vkGetLatencyTimingsLegacyNV = (PFN_vkGetLatencyTimingsLegacyNV)load(context, "vkGetLatencyTimingsLegacyNV");
 	vkGetSleepStatusLegacyNV = (PFN_vkGetSleepStatusLegacyNV)load(context, "vkGetSleepStatusLegacyNV");
@@ -1826,6 +1834,9 @@ static void volkGenLoadInstanceTable(struct VolkInstanceTable* table, void* cont
 #if defined(VK_NV_external_memory_capabilities)
 	table->vkGetPhysicalDeviceExternalImageFormatPropertiesNV = (PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV)load(context, "vkGetPhysicalDeviceExternalImageFormatPropertiesNV");
 #endif /* defined(VK_NV_external_memory_capabilities) */
+#if defined(VK_NV_internal_handle)
+	table->vkGetPhysicalDeviceInternalHandleNV = (PFN_vkGetPhysicalDeviceInternalHandleNV)load(context, "vkGetPhysicalDeviceInternalHandleNV");
+#endif /* defined(VK_NV_internal_handle) */
 #if defined(VK_NV_optical_flow)
 	table->vkGetPhysicalDeviceOpticalFlowImageFormatsNV = (PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV)load(context, "vkGetPhysicalDeviceOpticalFlowImageFormatsNV");
 #endif /* defined(VK_NV_optical_flow) */
@@ -2755,6 +2766,11 @@ static void volkGenLoadDeviceTable(struct VolkDeviceTable* table, void* context,
 #if defined(VK_NV_fragment_shading_rate_enums)
 	table->vkCmdSetFragmentShadingRateEnumNV = (PFN_vkCmdSetFragmentShadingRateEnumNV)load(context, "vkCmdSetFragmentShadingRateEnumNV");
 #endif /* defined(VK_NV_fragment_shading_rate_enums) */
+#if defined(VK_NV_internal_handle)
+	table->vkGetCommandBufferInternalHandleNV = (PFN_vkGetCommandBufferInternalHandleNV)load(context, "vkGetCommandBufferInternalHandleNV");
+	table->vkGetDeviceInternalHandleNV = (PFN_vkGetDeviceInternalHandleNV)load(context, "vkGetDeviceInternalHandleNV");
+	table->vkGetQueueInternalHandleNV = (PFN_vkGetQueueInternalHandleNV)load(context, "vkGetQueueInternalHandleNV");
+#endif /* defined(VK_NV_internal_handle) */
 #if defined(VK_NV_low_latency) && VK_NV_LOW_LATENCY_SPEC_VERSION >= 2
 	table->vkGetLatencyTimingsLegacyNV = (PFN_vkGetLatencyTimingsLegacyNV)load(context, "vkGetLatencyTimingsLegacyNV");
 	table->vkGetSleepStatusLegacyNV = (PFN_vkGetSleepStatusLegacyNV)load(context, "vkGetSleepStatusLegacyNV");
@@ -4063,6 +4079,12 @@ PFN_vkGetMemoryWin32HandleNV vkGetMemoryWin32HandleNV;
 #if defined(VK_NV_fragment_shading_rate_enums)
 PFN_vkCmdSetFragmentShadingRateEnumNV vkCmdSetFragmentShadingRateEnumNV;
 #endif /* defined(VK_NV_fragment_shading_rate_enums) */
+#if defined(VK_NV_internal_handle)
+PFN_vkGetCommandBufferInternalHandleNV vkGetCommandBufferInternalHandleNV;
+PFN_vkGetDeviceInternalHandleNV vkGetDeviceInternalHandleNV;
+PFN_vkGetPhysicalDeviceInternalHandleNV vkGetPhysicalDeviceInternalHandleNV;
+PFN_vkGetQueueInternalHandleNV vkGetQueueInternalHandleNV;
+#endif /* defined(VK_NV_internal_handle) */
 #if defined(VK_NV_low_latency) && VK_NV_LOW_LATENCY_SPEC_VERSION >= 2
 PFN_vkGetLatencyTimingsLegacyNV vkGetLatencyTimingsLegacyNV;
 PFN_vkGetSleepStatusLegacyNV vkGetSleepStatusLegacyNV;
