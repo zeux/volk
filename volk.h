@@ -3480,7 +3480,7 @@ extern PFN_vkAcquireNextImage2KHR vkAcquireNextImage2KHR;
 using namespace volk;
 #endif
 
-#endif // VOLK_H
+#endif // VOLK_H_
 
 #ifdef VOLK_IMPLEMENTATION
 #undef VOLK_IMPLEMENTATION
